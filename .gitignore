@@ -54,3 +54,7 @@ Thumbs.db
 # Local environment variables
 .env
 .env.local
+
+# Documentation to be added later
+README.md
+
