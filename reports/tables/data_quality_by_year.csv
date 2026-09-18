@@ -1,0 +1,6 @@
+﻿year,row_count,column_count_after_standardization,missing_standard_column_count,missing_standard_columns,duplicate_country_rows,missing_gdp_per_capita,missing_social_support,missing_healthy_life_expectancy,missing_freedom,missing_generosity,missing_corruption_perception
+2015,158,13,0,,0,0,0,0,0,0,0
+2016,157,14,0,,0,0,0,0,0,0,0
+2017,155,13,1,region,0,0,0,0,0,0,0
+2018,156,10,2,"region, dystopia_residual",0,0,0,0,0,0,1
+2019,156,10,2,"region, dystopia_residual",0,0,0,0,0,0,0

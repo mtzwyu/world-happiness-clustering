@@ -48,6 +48,38 @@ _Avoid_: Cluster label, Nhóm số nguyên thuần túy
 
 ---
 
+## Experiment Scope (Phạm vi thực nghiệm)
+
+**Experiment Year**:
+Một trong năm năm 2015-2019. Mỗi năm được gom cụm độc lập và là một đơn vị báo cáo riêng, sau đó mới so sánh xu hướng giữa các năm.
+_Avoid_: Gộp 5 năm thành một lần chạy, dữ liệu trộn năm, pooled dataset
+
+**Clustering Configuration**:
+Cặp (thuật toán, cách chuẩn hóa dữ liệu) kèm tham số tương ứng, ví dụ K-Means với Z-score, phân cấp Ward với Z-score, DBSCAN với Z-score.
+_Avoid_: Model, mô hình, pipeline
+
+**Optimal k (Số cụm tối ưu)**:
+Số cụm được chọn cho từng năm bằng phương pháp khuỷu tay và hệ số Silhouette. Đây là kết quả chính của báo cáo.
+_Avoid_: k mặc định, k chuẩn
+
+**Contrast Configuration (Cấu hình đối chứng k=3)**:
+Cấu hình ba cụm dùng để so sánh cấu trúc phân nhóm giữa các năm trên cùng một số cụm.
+_Avoid_: Baseline, k cố định
+
+**Cluster Stability (Độ ổn định cụm)**:
+Mức trùng khớp nhãn cụm khi chạy lại thuật toán với các seed khác nhau, đo bằng Adjusted Rand Index trên 10 seed. Chỉ áp dụng cho thuật toán có khởi tạo ngẫu nhiên; thuật toán tất định được ghi nhận 1.0 kèm giải thích.
+_Avoid_: Độ chính xác, accuracy
+
+**Cross-year Cluster Matching (Ghép cụm liên năm)**:
+Việc gán cặp cụm giữa hai năm liền kề theo khoảng cách tâm cụm nhỏ nhất, hoà thì xét điểm hạnh phúc trung bình, để có thể so sánh xu hướng giữa các năm.
+_Avoid_: Cluster ID, đánh số cụm cố định
+
+**Country Cluster Shift (Bảng dịch chuyển cụm)**:
+Bảng theo dõi cụm của từng quốc gia qua năm năm, dùng để nhận diện quốc gia đổi nhóm.
+_Avoid_: Bảng theo dõi quốc gia, lịch sử nhóm
+
+---
+
 ## Methodology & Pipeline (Phương pháp luận)
 
 **11-Step Pipeline**:
@@ -55,5 +87,5 @@ Chu trình khai phá dữ liệu 11 bước bắt buộc theo đề cương: (1)
 _Avoid_: Ad-hoc analysis, Quy trình tự do
 
 **From-Scratch Algorithm**:
-Thuật toán do sinh viên tự code logic toán học từng bước bằng NumPy/Pandas cơ bản, không sử dụng API huấn luyện của thư viện Scikit-Learn.
+Thuật toán do sinh viên tự code logic toán học từng bước bằng NumPy/Pandas cơ bản, không sử dụng API huấn luyện của thư viện Scikit-Learn. Theo ADR 0003, phạm vi này bao gồm K-Means, phân cấp Ward, DBSCAN, giảm chiều PCA và các độ đo Silhouette, Davies-Bouldin, Calinski-Harabasz, Adjusted Rand Index.
 _Avoid_: Black-box model, Built-in clusterer

@@ -4,6 +4,7 @@ Không dùng black-box, giúp sinh viên hiểu rõ bản chất toán học c�
 """
 
 import math
+import random
 from typing import List, Tuple, Dict, Any
 import numpy as np
 import pandas as pd
@@ -163,11 +164,188 @@ def scale_features(
     return np.array(scaled_list), scaler
 
 
-def apply_pca(X_scaled: np.ndarray, n_components: int = 2, random_state: int = 42):
+# ==============================================================================
+# 3. GIẢM CHIỀU PCA TỰ CÀI ĐẶT (PHƯƠNG PHÁP LŨY THỪA)
+# ==============================================================================
+
+def to_list_of_lists(data) -> List[List[float]]:
+    """Chuyển dữ liệu đầu vào (numpy array, DataFrame hoặc list) về list các list số."""
+    if isinstance(data, np.ndarray):
+        return data.tolist()
+    if hasattr(data, "values"):
+        return data.values.tolist()
+    return [list(row) for row in data]
+
+
+def mat_vec_mul(matrix: List[List[float]], vector: List[float]) -> List[float]:
+    """Nhân ma trận với vector bằng vòng lặp: (C v)_i = sum_j C[i][j] * v[j]"""
+    result = []
+    for row in matrix:
+        total = 0.0
+        for j in range(len(vector)):
+            total += row[j] * vector[j]
+        result.append(total)
+    return result
+
+
+def vector_norm(vector: List[float]) -> float:
+    """Độ dài Euclid của vector: ||v|| = sqrt(sum(v_i^2))"""
+    return math.sqrt(sum(value * value for value in vector))
+
+
+class SimplePCA:
     """
-    Giảm chiều dữ liệu bằng PCA phục vụ vẽ biểu đồ phân tán 2D.
+    Giảm chiều dữ liệu bằng phân tích thành phần chính (PCA) tự cài đặt.
+
+    Các bước thực hiện:
+    1. Trừ trung bình từng cột để dữ liệu có trung bình bằng 0.
+    2. Lập ma trận hiệp phương sai C kích thước d x d (d là số đặc trưng).
+    3. Tìm vector riêng ứng với trị riêng lớn nhất của C bằng phương pháp lũy thừa:
+       lặp phép nhân C với một vector đơn vị cho tới khi hướng của vector không đổi nữa.
+    4. Loại thành phần vừa tìm khỏi C (deflation: C = C - lambda * v * v^T) rồi lặp lại
+       để tìm thành phần tiếp theo.
+    5. Chiếu dữ liệu đã trừ trung bình lên các vector riêng đó để thu được dữ liệu giảm chiều.
+
+    Không dùng bất kỳ hàm phân rã ma trận có sẵn nào; chỉ dùng vòng lặp, phép cộng/nhân và căn bậc hai.
     """
-    from sklearn.decomposition import PCA
-    pca = PCA(n_components=n_components, random_state=random_state)
+
+    def __init__(
+        self,
+        n_components: int = 2,
+        max_iter: int = 1000,
+        tol: float = 1e-10,
+        random_state: Any = 42,
+    ):
+        self.n_components = n_components
+        self.max_iter = max_iter
+        self.tol = tol
+        self.random_state = random_state
+        self.mean: List[float] = []
+        self.components: List[List[float]] = []
+        self.eigenvalues: List[float] = []
+        self.explained_variance_ratio: List[float] = []
+
+    # ------------------------------------------------------------------ bước con
+    def _center(self, data: List[List[float]]) -> List[List[float]]:
+        """Trừ trung bình từng cột, lưu lại trung bình để dùng cho transform()."""
+        n_samples = len(data)
+        n_features = len(data[0])
+
+        self.mean = []
+        for col in range(n_features):
+            total = 0.0
+            for row in range(n_samples):
+                total += data[row][col]
+            self.mean.append(total / n_samples)
+
+        centered = []
+        for row in range(n_samples):
+            centered.append([data[row][col] - self.mean[col] for col in range(n_features)])
+        return centered
+
+    def _covariance_matrix(self, centered: List[List[float]]) -> List[List[float]]:
+        """Ma trận hiệp phương sai: C[i][j] = sum(x_i * x_j) / (n - 1), ma trận đối xứng."""
+        n_samples = len(centered)
+        n_features = len(centered[0])
+        matrix = [[0.0] * n_features for _ in range(n_features)]
+
+        for i in range(n_features):
+            for j in range(i, n_features):
+                total = 0.0
+                for row in range(n_samples):
+                    total += centered[row][i] * centered[row][j]
+                value = total / (n_samples - 1)
+                matrix[i][j] = value
+                matrix[j][i] = value
+        return matrix
+
+    def _power_iteration(self, matrix: List[List[float]]) -> Tuple[float, List[float]]:
+        """
+        Tìm trị riêng lớn nhất và vector riêng tương ứng bằng phương pháp lũy thừa.
+
+        Lặp: v <- C v, chuẩn hóa v về độ dài 1, dừng khi v thay đổi ít hơn sai số tol.
+        Trị riêng cuối cùng lấy theo thương Rayleigh: lambda = v^T C v.
+        """
+        n_features = len(matrix)
+
+        if self.random_state is None:
+            # Khởi tạo tất định: chọn cột có phương sai lớn nhất
+            start = max(range(n_features), key=lambda idx: matrix[idx][idx])
+            vector = [0.0] * n_features
+            vector[start] = 1.0
+        else:
+            generator = random.Random(self.random_state)
+            vector = [generator.uniform(-1.0, 1.0) for _ in range(n_features)]
+            norm = vector_norm(vector)
+            vector = [value / norm for value in vector]
+
+        for _ in range(self.max_iter):
+            product = mat_vec_mul(matrix, vector)
+            norm = vector_norm(product)
+            if norm == 0.0:
+                break
+            updated = [value / norm for value in product]
+            difference = vector_norm([updated[i] - vector[i] for i in range(n_features)])
+            vector = updated
+            if difference < self.tol:
+                break
+
+        product = mat_vec_mul(matrix, vector)
+        eigenvalue = sum(vector[i] * product[i] for i in range(n_features))
+        return eigenvalue, vector
+
+    # ------------------------------------------------------------------ API chính
+    def fit(self, data) -> "SimplePCA":
+        """Học các thành phần chính từ dữ liệu."""
+        matrix_data = to_list_of_lists(data)
+        centered = self._center(matrix_data)
+        covariance = self._covariance_matrix(centered)
+        total_variance = sum(covariance[i][i] for i in range(len(covariance)))
+
+        self.components = []
+        self.eigenvalues = []
+        working = [row[:] for row in covariance]
+
+        for _ in range(min(self.n_components, len(covariance))):
+            eigenvalue, vector = self._power_iteration(working)
+            self.eigenvalues.append(eigenvalue)
+            self.components.append(vector)
+
+            # Loại thành phần vừa tìm khỏi ma trận để vòng sau tìm được thành phần kế tiếp
+            for i in range(len(working)):
+                for j in range(len(working)):
+                    working[i][j] -= eigenvalue * vector[i] * vector[j]
+
+        if total_variance > 0.0:
+            self.explained_variance_ratio = [value / total_variance for value in self.eigenvalues]
+        else:
+            self.explained_variance_ratio = [0.0] * len(self.eigenvalues)
+        return self
+
+    def transform(self, data) -> List[List[float]]:
+        """Chiếu dữ liệu lên các thành phần chính đã học."""
+        matrix_data = to_list_of_lists(data)
+        result = []
+        for row in matrix_data:
+            centered_row = [row[col] - self.mean[col] for col in range(len(row))]
+            projected = []
+            for component in self.components:
+                projected.append(
+                    sum(centered_row[i] * component[i] for i in range(len(component)))
+                )
+            result.append(projected)
+        return result
+
+    def fit_transform(self, data) -> List[List[float]]:
+        return self.fit(data).transform(data)
+
+
+def apply_pca(X_scaled: np.ndarray, n_components: int = 2, random_state: Any = 42):
+    """
+    Giảm chiều dữ liệu bằng SimplePCA tự cài đặt, phục vụ vẽ biểu đồ phân tán 2D.
+
+    Giữ nguyên chữ ký cũ để các notebook đang gọi hàm này không phải sửa.
+    """
+    pca = SimplePCA(n_components=n_components, random_state=random_state)
     X_pca = pca.fit_transform(X_scaled)
-    return X_pca, pca
+    return np.array(X_pca), pca

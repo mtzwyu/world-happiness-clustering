@@ -1,0 +1,11 @@
+﻿year,country,region,happiness_rank,happiness_score,gdp_per_capita,social_support,healthy_life_expectancy,freedom,generosity,corruption_perception,dystopia_residual
+2015,Afghanistan,Southern Asia,153,3.575,0.31982,0.30285,0.30335,0.23414,0.3651,0.09719,1.9521
+2015,Albania,Central and Eastern Europe,95,4.959,0.87867,0.80434,0.81325,0.35733,0.14272,0.06413,1.89894
+2015,Algeria,Middle East and Northern Africa,68,5.605,0.93929,1.07772,0.61766,0.28579,0.07822,0.17383,2.43209
+2015,Angola,Sub-Saharan Africa,137,4.033,0.75778,0.8604,0.16683,0.10384,0.12344,0.07122,1.94939
+2015,Argentina,Latin America and Caribbean,30,6.574,1.05351,1.24823,0.78723,0.44974,0.11451,0.08484,2.836
+2015,Armenia,Central and Eastern Europe,127,4.35,0.76821,0.77711,0.7299,0.19847,0.07855,0.039,1.75873
+2015,Australia,Australia and New Zealand,10,7.284,1.33358,1.30923,0.93156,0.65124,0.43562,0.35637,2.26646
+2015,Austria,Western Europe,13,7.2,1.33723,1.29704,0.89042,0.62433,0.33088,0.18676,2.5332
+2015,Azerbaijan,Central and Eastern Europe,80,5.212,1.02389,0.93793,0.64045,0.3703,0.07799,0.16065,2.00073
+2015,Bahrain,Middle East and Northern Africa,49,5.96,1.32376,1.21624,0.74716,0.45492,0.17362,0.306,1.73797

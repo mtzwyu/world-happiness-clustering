@@ -58,6 +58,12 @@ Thumbs.db
 # Documentation to be added later
 README.md
 
+# IDE & Office temporary files
+~$*.docx
+~$*.pptx
+~$*.xlsx
+*.tmp
+
 # AI Agent & Internal Tooling (Do not push to GitHub)
 .agents/
 .scratch/
