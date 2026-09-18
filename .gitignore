@@ -58,3 +58,13 @@ Thumbs.db
 # Documentation to be added later
 README.md
 
+# AI Agent & Skills (Local tooling only - Do not push to GitHub)
+.agents/
+.scratch/
+skills-lock.json
+AGENTS.md
+CONTEXT.md
+docs/agents/
+docs/adr/
+docs/skill_topics/
+
