@@ -221,6 +221,7 @@ def audit() -> int:
         normal_style = primary.styles["Normal"]
         font_name = normal_style.font.name
         font_size = normal_style.font.size.pt if normal_style.font.size else None
+        line_spacing = normal_style.paragraph_format.line_spacing
         if not check(
             "Font nội dung là Times New Roman",
             font_name == "Times New Roman",
@@ -228,6 +229,8 @@ def audit() -> int:
         ):
             all_passed = False
         if not check("Cỡ chữ nội dung 13pt", font_size == 13, f"{font_size} pt"):
+            all_passed = False
+        if not check("Giãn cách dòng 1.5 lines", line_spacing == 1.5, f"{line_spacing} lines"):
             all_passed = False
 
         body_section = primary.sections[-1]
@@ -238,10 +241,30 @@ def audit() -> int:
             "dưới": round(body_section.bottom_margin.cm, 2),
         }
         if not check(
-            "Canh lề chuẩn (trái 3,0 cm; phải 2,0 cm; trên 2,0 cm; dưới 2,0 cm)",
-            margins == {"trái": 3.0, "phải": 2.0, "trên": 2.0, "dưới": 2.0},
+            "Canh lề chuẩn (trái 3,0 cm; phải 2,0 cm; trên 3,0 cm; dưới 3,0 cm)",
+            margins == {"trái": 3.0, "phải": 2.0, "trên": 3.0, "dưới": 3.0},
             str(margins),
         ):
+            all_passed = False
+
+        # Kiểm tra quy chuẩn phân cấp tiêu đề (Heading hierarchy)
+        h1_style = primary.styles["Heading 1"]
+        h2_style = primary.styles["Heading 2"]
+        h3_style = primary.styles["Heading 3"]
+        h1_ok = (h1_style.font.bold is True) and (not h1_style.font.italic)
+        h2_ok = (h2_style.font.bold is True) and (not h2_style.font.italic)
+        h3_ok = (not h3_style.font.bold) and (h3_style.font.italic is True)
+        if not check("Heading 1 định dạng in hoa, đậm, thẳng", h1_ok, f"bold={h1_style.font.bold}, italic={h1_style.font.italic}"):
+            all_passed = False
+        if not check("Heading 2 định dạng chữ thường, đậm, thẳng", h2_ok, f"bold={h2_style.font.bold}, italic={h2_style.font.italic}"):
+            all_passed = False
+        if not check("Heading 3 định dạng chữ thường, nghiêng", h3_ok, f"bold={h3_style.font.bold}, italic={h3_style.font.italic}"):
+            all_passed = False
+
+        # Kiểm tra các đoạn Heading 1 trong văn bản đều là chữ in hoa
+        h1_paragraphs = [p.text for p in primary.paragraphs if p.style.name == "Heading 1"]
+        all_h1_upper = all(t == t.upper() for t in h1_paragraphs)
+        if not check(f"Toàn bộ {len(h1_paragraphs)} tiêu đề Heading 1 đều là chữ in hoa", all_h1_upper, f"số lượng: {len(h1_paragraphs)}"):
             all_passed = False
 
         cover_section = primary.sections[0]
@@ -280,7 +303,7 @@ def audit() -> int:
         check("Tệp bao_cao.md tồn tại", True, f"{len(markdown_text.splitlines())} dòng")
 
         # 4a. Cấu trúc 5 chương
-        chapters = re.findall(r"^# Chương (\d+):", markdown_text, flags=re.MULTILINE)
+        chapters = re.findall(r"^# (?:CHƯƠNG|Chương) (\d+):", markdown_text, flags=re.MULTILINE)
         if not check(
             "Bao_cao.md có đủ 5 chương",
             [int(value) for value in chapters] == [1, 2, 3, 4, 5],

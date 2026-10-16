@@ -260,7 +260,7 @@ def configure_document() -> Document:
 
     force_style_font(document.styles["Normal"], size=BODY_SIZE)
     normal_pf = document.styles["Normal"].paragraph_format
-    normal_pf.line_spacing = 1.3
+    normal_pf.line_spacing = 1.5
     normal_pf.space_after = Pt(4)
     normal_pf.space_before = Pt(0)
     normal_pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
@@ -269,10 +269,12 @@ def configure_document() -> Document:
                      color="1B365D", before=Pt(12), after=Pt(6), keep_with_next=True)
     force_style_font(document.styles["Heading 2"], size=Pt(13.5), bold=True, italic=False,
                      color="000000", before=Pt(8), after=Pt(4), keep_with_next=True)
-    force_style_font(document.styles["Heading 3"], size=Pt(13), bold=True, italic=True,
+    force_style_font(document.styles["Heading 3"], size=Pt(13), bold=False, italic=True,
                      color="000000", before=Pt(6), after=Pt(2), keep_with_next=True)
     force_style_font(document.styles["List Bullet"], size=BODY_SIZE)
     force_style_font(document.styles["List Number"], size=BODY_SIZE)
+    document.styles["List Bullet"].paragraph_format.line_spacing = 1.5
+    document.styles["List Number"].paragraph_format.line_spacing = 1.5
     document.styles["List Bullet"].paragraph_format.space_after = Pt(2)
     document.styles["List Number"].paragraph_format.space_after = Pt(2)
 
@@ -282,11 +284,11 @@ def configure_document() -> Document:
 
 
 def apply_margins(section):
-    """Canh lề chuẩn đóng gáy đồ án: trái 3,0 cm, phải 2,0 cm, trên/dưới 2,0 cm."""
+    """Canh lề chuẩn: trái 3,0 cm, phải 2,0 cm, trên 3,0 cm, dưới 3,0 cm."""
     section.left_margin = Cm(3.0)
     section.right_margin = Cm(2.0)
-    section.top_margin = Cm(2.0)
-    section.bottom_margin = Cm(2.0)
+    section.top_margin = Cm(3.0)
+    section.bottom_margin = Cm(3.0)
 
 
 def build_cover(document: Document):
@@ -588,15 +590,18 @@ def render_blocks(document: Document, blocks: list):
             level = block["level"]
             key = f"h{level}"
             heading_count[key] += 1
+            text = block["text"]
+            if level == 1:
+                text = text.upper()
             paragraph = document.add_heading(level=level)
-            add_inline_runs(paragraph, block["text"])
+            add_inline_runs(paragraph, text)
             for run in paragraph.runs:
                 if level == 1:
-                    set_run_font(run, size=Pt(15), bold=True, color="1B365D")
+                    set_run_font(run, size=Pt(15), bold=True, italic=False, color="1B365D")
                 elif level == 2:
-                    set_run_font(run, size=Pt(13.5), bold=True, color="000000")
+                    set_run_font(run, size=Pt(13.5), bold=True, italic=False, color="000000")
                 else:
-                    set_run_font(run, size=Pt(13), bold=True, italic=True, color="000000")
+                    set_run_font(run, size=Pt(13), bold=False, italic=True, color="000000")
 
         elif block_type == "paragraph":
             paragraph = document.add_paragraph()
