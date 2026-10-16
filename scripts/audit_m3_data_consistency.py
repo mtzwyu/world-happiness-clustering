@@ -343,7 +343,7 @@ def audit():
     log("\n--- [NGÀY 21] TỔNG KẾT VÀ PHÊ DUYỆT NGHIỆM THU MỐC M3 ---")
     if all_passed:
         log("KẾT LUẬN: TOÀN BỘ 7/7 HẠNG MỤC THẨM ĐỊNH MỐC M3 ĐÃ ĐẠT CHUẨN (PASS 100%).")
-        log("Xác nhận nghiệm thu Mốc M3: Số liệu thực nghiệm nhất quán, sẵn sàng bước vào Mốc M4 (Tự động hóa Báo cáo Word).")
+        log("Xác nhận nghiệm thu Mốc M3: Số liệu thực nghiệm nhất quán, sẵn sàng bước vào Mốc M4 (Biên dịch Báo cáo Word).")
     else:
         log("KẾT LUẬN: CÓ HẠNG MỤC CHƯA ĐẠT CHUẨN — CẦN KHẮC PHỤC TRƯỚC KHI BƯỚC VÀO MỐC M4.")
         
