@@ -79,15 +79,15 @@ Phụ trách chính **Giai đoạn 3, 5, 9, 10, 11** của quy trình khai phá 
 - [x] **Ngày 21:** Tổ chức buổi **Walkthrough 20 phút** trình bày kết quả Diễn giải tri thức và bảng dịch chuyển cho Trường và Trí; hoàn thành Mục 8, 9, 10, 11 của báo cáo.
 
 #### 🔹 Mốc M4: Hoàn thiện Ứng dụng Demo Streamlit & Thiết kế Slide (Ngày 22 – Ngày 26)
-- [ ] **Ngày 22 (Họp nhóm):** Thiết kế nâng cấp ứng dụng tương tác [`app/app.py`](../../app/app.py).
-- [ ] **Ngày 23:** Hoàn thiện 4 tab tương tác của ứng dụng Demo Streamlit:
+- [x] **Ngày 22 (Họp nhóm):** Thiết kế nâng cấp ứng dụng tương tác [`app/app.py`](../../app/app.py).
+- [x] **Ngày 23:** Hoàn thiện 4 tab tương tác của ứng dụng Demo Streamlit:
   - **Tab 1 — Tổng quan cụm & Radar Chart:** Cho phép tùy chọn năm (2015–2019), thuật toán (K-Means, Ward), hiển thị Radar chart động và bảng chỉ số đánh giá.
   - **Tab 2 — Bản đồ thế giới (Choropleth Map):** Trực quan hóa màu sắc các cụm lên bản đồ tương tác thế giới sử dụng mã ISO-3.
   - **Tab 3 — Tra cứu quốc gia & Dịch chuyển cụm:** Ô tìm kiếm tên quốc gia (Việt Nam, Na Uy, v.v.) hiển thị biểu đồ diễn biến 6 chỉ số và lịch sử chuyển nhóm qua 5 năm.
   - **Tab 4 — Thử nghiệm gán nhãn cho quốc gia mới (*What-if Analysis*):** Cho phép người dùng kéo thanh trượt 6 đặc trưng giả định để hệ thống tính khoảng cách Euclidean và gán cụm tức thì.
-- [ ] **Ngày 24:** Tối ưu hóa hiệu năng ứng dụng bằng `@st.cache_data`, kiểm tra ứng dụng chạy mượt mà offline.
-- [ ] **Ngày 25:** Thiết kế bộ slide thuyết trình chuẩn đề tài (12–15 slide cô đọng, trình bày trong 8–10 phút).
-- [ ] **Ngày 26:** Ký xác nhận hoàn thành biên tập Mục 8–11 trong checklist báo cáo.
+- [x] **Ngày 24:** Tối ưu hóa hiệu năng ứng dụng bằng `@st.cache_data`, kiểm tra ứng dụng chạy mượt mà offline.
+- [x] **Ngày 25:** Thiết kế bộ slide thuyết trình chuẩn đề tài (12–15 slide cô đọng, trình bày trong 8–10 phút).
+- [x] **Ngày 26:** Ký xác nhận hoàn thành biên tập Mục 8–11 trong checklist báo cáo.
 
 #### 🔹 Mốc M5: Tổng duyệt, Rehearsal & Vấn đáp (Ngày 27 – Ngày 28)
 - [ ] **Ngày 27:** Điều hành buổi diễn tập tổng duyệt của cả nhóm, bấm giờ thuyết trình và đặt các câu hỏi phản biện giả lập.
