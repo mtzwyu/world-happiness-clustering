@@ -13,18 +13,18 @@ PASS: build_report.py chạy thành công (exit code 0) — exit code 0
   Số block nội dung    : 190
   Đã xuất tệp          : C:\Users\xpaga\Documents\data_mining\reports\final_report\bao_cao.docx
   Đã xuất tệp          : C:\Users\xpaga\Documents\data_mining\reports\final_report\Nhom12_BaoCao.docx
-  Dung lượng bao_cao.docx      : 3271529 bytes
-  Dung lượng Nhom12_BaoCao.docx: 3271529 bytes
+  Dung lượng bao_cao.docx      : 3271870 bytes
+  Dung lượng Nhom12_BaoCao.docx: 3271870 bytes
 PASS: build_report.py không dùng đường dẫn tuyệt đối gắn cứng — không phát hiện
 PASS: build_report.py phân giải đường dẫn từ thư mục gốc dự án — dùng Path(__file__).resolve()
 
 --- [MỤC 2] HAI TỆP WORD ĐẦU RA ---
-PASS: Tệp bao_cao.docx dung lượng trên 50 KB — 3271529 bytes
+PASS: Tệp bao_cao.docx dung lượng trên 50 KB — 3271870 bytes
 PASS: Tệp bao_cao.docx nạp được bằng python-docx — OOXML hợp lệ
 PASS: Tệp bao_cao.docx đủ đoạn văn (>= 100) — 257 đoạn
 PASS: Tệp bao_cao.docx đủ bảng (>= 5) — 16 bảng
 PASS: Tệp bao_cao.docx đủ hình ảnh (>= 8) — 11 hình
-PASS: Tệp Nhom12_BaoCao.docx dung lượng trên 50 KB — 3271529 bytes
+PASS: Tệp Nhom12_BaoCao.docx dung lượng trên 50 KB — 3271870 bytes
 PASS: Tệp Nhom12_BaoCao.docx nạp được bằng python-docx — OOXML hợp lệ
 PASS: Tệp Nhom12_BaoCao.docx đủ đoạn văn (>= 100) — 257 đoạn
 PASS: Tệp Nhom12_BaoCao.docx đủ bảng (>= 5) — 16 bảng
@@ -33,7 +33,12 @@ PASS: Tệp Nhom12_BaoCao.docx đủ hình ảnh (>= 8) — 11 hình
 --- [MỤC 3] ĐỊNH DẠNG IN ẤN VÀ TRANG BÌA ---
 PASS: Font nội dung là Times New Roman — font hiện tại: Times New Roman
 PASS: Cỡ chữ nội dung 13pt — 13.0 pt
-PASS: Canh lề chuẩn (trái 3,0 cm; phải 2,0 cm; trên 2,0 cm; dưới 2,0 cm) — {'trái': 3.0, 'phải': 2.0, 'trên': 2.0, 'dưới': 2.0}
+PASS: Giãn cách dòng 1.5 lines — 1.5 lines
+PASS: Canh lề chuẩn (trái 3,0 cm; phải 2,0 cm; trên 3,0 cm; dưới 3,0 cm) — {'trái': 3.0, 'phải': 2.0, 'trên': 3.0, 'dưới': 3.0}
+PASS: Heading 1 định dạng in hoa, đậm, thẳng — bold=True, italic=False
+PASS: Heading 2 định dạng chữ thường, đậm, thẳng — bold=True, italic=False
+PASS: Heading 3 định dạng chữ thường, nghiêng — bold=False, italic=True
+PASS: Toàn bộ 10 tiêu đề Heading 1 đều là chữ in hoa — số lượng: 10
 PASS: Trang bìa có viền khung (pgBorders)
 PASS: Footer có trường đánh số trang tự động (PAGE) — đã chèn trường PAGE
 PASS: Trang bìa có đủ thông tin trường, học phần, đề tài, giảng viên, sinh viên — đủ thông tin

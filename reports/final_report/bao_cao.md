@@ -1,4 +1,4 @@
-# Tóm tắt
+# TÓM TẮT
 
 Báo cáo này trình bày kết quả gom cụm các quốc gia theo sáu yếu tố cơ sở của World Happiness Report giai đoạn 2015–2019: GDP bình quân đầu người, hỗ trợ xã hội, tuổi thọ khỏe mạnh, tự do lựa chọn cuộc sống, mức độ hào phóng và nhận thức tham nhũng. Dữ liệu thô gồm 782 bản ghi của 5 năm; sau khi loại bản ghi United Arab Emirates năm 2018 vì khuyết chỉ số tham nhũng, bảng phân tích còn 781 bản ghi.
 
@@ -6,7 +6,7 @@ Nhóm chạy năm thí nghiệm độc lập, mỗi năm gom cụm riêng trên 
 
 Toàn bộ số liệu trong báo cáo truy vết về `reports/tables/*.csv` và `data/processed/*.csv`. Thuật toán K-Means, phân cấp Ward, DBSCAN và các độ đo Silhouette, Davies–Bouldin, Calinski–Harabasz, ARI đều được cài đặt lại từ đầu bằng NumPy ở mức phép toán cơ bản.
 
-# Mục lục
+# MỤC LỤC
 
 :::toc
 :::
@@ -14,7 +14,7 @@ Toàn bộ số liệu trong báo cáo truy vết về `reports/tables/*.csv` v�
 :::pagebreak
 :::
 
-# Chương 1: Tổng quan đề tài và cơ sở lý thuyết
+# CHƯƠNG 1: TỔNG QUAN ĐỀ TÀI VÀ CƠ SỞ LÝ THUYẾT
 
 ## 1.1. Bối cảnh và lý do chọn đề tài
 
@@ -98,7 +98,7 @@ Bảng 1.2 ánh xạ 11 bước của quy trình khai phá dữ liệu theo đ�
 | 10 | Sản phẩm demo | Chương 5 | Mục 5.1, 5.2 |
 | 11 | Kết luận và hướng phát triển | Chương 5 | Mục 5.3 đến 5.6 |
 
-# Chương 2: Thu thập dữ liệu và khám phá EDA
+# CHƯƠNG 2: THU THẬP DỮ LIỆU VÀ KHÁM PHÁ EDA
 
 ## 2.1. Cấu trúc dữ liệu thô và tình trạng lệch schema
 
@@ -178,7 +178,7 @@ Số điểm ngoại lai theo quy tắc 1,5 lần IQR tập trung ở các nư�
 
 Bảng phân tích cuối cùng có 781 bản ghi sạch, sáu yếu tố không còn giá trị khuyết, tên cột và tên quốc gia đã đồng nhất, mã ISO-3 hợp lệ toàn bộ. Dữ liệu lệch thang đo giữa các trụ cột và có ngoại lai, nên bước chuẩn hóa ở Chương 3 là bắt buộc trước khi gom cụm.
 
-# Chương 3: Phương pháp luận và thử nghiệm mô hình
+# CHƯƠNG 3: PHƯƠNG PHÁP LUẬN VÀ THỬ NGHIỆM MÔ HÌNH
 
 ## 3.1. Ma trận đặc trưng
 
@@ -301,7 +301,7 @@ ARI trung bình của K-Means/Z-score đạt 0,9763 đến 1,0000 với mức th
 
 Mỗi năm là một thí nghiệm độc lập. Quy trình gồm: nạp bảng interim; chọn sáu đặc trưng của năm; chuẩn hóa theo cấu hình; chạy thuật toán; tính Silhouette, Davies–Bouldin, Calinski–Harabasz; và hậu kiểm bằng điểm hạnh phúc. Tổng cộng năm cấu hình lõi nhân năm năm là 25 dòng kết quả, cộng với 60 dòng quét DBSCAN và 25 dòng độ ổn định ARI. Toàn bộ kết quả lưu tại `reports/tables/`.
 
-# Chương 4: Kết quả thực nghiệm và diễn giải tri thức
+# CHƯƠNG 4: KẾT QUẢ THỰC NGHIỆM VÀ DIỄN GIẢI TRI THỨC
 
 ## 4.1. Chỉ số đánh giá của K-Means qua các năm
 
@@ -466,7 +466,7 @@ width: 5.4
 
 Trong phạm vi sáu đặc trưng và dữ liệu 2015–2019, ba cụm là cấu hình tối ưu đồng thuận; K-Means/Z-score cho Silhouette 0,293–0,344 và ổn định cao qua seed; Ward xác nhận cùng số cụm; DBSCAN không phù hợp với dữ liệu trong vùng tham số đã quét. Bước hậu kiểm bằng điểm hạnh phúc cho F từ 107,09 đến 159,18, chứng minh ba cụm phân hóa theo mức sống thực tế.
 
-# Chương 5: Ứng dụng demo, kết luận và hướng phát triển
+# CHƯƠNG 5: ỨNG DỤNG DEMO, KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN
 
 ## 5.1. Kiến trúc ứng dụng demo Streamlit
 
@@ -519,7 +519,7 @@ Về phạm vi: kết luận chỉ đúng cho sáu đặc trưng, dữ liệu 20
 
 Trên dữ liệu 2015–2019 và sáu yếu tố cơ sở, ba cụm là cấu hình tối ưu đồng thuận ở cả năm năm. K-Means với Z-score cho Silhouette 0,293–0,344, Davies–Bouldin 1,00–1,07 và Calinski–Harabasz 74,95–86,02; kết quả ổn định qua mười seed với ARI thấp nhất 0,9763. Ba cụm tương ứng với các nhóm phát triển toàn diện, đang phát triển và khó khăn, phân hóa rõ rệt khi hậu kiểm bằng điểm hạnh phúc với F từ 107,09 đến 159,18. Bảng dịch chuyển cho thấy 142 trong 156 quốc gia giữ nguyên cụm cả năm năm.
 
-# Tài liệu tham khảo
+# TÀI LIỆU THAM KHẢO
 
 1. Helliwell, J. F., Layard, R., Sachs, J. D. (chủ biên), World Happiness Report các bản 2015–2019, Mạng lưới Giải pháp Phát triển Bền vững Liên Hợp Quốc.
 2. Bộ dữ liệu World Happiness Report trên Kaggle và mô tả kèm trong repo: `data/Aboutdataset.md`.
@@ -530,7 +530,7 @@ Trên dữ liệu 2015–2019 và sáu yếu tố cơ sở, ba cụm là cấu h
 7. Hubert, L., Arabie, P., Comparing Partitions, Journal of Classification, 1985.
 8. Tài liệu hướng dẫn đề tài nhóm Khai thác dữ liệu, Mục 1.2 và Đề tài 16.
 
-# Phụ lục A: Bảng khảo sát số cụm năm 2019
+# PHỤ LỤC A: BẢNG KHẢO SÁT SỐ CỤM NĂM 2019
 
 :::table
 file: k_sensitivity_by_year.csv
@@ -540,7 +540,7 @@ columns: k, inertia, silhouette, year
 round: 4
 :::
 
-# Phụ lục B: Kết quả quét tham số DBSCAN năm 2019
+# PHỤ LỤC B: KẾT QUẢ QUÉT THAM SỐ DBSCAN NĂM 2019
 
 :::table
 file: dbscan_sweep.csv
