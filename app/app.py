@@ -265,7 +265,7 @@ def make_happiness_line_figure(country_frame: pd.DataFrame, country_name: str) -
 # ===========================================================================
 def render_tab_overview(year: int, algorithm: str) -> None:
     """Tab 1 — Tổng quan cụm & Radar Chart."""
-    st.subheader("📊 Tổng quan cụm & Radar Chart")
+    st.subheader("Tổng quan cụm & Radar Chart")
     st.caption(
         f"Chân dung 3 cụm năm {year} theo thuật toán {algorithm}, cấu hình đối chứng k = 3. "
         "Điểm hạnh phúc chỉ dùng để hậu kiểm, không tham gia gom cụm."
@@ -341,7 +341,7 @@ def render_tab_overview(year: int, algorithm: str) -> None:
 
 def render_tab_map(year: int, algorithm: str) -> None:
     """Tab 2 — Bản đồ thế giới (Choropleth Map)."""
-    st.subheader("🗺️ Bản đồ thế giới theo cụm")
+    st.subheader("Bản đồ thế giới theo cụm")
     st.caption(
         f"Tô màu các quốc gia theo cụm năm {year} ({algorithm}) bằng mã ISO-3. "
         "Hover để xem tên quốc gia, mã ISO-3, nhóm cụm và điểm hạnh phúc thực tế."
@@ -390,7 +390,7 @@ def render_tab_map(year: int, algorithm: str) -> None:
 
 def render_tab_lookup() -> None:
     """Tab 3 — Tra cứu quốc gia & Dịch chuyển cụm."""
-    st.subheader("🔍 Tra cứu quốc gia & Dịch chuyển cụm")
+    st.subheader("Tra cứu quốc gia & Dịch chuyển cụm")
     shift = load_country_shift()
     interim = load_interim()
 
@@ -448,7 +448,7 @@ def render_tab_lookup() -> None:
 
 def render_tab_whatif() -> None:
     """Tab 4 — Thử nghiệm gán nhãn cho quốc gia mới (What-if Analysis)."""
-    st.subheader("🧪 Thử nghiệm gán nhãn quốc gia mới (What-if)")
+    st.subheader("Thử nghiệm gán nhãn quốc gia mới (What-if)")
     st.caption(
         "Kéo 6 thanh trượt mô tả một quốc gia giả định. Hệ thống z-score hóa vector theo "
         "mean/std của dữ liệu năm 2019, tính khoảng cách Euclidean tới 3 tâm cụm K-Means "
@@ -530,11 +530,10 @@ def render_tab_whatif() -> None:
 def main() -> None:
     st.set_page_config(
         page_title="WHR Cluster Explorer — Nhóm 12",
-        page_icon="🌍",
         layout="wide",
     )
 
-    st.title("🌍 Khám phá phân nhóm quốc gia theo Báo cáo Hạnh phúc Thế giới")
+    st.title("Khám phá phân nhóm quốc gia theo Báo cáo Hạnh phúc Thế giới")
     st.markdown(
         "Ứng dụng demo tương tác phục vụ đồ án môn **Khai thác dữ liệu** — Nhóm 12 — Đề tài 16. "
         "Dữ liệu đọc trực tiếp từ kết quả thực nghiệm 5 năm (2015–2019); điểm hạnh phúc chỉ "
@@ -542,7 +541,7 @@ def main() -> None:
     )
 
     with st.sidebar:
-        st.header("⚙️ Cấu hình phân tích")
+        st.header("Cấu hình phân tích")
         year = st.selectbox("Chọn năm dữ liệu", list(reversed(YEARS)), index=0)
         algorithm_label = st.selectbox(
             "Chọn thuật toán gom cụm", list(ALGORITHM_OPTIONS.keys()), index=0
@@ -561,10 +560,10 @@ def main() -> None:
 
     tab1, tab2, tab3, tab4 = st.tabs(
         [
-            "📊 Tổng quan cụm & Radar Chart",
-            "🗺️ Bản đồ thế giới",
-            "🔍 Tra cứu quốc gia",
-            "🧪 Thử nghiệm gán nhãn (What-if)",
+            "Tổng quan cụm & Radar Chart",
+            "Bản đồ thế giới",
+            "Tra cứu quốc gia",
+            "Thử nghiệm gán nhãn (What-if)",
         ]
     )
 

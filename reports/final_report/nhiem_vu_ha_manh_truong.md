@@ -3,7 +3,7 @@
 
 ---
 
-### 👤 THÔNG TIN THÀNH VIÊN
+### THÔNG TIN THÀNH VIÊN
 - **Họ và tên:** Hà Mạnh Trường
 - **Mã số sinh viên:** 2045240326
 - **Vai trò trong nhóm:** Nhóm trưởng
@@ -13,7 +13,7 @@
 
 ---
 
-### 🎯 MỤC TIÊU & PHẠM VI PHỤ TRÁCH THEO ĐỀ CƯƠNG
+### MỤC TIÊU & PHẠM VI PHỤ TRÁCH THEO ĐỀ CƯƠNG
 Phụ trách chính **Giai đoạn 1, 2, 4** và chủ trì việc ghép báo cáo:
 1. **Mục 1 — Xác định bài toán:** Bối cảnh World Happiness Report, 4 câu hỏi khai thác dữ liệu, ranh giới bất biến (không đưa điểm/thứ hạng hạnh phúc vào gom cụm).
 2. **Mục 2 — Tìm hiểu dữ liệu:** Phân tích cấu trúc 5 năm (2015–2019) với schema không đồng nhất, ý nghĩa 6 biến cơ sở.
@@ -22,13 +22,13 @@ Phụ trách chính **Giai đoạn 1, 2, 4** và chủ trì việc ghép báo c�
 
 ---
 
-### 📅 KẾ HOẠCH CHI TIẾT THEO 5 MỐC THỜI GIAN (28 NGÀY)
+### KẾ HOẠCH CHI TIẾT THEO 5 MỐC THỜI GIAN (28 NGÀY)
 
-#### 🔹 Mốc M0: Chốt kiến trúc & Thiết kế hệ thống (Ngày 1 – Ngày 2)
+#### Mốc M0: Chốt kiến trúc & Thiết kế hệ thống (Ngày 1 – Ngày 2)
 - [x] **Ngày 1 (Họp nhóm):** Chủ trì chốt baseline kỹ thuật: 5 năm chạy độc lập, $k^*$ tối ưu là kết quả chính, $k=3$ là đối chứng xuyên năm; ghi nhận quyết định kiến trúc [`docs/adr/0002-gom-cum-theo-nam-va-ghep-cum-lien-nam.md`](../../docs/adr/0002-gom-cum-theo-nam-va-ghep-cum-lien-nam.md); chuẩn hóa [`CONTEXT.md`](../../CONTEXT.md).
 - [x] **Ngày 2:** Hoàn thiện kế hoạch thực thi 28 ngày [`ke_hoach_nhom.md`](./ke_hoach_nhom.md) và bảng phân công [`phan_cong_cong_viec.md`](./phan_cong_cong_viec.md).
 
-#### 🔹 Mốc M1: Xây dựng nền dữ liệu 5 năm & Kiểm soát chất lượng (Ngày 3 – Ngày 7)
+#### Mốc M1: Xây dựng nền dữ liệu 5 năm & Kiểm soát chất lượng (Ngày 3 – Ngày 7)
 - [x] **Ngày 3:** Phát triển module [`src/data/data_loader.py`](../../src/data/data_loader.py):
   - Xây dựng từ điển `COLUMN_MAPPING` đồng nhất tên cột qua 5 năm.
   - Viết hàm `build_interim_dataset(years=[2015..2019])`.
@@ -45,7 +45,7 @@ Phụ trách chính **Giai đoạn 1, 2, 4** và chủ trì việc ghép báo c�
 - [x] **Ngày 6:** Viết [`README.md`](../../README.md) hoàn chỉnh: bảng phân công đóng góp 34/33/33, hướng dẫn thiết lập môi trường và lệnh chạy lại từ đầu; cập nhật [`notebooks/README.md`](../../notebooks/README.md).
 - [x] **Ngày 7:** Tổ chức buổi **Walkthrough 20 phút** trình bày quy trình tiền xử lý dữ liệu và cấu trúc bảng interim cho Trí và Trung; kiểm tra notebook 01 chạy sạch từ đầu (0 cell lỗi).
 
-#### 🔹 Mốc M2: Kiểm soát chất lượng & Tối ưu hiệu năng (Ngày 8 – Ngày 14)
+#### Mốc M2: Kiểm soát chất lượng & Tối ưu hiệu năng (Ngày 8 – Ngày 14)
 - [x] **Ngày 8 (Họp nhóm):** Đánh giá nghiệm thu tiến độ M1; chốt chữ ký API với Trí trước khi triển khai thuật toán from-scratch.
 - [x] **Ngày 9:** Rà soát đường dẫn tương đối trong các tệp mã nguồn và notebook để tránh lỗi môi trường.
 - [x] **Ngày 10:** Hỗ trợ Trí tối ưu hóa thuật toán phân cấp Ward (mục tiêu chạy < 30 giây trên 156 mẫu).
@@ -54,7 +54,7 @@ Phụ trách chính **Giai đoạn 1, 2, 4** và chủ trì việc ghép báo c�
 - [x] **Ngày 13:** Chạy thử nghiệm script kiểm thử đối chứng lần 1, lưu log kết quả.
 - [x] **Ngày 14:** Tham gia buổi Walkthrough module thuật toán do Trí trình bày.
 
-#### 🔹 Mốc M3: Thẩm định tính nhất quán số liệu thực nghiệm (Ngày 15 – Ngày 21)
+#### Mốc M3: Thẩm định tính nhất quán số liệu thực nghiệm (Ngày 15 – Ngày 21)
 - [x] **Ngày 15 (Họp nhóm):** Chốt định dạng bảng biểu và cách trình bày kết quả $k^*$ chính và $k=3$ đối chứng; nghiệm thu bảng `reports/tables/contrast_k3_by_year.csv` (10 dòng đầy đủ cho K-Means và Ward).
 - [x] **Ngày 16:** Kiểm tra tính hợp lý của số cụm $k^*$ giữa các năm (100% các năm $k^* \in [2, 5]$; đồng thuận $k^*=3$ toàn cục với Silhouette cực đại 0.293–0.344).
 - [x] **Ngày 17:** Đối chiếu các con số trong notebook 03 với các file CSV xuất ra trong `reports/tables/` (`k_sensitivity_by_year.csv` 40 dòng, `model_comparison_metrics_by_year.csv` 25 dòng, `dbscan_sweep.csv` 60 dòng, `stability_ari.csv` 25 dòng).
@@ -63,7 +63,7 @@ Phụ trách chính **Giai đoạn 1, 2, 4** và chủ trì việc ghép báo c�
 - [x] **Ngày 20:** Kiểm tra toàn bộ 13 hình ảnh xuất ra bảo đảm đúng độ phân giải $\ge 300$ DPI phục vụ in ấn Báo cáo Word.
 - [x] **Ngày 21:** Tham gia buổi Walkthrough module Diễn giải tri thức do Trung trình bày; rà soát chéo toàn bộ kết quả M3; xây dựng script kiểm toán độc lập [`scripts/audit_m3_data_consistency.py`](../../scripts/audit_m3_data_consistency.py) và lưu log tại [`logs/audit_m3_consistency.log`](../../logs/audit_m3_consistency.log).
 
-#### 🔹 Mốc M4: Báo cáo Word & Soạn thảo Mục 1–4 (Ngày 22 – Ngày 26)
+#### Mốc M4: Báo cáo Word & Soạn thảo Mục 1–4 (Ngày 22 – Ngày 26)
 - [x] **Ngày 22 (Họp nhóm):** Chốt tiến độ M3 và phạm vi báo cáo Word.
 - [x] **Ngày 23:** Viết công cụ [`reports/final_report/build_report.py`](./build_report.py) (backend OOXML thuần Python):
   - Tạo trang bìa chuẩn đề tài môn học.
@@ -74,7 +74,7 @@ Phụ trách chính **Giai đoạn 1, 2, 4** và chủ trì việc ghép báo c�
 - [x] **Ngày 25:** Chạy `build_report.py`, ghép nối các phần nội dung của Trí và Trung, kiểm tra độ dài ~50 trang.
 - [x] **Ngày 26:** Rà soát toàn bộ số liệu báo cáo; ký xác nhận hoàn thành biên tập Mục 1–4.
 
-#### 🔹 Mốc M5: Tổng duyệt, Rehearsal & Đóng gói nộp bài (Ngày 27 – Ngày 28)
+#### Mốc M5: Tổng duyệt, Rehearsal & Đóng gói nộp bài (Ngày 27 – Ngày 28)
 - [ ] **Ngày 27:** Chạy kiểm thử toàn diện toàn bộ pipeline từ đầu trên máy sạch; kiểm tra 10 tiêu chí nộp bài của đề cương; tham gia tổng duyệt vấn đáp phần tiền xử lý.
 - [ ] **Ngày 28:** 
   - **Rehearsal đổi vai:** Thuyết trình thử phần **Phương pháp gom cụm & Tham số** (thay cho Trí).
@@ -83,7 +83,7 @@ Phụ trách chính **Giai đoạn 1, 2, 4** và chủ trì việc ghép báo c�
 
 ---
 
-### 📦 SẢN PHẨM BÀN GIAO CỤ THỂ (DELIVERABLES)
+### SẢN PHẨM BÀN GIAO CỤ THỂ (DELIVERABLES)
 1. **Module nạp dữ liệu:** [`src/data/data_loader.py`](../../src/data/data_loader.py) (đầy đủ các hàm nạp, làm sạch, chuẩn hóa tên quốc gia 5 năm).
 2. **Notebook tiền xử lý:** [`notebooks/01_data_understanding_and_cleaning.ipynb`](../../notebooks/01_data_understanding_and_cleaning.ipynb) (chạy sạch, markdown phân tích chi tiết).
 3. **Bộ dữ liệu trung gian:** [`data/interim/happiness_merged.csv`](../../data/interim/happiness_merged.csv) (781 dòng sạch, 0 khuyết thiếu ở 6 đặc trưng, schema thống nhất).
@@ -93,7 +93,7 @@ Phụ trách chính **Giai đoạn 1, 2, 4** và chủ trì việc ghép báo c�
 
 ---
 
-### 🎓 CHUẨN BỊ BẢO VỆ & VẤN ĐÁP CÁ NHÂN
+### CHUẨN BỊ BẢO VỆ & VẤN ĐÁP CÁ NHÂN
 
 #### 1. Câu hỏi trọng tâm phần phụ trách chính:
 - **Câu hỏi 1:** Tại sao nhóm lại quyết định loại bỏ các cột như `Standard Error`, `Whisker.high`, `Whisker.low` trong quá trình tiền xử lý?
