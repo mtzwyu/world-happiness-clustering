@@ -60,6 +60,7 @@ Thumbs.db
 ~$*.pptx
 ~$*.xlsx
 *.tmp
+*.bak
 
 # AI Agent & Internal Tooling (Do not push to GitHub)
 .agents/
