@@ -6,7 +6,7 @@ Thời gian thực hiện: Mốc M4 (Ngày 22 – Ngày 26)
 ================================================================================
 
 --- [MỤC 1] CÚ PHÁP VÀ NẠP MODULE app/app.py ---
-PASS: Tệp app/app.py tồn tại — 588 dòng
+PASS: Tệp app/app.py tồn tại — 587 dòng
 PASS: Cú pháp Python hợp lệ (ast.parse) — phân tích thành công
 PASS: Nạp module app.py thành công — import các gói phụ thuộc không lỗi
 
@@ -22,7 +22,7 @@ PASS: load_kmeans_model(2019) trả 3 tâm cụm và scaler 6 đặc trưng — 
 PASS: build_cluster_frame(2019) ghép nhãn cụm 156 quốc gia — 156 dòng
 
 --- [MỤC 3] BỐN TAB TƯƠNG TÁC TRONG app/app.py ---
-PASS: st.tabs() khai báo đúng 4 tab — 4 tab: ['📊 Tổng quan cụm & Radar Chart', '🗺️ Bản đồ thế giới', '🔍 Tra cứu quốc gia', '🧪 Thử nghiệm gán nhãn (What-if)']
+PASS: st.tabs() khai báo đúng 4 tab — 4 tab: ['Tổng quan cụm & Radar Chart', 'Bản đồ thế giới', 'Tra cứu quốc gia', 'Thử nghiệm gán nhãn (What-if)']
 PASS: Có thành phần: Choropleth (Tab 2) — tìm thấy 'choropleth'
 PASS: Có thành phần: Radar Scatterpolar (Tab 1, 4) — tìm thấy 'Scatterpolar'
 PASS: Có thành phần: Thanh trượt Slider (Tab 4) — tìm thấy '.slider('

@@ -10,28 +10,30 @@
 
 **Hệ thống khai phá dữ liệu đa chiều và học máy không giám sát (Unsupervised Learning) phân tích động thái phát triển và phân tầng chất lượng sống của các quốc gia trên thế giới qua dữ liệu World Happiness Report (2015 – 2019).**
 
-[Khởi động nhanh](#-khởi-động-nhanh) • [Tính năng cốt lõi](#-tính-năng-cốt-lõi) • [Kiến trúc thuật toán](#-kiến-trúc-thuật-toán-from-scratch) • [Kết quả thực nghiệm](#-kết-quả-thực-nghiệm--phát-hiện-chính) • [Ứng dụng tương tác](#-ứng-dụng-demo-tương-tác-streamlit)
+[Khởi động nhanh](#cài-đặt--khởi-động-nhanh) • [Tính năng cốt lõi](#tính-năng-nổi-bật) • [Kiến trúc thuật toán](#kiến-trúc-thuật-toán-from-scratch) • [Kết quả thực nghiệm](#kết-quả-thực-nghiệm--phát-hiện-chính) • [Ứng dụng tương tác](#ứng-dụng-demo-tương-tác-streamlit)
 
 </div>
 
 ---
 
-## 📌 Mục Lục
+## Mục Lục
 
-- [Giới thiệu](#-giới-thiệu)
-- [Nguyên tắc cốt lõi (Zero Data Leakage)](#-nguyên-tắc-cốt-lõi-zero-data-leakage)
-- [Tính năng nổi bật](#-tính-năng-nổi-bật)
-- [Kiến trúc thuật toán (From-Scratch)](#-kiến-trúc-thuật-toán-from-scratch)
-- [Cấu trúc mã nguồn](#-cấu-trúc-mã-nguồn)
-- [Cài đặt & Khởi động nhanh](#-cài-đặt--khởi-động-nhanh)
-- [Quy trình thực thi Pipeline](#-quy-trình-thực-thi-pipeline)
-- [Kết quả thực nghiệm & Phát hiện chính](#-kết-quả-thực-nghiệm--phát-hiện-chính)
-- [Ứng dụng tương tác Streamlit](#-ứng-dụng-demo-tương-tác-streamlit)
-- [Đóng góp & Giấy phép](#-đóng-góp--giấy-phép)
+- [Giới thiệu](#giới-thiệu)
+- [Nguyên tắc cốt lõi: Zero Data Leakage](#nguyên-tắc-cốt-lõi-zero-data-leakage)
+- [Tính năng nổi bật](#tính-năng-nổi-bật)
+- [Kiến trúc thuật toán (From-Scratch)](#kiến-trúc-thuật-toán-from-scratch)
+- [Cấu trúc mã nguồn](#cấu-trúc-mã-nguồn)
+- [Cài đặt & Khởi động nhanh](#cài-đặt--khởi-động-nhanh)
+- [Quy trình thực thi Pipeline](#quy-trình-thực-thi-pipeline)
+- [Kết quả thực nghiệm & Phát hiện chính](#kết-quả-thực-nghiệm--phát-hiện-chính)
+- [Ứng dụng demo tương tác (Streamlit)](#ứng-dụng-demo-tương-tác-streamlit)
+- [Công nghệ sử dụng](#công-nghệ-sử-dụng)
+- [Đóng góp & Phát triển](#đóng-góp--phát-triển)
+- [Giấy phép (License)](#giấy-phép-license)
 
 ---
 
-## 📖 Giới Thiệu
+## Giới Thiệu
 
 Dự án **World Happiness Clustering** tập trung giải quyết bài toán phân nhóm các quốc gia trên thế giới dựa trên các khía cạnh kinh tế, xã hội và thể chế, sử dụng chuỗi dữ liệu 5 năm liên tục (2015 – 2019) từ [World Happiness Report (WHR)](https://worldhappiness.report/).
 
@@ -43,7 +45,7 @@ Mục tiêu chính của dự án:
 
 ---
 
-## 🛡️ Nguyên Tắc Cốt Lõi: Zero Data Leakage
+## Nguyên Tắc Cốt Lõi: Zero Data Leakage
 
 Điểm mấu chốt mang tính nguyên tắc khoa học của bài toán:
 
@@ -61,7 +63,7 @@ Quá trình gom cụm hoàn toàn độc lập và chỉ dựa trên **6 yếu t
 
 ---
 
-## ✨ Tính Năng Nổi Bật
+## Tính Năng Nổi Bật
 
 - **100% Thuật toán tự phát triển:** Tự xây dựng K-Means (Lloyd's), Phân cấp Ward (Hierarchical Agglomerative), DBSCAN, PCA và 4 chỉ số đo lường chất lượng cụm không sử dụng API huấn luyện black-box.
 - **Kiểm chứng số học chặt chẽ:** Tích hợp bộ kiểm thử đối chứng tự động (`scripts/verify_scratch_implementations.py`) kiểm tra tính tương đương số học với `scikit-learn` và `SciPy` (đạt chỉ số ARI = 1.0 và sai số $\le 10^{-14}$).
@@ -72,7 +74,7 @@ Quá trình gom cụm hoàn toàn độc lập và chỉ dựa trên **6 yếu t
 
 ---
 
-## 🧠 Kiến Trúc Thuật Toán (From-Scratch)
+## Kiến Trúc Thuật Toán (From-Scratch)
 
 Mọi thuật toán cốt lõi trong thư mục `src/` đều được lập trình dựa trên đại số tuyến tính cơ bản:
 
@@ -89,7 +91,7 @@ Mọi thuật toán cốt lõi trong thư mục `src/` đều được lập tr�
 
 ---
 
-## 📂 Cấu Trúc Mã Nguồn
+## Cấu Trúc Mã Nguồn
 
 ```text
 data_mining/
@@ -124,7 +126,7 @@ data_mining/
 
 ---
 
-## 🚀 Cài Đặt & Khởi Động Nhanh
+## Cài Đặt & Khởi Động Nhanh
 
 ### 1. Yêu cầu hệ thống
 - **Python:** Phiên bản `3.10`, `3.11` hoặc `3.12`.
@@ -163,7 +165,7 @@ python scripts/verify_scratch_implementations.py
 
 ---
 
-## 🔄 Quy Trình Thực Thi Pipeline
+## Quy Trình Thực Thi Pipeline
 
 Dự án được cấu trúc theo chu trình nghiên cứu dữ liệu tuần tự:
 
@@ -201,7 +203,7 @@ Dự án được cấu trúc theo chu trình nghiên cứu dữ liệu tuần t
 
 ---
 
-## 📊 Kết Quả Thực Nghiệm & Phát Hiện Chính
+## Kết Quả Thực Nghiệm & Phát Hiện Chính
 
 ### 1. So sánh định lượng các thuật toán (Dữ liệu 2019)
 
@@ -247,7 +249,7 @@ Kết quả phân cụm tự nhiên từ 6 yếu tố kinh tế - thể chế ph
 
 ---
 
-## 🖥️ Ứng Dụng Demo Tương Tác (Streamlit)
+## Ứng Dụng Demo Tương Tác (Streamlit)
 
 Ứng dụng web được tổ chức thành 4 không gian phân tích trực quan chuyên sâu:
 
@@ -266,7 +268,7 @@ Kết quả phân cụm tự nhiên từ 6 yếu tố kinh tế - thể chế ph
 
 ---
 
-## 🛠️ Công Nghệ Sử Dụng
+## Công Nghệ Sử Dụng
 
 - **Ngôn ngữ:** Python 3.10+
 - **Thư viện tính toán lõi:** `NumPy`, `Pandas`, `SciPy`
@@ -276,7 +278,7 @@ Kết quả phân cụm tự nhiên từ 6 yếu tố kinh tế - thể chế ph
 
 ---
 
-## 🤝 Đóng Góp & Phát Triển
+## Đóng Góp & Phát Triển
 
 Mọi ý kiến đóng góp, báo cáo lỗi hoặc đề xuất cải tiến thuật toán luôn được chào đón:
 
@@ -288,6 +290,6 @@ Mọi ý kiến đóng góp, báo cáo lỗi hoặc đề xuất cải tiến th
 
 ---
 
-## 📄 Giấy Phép (License)
+## Giấy Phép (License)
 
 Dự án được phân phối dưới giấy phép **MIT License**. Chi tiết xem tại tệp [`LICENSE`](LICENSE).

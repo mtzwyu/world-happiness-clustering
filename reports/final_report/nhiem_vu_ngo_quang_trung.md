@@ -3,7 +3,7 @@
 
 ---
 
-### 👤 THÔNG TIN THÀNH VIÊN
+### THÔNG TIN THÀNH VIÊN
 - **Họ và tên:** Ngô Quang Trung
 - **Mã số sinh viên:** 2045240325
 - **Vai trò trong nhóm:** Thành viên
@@ -13,7 +13,7 @@
 
 ---
 
-### 🎯 MỤC TIÊU & PHẠM VI PHỤ TRÁCH THEO ĐỀ CƯƠNG
+### MỤC TIÊU & PHẠM VI PHỤ TRÁCH THEO ĐỀ CƯƠNG
 Phụ trách chính **Giai đoạn 3, 5, 9, 10, 11** của quy trình khai phá dữ liệu:
 1. **Mục 3 — Đánh giá chất lượng dữ liệu:** Kiểm tra phân bố dữ liệu theo năm, phát hiện ngoại lai, nghiên cứu phương pháp luận Cantril Ladder và thang đo Dystopia.
 2. **Mục 5 — Phân tích khám phá dữ liệu (EDA):** Phân tích hình thái phân phối (skewness), tính đa cộng tuyến và tương quan giữa các đặc trưng; đề xuất phương pháp chuẩn hóa.
@@ -23,22 +23,22 @@ Phụ trách chính **Giai đoạn 3, 5, 9, 10, 11** của quy trình khai phá 
 
 ---
 
-### 📅 KẾ HOẠCH CHI TIẾT THEO 5 MỐC THỜI GIAN (28 NGÀY)
+### KẾ HOẠCH CHI TIẾT THEO 5 MỐC THỜI GIAN (28 NGÀY)
 
-#### 🔹 Mốc M0: Thiết kế giao diện & Danh mục trực quan hóa (Ngày 1 – Ngày 2)
+#### Mốc M0: Thiết kế giao diện & Danh mục trực quan hóa (Ngày 1 – Ngày 2)
 - [x] **Ngày 1 (Họp nhóm):** 
   - Lên danh mục cố định 12 hình vẽ trực quan hóa chất lượng cao (300 DPI) cho báo cáo Word.
   - Phác thảo cấu trúc và layout 4 tab của ứng dụng Demo Streamlit.
 - [x] **Ngày 2:** Liệt kê các câu hỏi kỹ thuật và nghiệp vụ cần trả lời ở phần thảo luận và kết luận; đóng góp vào kế hoạch thực thi 28 ngày.
 
-#### 🔹 Mốc M1: Đánh giá chất lượng dữ liệu & Nghiên cứu bối cảnh (Ngày 3 – Ngày 7)
+#### Mốc M1: Đánh giá chất lượng dữ liệu & Nghiên cứu bối cảnh (Ngày 3 – Ngày 7)
 - [x] **Ngày 3:** Lập bảng đánh giá chất lượng dữ liệu 5 năm (tỷ lệ missing, trùng lặp, cỡ mẫu từng năm: 158/157/155/156/156).
 - [x] **Ngày 4:** Nghiên cứu và tổng hợp tài liệu phương pháp luận: Thang đo Cantril Ladder (0 đến 10), khái niệm quốc gia giả định Dystopia và 6 yếu tố giải thích.
 - [x] **Ngày 5:** Kiểm tra và chuẩn hóa bảng mã quốc gia 3 ký tự (ISO-3) để đảm bảo vẽ bản đồ thế giới Choropleth không bị khuyết màu.
 - [x] **Ngày 6:** Ghi nhận lý do loại trừ dữ liệu UAE 2018 và xác nhận cỡ mẫu từng năm vào tài liệu.
 - [x] **Ngày 7:** Soạn thảo bản nháp bộ 20 câu hỏi vấn đáp cho 3 thành viên; tham gia buổi Walkthrough của Trường.
 
-#### 🔹 Mốc M2: Xây dựng biểu đồ trực quan & Phân tích EDA (Ngày 8 – Ngày 14)
+#### Mốc M2: Xây dựng biểu đồ trực quan & Phân tích EDA (Ngày 8 – Ngày 14)
 - [x] **Ngày 8 (Họp nhóm):** Hoàn thiện các hàm vẽ biểu đồ trong [`src/visualization/plots.py`](../../src/visualization/plots.py):
   - `plot_feature_distributions` (Histogram + đường cong KDE).
   - `plot_correlation_heatmap` (Ma trận tương quan Pearson).
@@ -59,7 +59,7 @@ Phụ trách chính **Giai đoạn 3, 5, 9, 10, 11** của quy trình khai phá 
 - [x] **Ngày 13:** Kiểm tra thời gian chạy của các hàm vẽ biểu đồ; đảm bảo hình vẽ hiển thị nhãn tiếng Việt rõ ràng, có thước đo độ phân giải.
 - [x] **Ngày 14:** Tham gia buổi Walkthrough module thuật toán của Trí.
 
-#### 🔹 Mốc M3: Diễn giải tri thức, Ghép cụm liên năm & Bảng dịch chuyển (Ngày 15 – Ngày 21)
+#### Mốc M3: Diễn giải tri thức, Ghép cụm liên năm & Bảng dịch chuyển (Ngày 15 – Ngày 21)
 - [x] **Ngày 15 (Họp nhóm):** Khởi tạo khung phân tích cho [`notebooks/04_cluster_profiling_and_evaluation.ipynb`](../../notebooks/04_cluster_profiling_and_evaluation.ipynb).
 - [x] **Ngày 16:** 
   - Thực hiện giảm chiều dữ liệu bằng SimplePCA xuống 2D trên cả 5 năm.
@@ -74,11 +74,11 @@ Phụ trách chính **Giai đoạn 3, 5, 9, 10, 11** của quy trình khai phá 
   - **Thuật toán ghép cụm liên năm (`match_clusters_greedy`):** Ghép cặp cụm giữa năm $t$ và năm $t-1$ theo khoảng cách tâm cụm nhỏ nhất; nếu khoảng cách bằng nhau thì xét điểm hạnh phúc trung bình.
   - Xuất bảng ghép cụm liên năm: `reports/tables/cross_year_matching.csv`.
 - [x] **Ngày 20:** 
-  - **Xây dựng bảng dịch chuyển cụm của 156 quốc gia qua 5 năm:** Theo dõi quốc gia nào tăng nhóm, quốc gia nào tụt nhóm hoặc giữ nguyên ổn định ➔ xuất file [`data/processed/country_cluster_shift.csv`](../../data/processed).
+  - **Xây dựng bảng dịch chuyển cụm của 156 quốc gia qua 5 năm:** Theo dõi quốc gia nào tăng nhóm, quốc gia nào tụt nhóm hoặc giữ nguyên ổn định -> xuất file [`data/processed/country_cluster_shift.csv`](../../data/processed).
   - Vẽ biểu đồ xu hướng số lượng quốc gia theo từng cụm qua thời gian: `reports/figures/cluster_count_trend.png` và xuất `cluster_trends.csv`.
 - [x] **Ngày 21:** Tổ chức buổi **Walkthrough 20 phút** trình bày kết quả Diễn giải tri thức và bảng dịch chuyển cho Trường và Trí; hoàn thành Mục 8, 9, 10, 11 của báo cáo.
 
-#### 🔹 Mốc M4: Hoàn thiện Ứng dụng Demo Streamlit & Thiết kế Slide (Ngày 22 – Ngày 26)
+#### Mốc M4: Hoàn thiện Ứng dụng Demo Streamlit & Thiết kế Slide (Ngày 22 – Ngày 26)
 - [x] **Ngày 22 (Họp nhóm):** Thiết kế nâng cấp ứng dụng tương tác [`app/app.py`](../../app/app.py).
 - [x] **Ngày 23:** Hoàn thiện 4 tab tương tác của ứng dụng Demo Streamlit:
   - **Tab 1 — Tổng quan cụm & Radar Chart:** Cho phép tùy chọn năm (2015–2019), thuật toán (K-Means, Ward), hiển thị Radar chart động và bảng chỉ số đánh giá.
@@ -89,7 +89,7 @@ Phụ trách chính **Giai đoạn 3, 5, 9, 10, 11** của quy trình khai phá 
 - [x] **Ngày 25:** Thiết kế bộ slide thuyết trình chuẩn đề tài (12–15 slide cô đọng, trình bày trong 8–10 phút).
 - [x] **Ngày 26:** Ký xác nhận hoàn thành biên tập Mục 8–11 trong checklist báo cáo.
 
-#### 🔹 Mốc M5: Tổng duyệt, Rehearsal & Vấn đáp (Ngày 27 – Ngày 28)
+#### Mốc M5: Tổng duyệt, Rehearsal & Vấn đáp (Ngày 27 – Ngày 28)
 - [ ] **Ngày 27:** Điều hành buổi diễn tập tổng duyệt của cả nhóm, bấm giờ thuyết trình và đặt các câu hỏi phản biện giả lập.
 - [ ] **Ngày 28:**
   - **Rehearsal đổi vai:** Thuyết trình thử phần **Thu thập và Tiền xử lý dữ liệu** (thay cho Trường).
@@ -97,7 +97,7 @@ Phụ trách chính **Giai đoạn 3, 5, 9, 10, 11** của quy trình khai phá 
 
 ---
 
-### 📦 SẢN PHẨM BÀN GIAO CỤ THỂ (DELIVERABLES)
+### SẢN PHẨM BÀN GIAO CỤ THỂ (DELIVERABLES)
 1. **Module trực quan hóa:** [`src/visualization/plots.py`](../../src/visualization/plots.py) (đầy đủ các hàm vẽ 300 DPI).
 2. **Notebooks phân tích:**
    - [`notebooks/02_exploratory_data_analysis.ipynb`](../../notebooks/02_exploratory_data_analysis.ipynb)
@@ -109,7 +109,7 @@ Phụ trách chính **Giai đoạn 3, 5, 9, 10, 11** của quy trình khai phá 
 
 ---
 
-### 🎓 CHUẨN BỊ BẢO VỆ & VẤN ĐÁP CÁ NHÂN
+### CHUẨN BỊ BẢO VỆ & VẤN ĐÁP CÁ NHÂN
 
 #### 1. Câu hỏi trọng tâm phần phụ trách chính:
 - **Câu hỏi 1:** Bức chân dung (*Profile*) của các cụm được định nghĩa như thế nào và có ý nghĩa gì?

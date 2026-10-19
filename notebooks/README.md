@@ -4,7 +4,7 @@ Thư mục này chứa chuỗi các Jupyter Notebook được thiết kế và �
 
 ---
 
-## 📋 Bảng Đối Chiếu 11 Bước Pipeline Bắt Buộc (Mục 1.2)
+## Bảng Đối Chiếu 11 Bước Pipeline Bắt Buộc (Mục 1.2)
 
 | Bước | Nội dung theo yêu cầu Mục 1.2 | Vị trí triển khai trong Project | Trọng tâm thực hiện |
 |:---:|:---|:---|:---|
@@ -22,7 +22,7 @@ Thư mục này chứa chuỗi các Jupyter Notebook được thiết kế và �
 
 ---
 
-## 🚀 Thứ Tự Thực Thi Khuyến Nghị
+## Thứ Tự Thực Thi Khuyến Nghị
 
 ```text
 01_data_understanding_and_cleaning.ipynb
