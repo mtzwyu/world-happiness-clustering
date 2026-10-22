@@ -70,3 +70,5 @@ AGENTS.md
 docs/agents/
 docs/skill_topics/
 
+*.zip
+*.rar

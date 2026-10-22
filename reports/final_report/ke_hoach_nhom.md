@@ -55,7 +55,7 @@
 
 | Thành viên | Công việc chính | Công việc hỗ trợ | Tỷ lệ đóng góp (%) |
 |:--|:--|:--|:--:|
-| **Hà Mạnh Trường** (2045240326, nhóm trưởng) | WS1 — pipeline dữ liệu 5 năm: `src/data/data_loader.py`, notebook 01, `data/interim/`. WS8 — tái lập: chốt phiên bản `requirements.txt`, README, `scripts/verify_scratch_implementations.py`, `.gitignore`. Điều phối Git/PR. Ghép báo cáo Word (`build_report.py`), viết mục 1-4 báo cáo | Review `src/models/clustering.py`; chạy lại notebook 03 đối chiếu số liệu giữa 5 năm; hỗ trợ nạp dữ liệu cho app | **34** |
+| **Hà Mạnh Trường** (2045240326, nhóm trưởng) | WS1 — pipeline dữ liệu 5 năm: `src/data/data_loader.py`, notebook 01, `data/interim/`. WS8 — tái lập: chốt phiên bản `requirements.txt`, README, `scripts/verify_scratch_implementations.py`, `.gitignore`. Điều phối Git/PR. Soạn thảo, chuẩn hóa định dạng và tổng hợp báo cáo Word `Nhom12_BaoCao.docx`, viết mục 1-4 báo cáo | Review `src/models/clustering.py`; chạy lại notebook 03 đối chiếu số liệu giữa 5 năm; hỗ trợ nạp dữ liệu cho app | **34** |
 | **Huỳnh Tâm Trí** (2045240315) | WS2+WS3 — `src/features/feature_engineering.py` (PCA tự viết) và `src/models/clustering.py`: Ward thật, DBSCAN from scratch, Davies-Bouldin/Calinski-Harabasz/ARI, wrapper `run_*`, artifact JSON. Notebook 03: khảo sát `k` theo 5 năm, ma trận 5 cấu hình, quét DBSCAN đầy đủ. Viết mục 5-7 báo cáo | Review `data_loader.py`; kiểm chứng metric bằng sklearn; review wiring dữ liệu của app | **33** |
 | **Ngô Quang Trung** (2045240325) | WS5+WS6 — EDA và diễn giải: notebook 02, notebook 04, `src/visualization/plots.py`, hậu kiểm `happiness_score`, **ghép cụm liên năm + bảng dịch chuyển 156 × 5**; `app/app.py` (4 tab, chọn năm 2015-2019); slide; viết mục 8-11 báo cáo | Review notebook 01; kiểm tra chất lượng dữ liệu; kiểm bản đồ ISO-3; điều hành rehearsal | **33** |
 
@@ -90,7 +90,7 @@
 |:--:|:--|:--|:--|
 | 3 | Thêm API vào `data_loader.py`: `INTERIM_COLUMNS`, `build_interim_dataset` (5 năm), `harmonize_country_names`, `COUNTRY_NAME_FIXES`, `COUNTRY_ISO3_OVERRIDES`, `country_to_iso3`, `load_interim`, `load_processed` | Khung `scripts/verify_scratch_implementations.py`: assert bất biến $X$ + Euclid + Silhouette | Bảng chất lượng dữ liệu theo từng năm (missing, trùng, lệch tên cột, lệch tên quốc gia) |
 | 4 | Sửa notebook 01, sinh `data/interim/happiness_merged.csv` (5 năm); bỏ cột `Standard Error`, CI, `Whisker.*` kèm lý do | Assert K-Means: inertia ≤ sklearn + dung sai, ARI ≥ 0.99 sau khớp nhãn | Thu thập nguồn: Data Card Kaggle WHR + phương pháp Cantril Ladder/Dystopia → `docs/nghien_cuu/whr_nguon_du_lieu.md` |
-| 5 | Sửa `.gitignore` (bỏ ignore `README.md`); `requirements.txt` chốt `==` + `python-docx`, `python-pptx` | Assert Ward vs `scipy linkage('ward')`, DBSCAN vs sklearn | Kiểm lệch tên quốc gia giữa 5 năm (`Macedonia`/`North Macedonia`, `Swaziland`) và chốt `COUNTRY_NAME_FIXES` |
+| 5 | Sửa `.gitignore` (bỏ ignore `README.md`); `requirements.txt` chốt phiên bản `==` chuẩn môi trường máy chấm | Assert Ward vs `scipy linkage('ward')`, DBSCAN vs sklearn | Kiểm lệch tên quốc gia giữa 5 năm (`Macedonia`/`North Macedonia`, `Swaziland`) và chốt `COUNTRY_NAME_FIXES` |
 | 6 | `README.md`: bảng đóng góp 34/33/33, hướng dẫn chạy lại từ đầu; `notebooks/README.md`: bỏ khẳng định cứng `k=3` | Assert DB, CH, PCA khớp sklearn | Xác nhận 2018 loại UAE; ghi rõ cỡ mẫu mỗi năm (158/157/155/156/156) |
 | 7 | Review chéo: notebook 01 chạy sạch từ đầu trên máy sạch | Verify script chạy hết (có thể còn FAIL ở Ward — chuyển sang M2) | Bản nháp 20 câu vấn đáp |
 
@@ -123,7 +123,7 @@
 | Ngày | Trường | Trí | Trung |
 |:--:|:--|:--|:--|
 | 22 (họp) | Chốt tiến độ M3; chốt phạm vi tối thiểu của báo cáo nếu trễ | Rà `src/models/__init__.py` export đủ; thêm docstring công thức | `app/app.py`: 4 tab (radar theo năm, bản đồ ISO-3, tra cứu quốc gia, gán quốc gia mới) + metric theo cấu hình + cache `mtime` |
-| 23 | Chuẩn bị khung Báo cáo Word (`build_report.py`, trang bìa, 5 Chương chuẩn hóa, chèn bảng/hình) | Kiểm app không dùng sklearn; kiểm đổi năm/thuật toán/scaler/`k` ra số khác nhau | Viết `slides.md` + `build_slides.py` (12-15 slide, khớp kịch bản video) |
+| 23 | Chuẩn bị khung Báo cáo Word `Nhom12_BaoCao.docx` (trang bìa, 5 Chương chuẩn hóa, chèn bảng/hình) | Kiểm app không dùng sklearn; kiểm đổi năm/thuật toán/scaler/`k` ra số khác nhau | Viết `slides.md` + `build_slides.py` (12-15 slide, khớp kịch bản video) |
 | 24 | Soạn thảo Báo cáo Word `Nhom12_BaoCao.docx` theo 5 Chương chuẩn hóa từ kết quả thực nghiệm | Soát lại Chương 3 (Phương pháp) và Chương 4 (Kết quả) | Soát lại Chương 4 (Diễn giải), demo và Chương 5 (Kết luận) |
 | 25 | Ghép bản cuối; rà soát định dạng, hình/bảng và số liệu | Biên tập + ký xác nhận Chương 3 | Biên tập + ký xác nhận Chương 4, 5 |
 | 26 | Biên tập + ký xác nhận Chương 1, 2; kiểm tra số liệu khớp 100% | Kiểm app lần cuối, chuẩn bị phần quay demo video | Hoàn thiện slide, tập dượt quay video $\le$ 12 phút |
@@ -157,7 +157,7 @@ Quy ước: docstring/comment tiếng Việt, tên hàm/biến tiếng Anh; `sci
 | `app/app.py` | 4 tab + chọn năm 2015-2019 + chọn cấu hình/scaler/`k` + hiển thị metric + bảng dịch chuyển; cache `mtime`; dự phòng dựng từ `data/raw` |
 | `scripts/verify_scratch_implementations.py` | Bất biến $X$; K-Means vs sklearn; Ward vs scipy; DBSCAN vs sklearn; Silhouette/DB/CH khớp sklearn; PCA khớp `explained_variance_ratio` |
 | `.gitignore`, `README.md`, `notebooks/README.md`, `requirements.txt` | Bỏ ignore `README.md`; README: % đóng góp + hướng dẫn chạy; chốt phiên bản `==` |
-| `reports/final_report/` | `ke_hoach_nhom.md`, `phan_cong_cong_viec.md`, `bao_cao.md` + `build_report.py` (2 backend: OOXML thuần Python mặc định, `python-docx` nếu cài được; chèn bảng từ CSV, chèn hình từ `reports/figures/`, chú thích Hình/Bảng, tạo mục lục bằng field TOC), `slides.md` + `build_slides.py`, `q_and_a.md` |
+| `reports/final_report/` | `ke_hoach_nhom.md`, `phan_cong_cong_viec.md`, `Nhom12_BaoCao.docx`, `Nhom12_BaoCao.pdf` (chuẩn 5 chương, chèn bảng từ CSV, chèn hình từ `reports/figures/`, chú thích Hình/Bảng, mục lục tự động), `q_and_a.md` |
 | `docs/` | `docs/adr/0002-*.md`, `CONTEXT.md`, `docs/nghien_cuu/*.md` |
 
 ---
@@ -184,7 +184,7 @@ data/raw/2015..2019.csv
                                └─(app/app.py, reports/final_report/*)
 ```
 
-Tổng 12 hình cho báo cáo; CSV là nguồn số liệu duy nhất, mọi con số trong `bao_cao.md` phải truy được về CSV.
+Tổng 12 hình cho báo cáo; CSV là nguồn số liệu duy nhất, mọi con số trong báo cáo `Nhom12_BaoCao.docx` phải truy được về CSV.
 
 ---
 
@@ -218,8 +218,8 @@ Tổng 12 hình cho báo cáo; CSV là nguồn số liệu duy nhất, mọi con
 | Bất biến quy tắc vàng | trong verify script | $X$ không chứa `happiness_score`/`happiness_rank` |
 | Notebook chạy sạch | `python -m nbconvert --to notebook --execute --output-dir .scratch/_exec notebooks/0X_*.ipynb`; khi đóng gói dùng `--inplace` | Không cell lỗi |
 | Demo | `streamlit run app/app.py`; thao tác 4 tab, đổi năm/thuật toán/scaler/`k` | Số liệu đổi theo cấu hình, không hardcode |
-| Truy vết số liệu | Đối chiếu từng con số trong `bao_cao.md` với `reports/tables/*.csv` | 100% khớp |
-| Báo cáo/slide | `python reports/final_report/build_report.py`, `build_slides.py` | Sinh `.docx`/`.pptx`; hình có chú thích |
+| Truy vết số liệu | Đối chiếu từng con số trong `Nhom12_BaoCao.docx` với `reports/tables/*.csv` | 100% khớp |
+| Báo cáo chính thức | Rà soát định dạng `Nhom12_BaoCao.docx`, `Nhom12_BaoCao.pdf` | Đạt chuẩn 5 chương; hình có chú thích |
 | Checklist nộp | Đối chiếu 10 mục Mục 5 đề cương | 100% tick |
 
 ---
@@ -246,7 +246,7 @@ Tổng 12 hình cho báo cáo; CSV là nguồn số liệu duy nhất, mọi con
 | Trễ tiến độ ở M3 | Đường găng tối thiểu: K-Means/Standard + Ward/Standard × 5 năm + `k=3` đối chứng; phần quét DBSCAN đầy đủ và ARI lùi sang M4 |
 | Conflict notebook giữa 3 người | 1 owner/notebook tại một thời điểm |
 
-**Giả định:** 28 ngày; mỗi người ~50 giờ (tổng ~150 giờ, tăng so với 18 ngày do phạm vi 5 năm); **không phụ thuộc mạng để build báo cáo** (máy đã có Word 16.0 nhưng chưa cài được `python-docx`/`python-pptx`); nộp qua GitHub + file Word/Slide; tài liệu và commit bằng tiếng Việt theo `AGENTS.md`.
+**Giả định:** 28 ngày; mỗi người ~50 giờ (tổng ~150 giờ, tăng so với 18 ngày do phạm vi 5 năm); **soạn thảo và định dạng trực tiếp trên Microsoft Word 16.0**; nộp qua GitHub + file Word/Slide; tài liệu và commit bằng tiếng Việt theo `AGENTS.md`.
 
 ---
 

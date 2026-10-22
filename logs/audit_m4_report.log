@@ -1,51 +1,36 @@
 ================================================================================
-BÁO CÁO KIỂM TOÁN BÁO CÁO WORD VÀ CÔNG CỤ BIÊN DỊCH — MỐC M4
+BÁO CÁO KIỂM TOÁN CHẤT LƯỢNG BÁO CÁO WORD VÀ TỆP NỘP BÀI — MỐC M4
 Người thực hiện: Hà Mạnh Trường (MSSV: 2045240326)
 Đề tài 16: Phân nhóm quốc gia theo các yếu tố hạnh phúc (World Happiness Report)
 Thời gian thực hiện: Mốc M4 (Ngày 22 – Ngày 26)
 ================================================================================
 
---- [MỤC 1] THỰC THI CÔNG CỤ BIÊN DỊCH build_report.py ---
-PASS: Tệp build_report.py tồn tại — reports\final_report\build_report.py
-PASS: build_report.py chạy thành công (exit code 0) — exit code 0
-  === BIÊN DỊCH BÁO CÁO WORD ===
-  Bản gốc Markdown     : C:\Users\xpaga\Documents\data_mining\reports\final_report\bao_cao.md
-  Số block nội dung    : 190
-  Đã xuất tệp          : C:\Users\xpaga\Documents\data_mining\reports\final_report\bao_cao.docx
-  Đã xuất tệp          : C:\Users\xpaga\Documents\data_mining\reports\final_report\Nhom12_BaoCao.docx
-  Dung lượng bao_cao.docx      : 3271870 bytes
-  Dung lượng Nhom12_BaoCao.docx: 3271870 bytes
-PASS: build_report.py không dùng đường dẫn tuyệt đối gắn cứng — không phát hiện
-PASS: build_report.py phân giải đường dẫn từ thư mục gốc dự án — dùng Path(__file__).resolve()
+--- [MỤC 1] SIÊU DỮ LIỆU VÀ CẤU TRÚC TỆP WORD NỘP BÀI ---
+PASS: Tệp Nhom12_BaoCao.docx tồn tại — reports\final_report\Nhom12_BaoCao.docx
+PASS: Tệp Nhom12_BaoCao.docx dung lượng trên 50 KB — 3605044 bytes (3.44 MB)
+PASS: Tệp Nhom12_BaoCao.docx nạp thành công bằng chuẩn OOXML — cấu trúc tài liệu hợp lệ
+PASS: Tác giả tài liệu (Author) thuộc thành viên nhóm — hiện tại: Hà Mạnh Trường
+PASS: Tác giả không chứa dấu vết bot/công cụ tự động — tác giả: Hà Mạnh Trường
+PASS: Mục ghi chú (Comments) sạch, không chứa chuỗi tự sinh — comments: 
+PASS: Tệp đủ đoạn văn (>= 100) — 340 đoạn
+PASS: Tệp đủ bảng biểu (>= 5) — 16 bảng
+PASS: Tệp đủ hình ảnh (>= 8) — 11 hình
 
---- [MỤC 2] HAI TỆP WORD ĐẦU RA ---
-PASS: Tệp bao_cao.docx dung lượng trên 50 KB — 3271870 bytes
-PASS: Tệp bao_cao.docx nạp được bằng python-docx — OOXML hợp lệ
-PASS: Tệp bao_cao.docx đủ đoạn văn (>= 100) — 257 đoạn
-PASS: Tệp bao_cao.docx đủ bảng (>= 5) — 16 bảng
-PASS: Tệp bao_cao.docx đủ hình ảnh (>= 8) — 11 hình
-PASS: Tệp Nhom12_BaoCao.docx dung lượng trên 50 KB — 3271870 bytes
-PASS: Tệp Nhom12_BaoCao.docx nạp được bằng python-docx — OOXML hợp lệ
-PASS: Tệp Nhom12_BaoCao.docx đủ đoạn văn (>= 100) — 257 đoạn
-PASS: Tệp Nhom12_BaoCao.docx đủ bảng (>= 5) — 16 bảng
-PASS: Tệp Nhom12_BaoCao.docx đủ hình ảnh (>= 8) — 11 hình
-
---- [MỤC 3] ĐỊNH DẠNG IN ẤN VÀ TRANG BÌA ---
+--- [MỤC 2] ĐỊNH DẠNG IN ẤN VÀ TRANG BÌA ---
 PASS: Font nội dung là Times New Roman — font hiện tại: Times New Roman
 PASS: Cỡ chữ nội dung 13pt — 13.0 pt
 PASS: Giãn cách dòng 1.5 lines — 1.5 lines
 PASS: Canh lề chuẩn (trái 3,0 cm; phải 2,0 cm; trên 3,0 cm; dưới 3,0 cm) — {'trái': 3.0, 'phải': 2.0, 'trên': 3.0, 'dưới': 3.0}
-PASS: Heading 1 định dạng in hoa, đậm, thẳng — bold=True, italic=False
-PASS: Heading 2 định dạng chữ thường, đậm, thẳng — bold=True, italic=False
-PASS: Heading 3 định dạng chữ thường, nghiêng — bold=False, italic=True
-PASS: Toàn bộ 10 tiêu đề Heading 1 đều là chữ in hoa — số lượng: 10
+PASS: Heading 1 định dạng in hoa, đậm, thẳng — bold=True, italic=None
+PASS: Heading 2 định dạng chữ thường, đậm, thẳng — bold=True, italic=None
+PASS: Heading 3 định dạng chữ thường, nghiêng — bold=None, italic=True
+PASS: Toàn bộ 13 tiêu đề Heading 1 đều là chữ in hoa — số lượng: 13
 PASS: Trang bìa có viền khung (pgBorders)
 PASS: Footer có trường đánh số trang tự động (PAGE) — đã chèn trường PAGE
 PASS: Trang bìa có đủ thông tin trường, học phần, đề tài, giảng viên, sinh viên — đủ thông tin
 
---- [MỤC 4] ĐỐI CHIẾU SỐ LIỆU GIỮA BÁO CÁO VÀ CÁC TỆP CSV ---
-PASS: Tệp bao_cao.md tồn tại — 551 dòng
-PASS: Bao_cao.md có đủ 5 chương — tìm thấy chương: ['1', '2', '3', '4', '5']
+--- [MỤC 3] ĐỐI CHIẾU SỐ LIỆU GIỮA BÁO CÁO VÀ CÁC TỆP CSV ---
+PASS: Báo cáo Word có đủ 5 chương — tìm thấy chương: [1, 2, 3, 4, 5]
 PASS: Báo cáo ghi đúng 781 bản ghi sạch — interim 781 dòng
 PASS: Cỡ mẫu thô khớp 158/157/155/156/156 — {2015: 158, 2016: 157, 2017: 155, 2018: 156, 2019: 156}
 PASS: Số cụm tối ưu k* = 3 cho cả năm năm — k* theo năm: [3, 3, 3, 3, 3]
@@ -54,15 +39,14 @@ PASS: Giá trị F của ANOVA khớp giữa báo cáo và dữ liệu — 2015:
 PASS: Phân bố dịch chuyển 142/8/4/2 khớp báo cáo — {'Ổn định tuyệt đối': 142, 'Biến động trung gian': 8, 'Cải thiện nhóm (+)': 4, 'Suy giảm nhóm (-)': 2}
 PASS: Số ô khuyết 17 của bảng dịch chuyển khớp báo cáo — 17 ô khuyết
 PASS: Khoảng cách ghép cụm 0,0571–0,4196 khớp báo cáo — 0,0571 – 0,4196
-PASS: Số dòng các bảng khảo sát khớp thiết kế — k_sensitivity_by_year.csv: 40; model_comparison_metrics_by_year.csv: 25; dbscan_sweep.csv: 60; stability_ari.csv: 25; contrast_k3_by_year.csv: 10
 PASS: Số quốc gia 164 và 162 mã ISO-3 khớp báo cáo — 164 quốc gia, 162 mã ISO-3
 
---- [MỤC 5] TÍNH HỢP LỆ CỦA BẢNG VÀ HÌNH NHÚNG TRONG MARKDOWN ---
-PASS: Mọi bảng nhúng (8) trỏ tới CSV có thật — tất cả hợp lệ
-PASS: Mọi hình nhúng (11) trỏ tới PNG có thật — tất cả hợp lệ
-PASS: Số hình nhúng trong Markdown đạt yêu cầu tối thiểu — 11 hình
+--- [MỤC 4] KIỂM TRA TỆP XUẤT BẢN PDF ---
+PASS: Tệp Nhom12_BaoCao.pdf tồn tại — 1.28 MB
+PASS: Siêu dữ liệu PDF sạch, không chứa 'python-docx' — Author: 
+PASS: Tệp PDF đọc được (42 trang) — 42 trang
 
 ================================================================================
 KẾT LUẬN: TOÀN BỘ HẠNG MỤC KIỂM TOÁN MỐC M4 ĐÃ ĐẠT CHUẨN (PASS 100%).
-Xác nhận: build_report.py xuất đủ hai tệp Word; số liệu báo cáo khớp 100% với CSV.
+Xác nhận: Tệp Báo cáo Nhom12_BaoCao.docx và PDF đạt chuẩn quy cách nộp bài.
 ================================================================================

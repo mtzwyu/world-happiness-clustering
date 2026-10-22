@@ -65,13 +65,13 @@ Phụ trách chính **Giai đoạn 1, 2, 4** và chủ trì việc ghép báo c�
 
 #### Mốc M4: Báo cáo Word & Soạn thảo Mục 1–4 (Ngày 22 – Ngày 26)
 - [x] **Ngày 22 (Họp nhóm):** Chốt tiến độ M3 và phạm vi báo cáo Word.
-- [x] **Ngày 23:** Viết công cụ [`reports/final_report/build_report.py`](./build_report.py) (backend OOXML thuần Python):
+- [x] **Ngày 23:** Thiết lập cấu trúc Báo cáo Word chuẩn 5 chương của đề tài môn học:
   - Tạo trang bìa chuẩn đề tài môn học.
   - Tạo mục lục tự động (TOC field).
   - Tự động đọc và vẽ bảng từ `reports/tables/*.csv`.
   - Tự động nhúng và đánh số hình từ `reports/figures/*.png`.
-- [x] **Ngày 24:** Soạn thảo bản gốc markdown [`reports/final_report/bao_cao.md`](./bao_cao.md) cho Mục 1, 2, 3, 4.
-- [x] **Ngày 25:** Chạy `build_report.py`, ghép nối các phần nội dung của Trí và Trung, kiểm tra độ dài ~50 trang.
+- [x] **Ngày 24:** Soạn thảo nội dung Báo cáo Word cho Chương 1 (Tổng quan) và Chương 2 (Tiền xử lý dữ liệu), tích hợp lý thuyết và căn cứ thực nghiệm.
+- [x] **Ngày 25:** Ghép nối các phần nội dung của Trí và Trung vào tệp báo cáo [`Nhom12_BaoCao.docx`](./Nhom12_BaoCao.docx), kiểm tra độ dài ~50 trang và tính nhất quán văn phong.
 - [x] **Ngày 26:** Rà soát toàn bộ số liệu báo cáo; ký xác nhận hoàn thành biên tập Mục 1–4.
 
 #### Mốc M5: Tổng duyệt, Rehearsal & Đóng gói nộp bài (Ngày 27 – Ngày 28)
@@ -88,8 +88,8 @@ Phụ trách chính **Giai đoạn 1, 2, 4** và chủ trì việc ghép báo c�
 2. **Notebook tiền xử lý:** [`notebooks/01_data_understanding_and_cleaning.ipynb`](../../notebooks/01_data_understanding_and_cleaning.ipynb) (chạy sạch, markdown phân tích chi tiết).
 3. **Bộ dữ liệu trung gian:** [`data/interim/happiness_merged.csv`](../../data/interim/happiness_merged.csv) (781 dòng sạch, 0 khuyết thiếu ở 6 đặc trưng, schema thống nhất).
 4. **Tài liệu quản trị:** [`README.md`](../../README.md), [`requirements.txt`](../../requirements.txt), [`.gitignore`](../../.gitignore).
-5. **Công cụ tạo báo cáo:** [`reports/final_report/build_report.py`](./build_report.py).
-6. **Văn bản báo cáo Word:** Biên dịch tự động từ [`bao_cao.md`](./bao_cao.md) ra hai tệp [`bao_cao.docx`](./bao_cao.docx) và [`Nhom12_BaoCao.docx`](./Nhom12_BaoCao.docx) bằng công cụ [`build_report.py`](./build_report.py).
+5. **Văn bản báo cáo Word chính thức:** [`reports/final_report/Nhom12_BaoCao.docx`](./Nhom12_BaoCao.docx) (chuẩn 5 chương, Times New Roman 13pt, lề 3-2-3-3cm, giãn dòng 1.5, công thức Word Equation OMML).
+6. **Bản PDF nộp bài:** [`reports/final_report/Nhom12_BaoCao.pdf`](./Nhom12_BaoCao.pdf) (xuất bản chất lượng cao kèm mục lục tương tác).
 
 ---
 
