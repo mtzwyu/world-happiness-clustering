@@ -3,8 +3,12 @@
 Phân nhóm quốc gia theo các yếu tố hạnh phúc (World Happiness Report 2015 – 2019)
 
 Phụ trách: Ngô Quang Trung (MSSV: 2045240325) — Mốc M4 (Ngày 22 – Ngày 23)
-Giao diện được tái cấu trúc phân bố theo tiêu chuẩn UI/UX trực quan, bố cục 2 cột cân xứng (Bento Layout),
-tương thích hoàn hảo với cả hai chế độ Sáng và Tối (Light / Dark Theme) mặc định của Streamlit.
+Giao diện được thiết kế lại theo tiêu chuẩn UI/UX Pro Max:
+- Chuẩn mực bảng điều khiển phân tích học thuật (Academic Data Dashboard).
+- Tuyệt đối không sử dụng emoji, icon hình vẽ hay ký hiệu symbol thừa.
+- Bố cục lưới Bento Grid hai cột cân đối, tối ưu hóa không gian hiển thị.
+- Phân cấp thị giác sắc nét bằng Typography Scale và độ dày font chữ.
+- Thẻ Metric và bảng dữ liệu chuyên nghiệp, hỗ trợ hoàn hảo cả Light và Dark Theme.
 
 Ứng dụng đọc trực tiếp dữ liệu thực nghiệm đã sinh ở các mốc M1–M3 (không hardcode số liệu):
 - data/interim/happiness_merged.csv
@@ -12,9 +16,6 @@ tương thích hoàn hảo với cả hai chế độ Sáng và Tối (Light / D
 - data/processed/country_cluster_shift.csv
 - reports/tables/model_comparison_metrics_by_year.csv, contrast_k3_by_year.csv
 - models/kmeans_2019.json (tâm cụm + tham số scaler cho Tab What-if)
-
-Bốn tab tương tác: (1) Tổng quan cụm & Radar, (2) Bản đồ thế giới Choropleth,
-(3) Tra cứu quốc gia & dịch chuyển cụm, (4) Thử nghiệm gán nhãn quốc gia mới.
 
 Cách chạy:
     streamlit run app/app.py
@@ -81,7 +82,6 @@ ALGORITHM_OPTIONS: Dict[str, str] = {
     "Hierarchical Clustering (Ward)": "Ward",
 }
 
-# Ghi chú định tính cho các quốc gia có dịch chuyển cụm (đối chiếu từ country_cluster_shift.csv)
 NOTABLE_SHIFTS: Dict[str, str] = {
     "Botswana": "Thăng hạng lên nhóm trung bình từ năm 2016",
     "Georgia": "Thăng hạng lên nhóm trung bình từ năm 2019",
@@ -179,31 +179,26 @@ def build_cluster_frame(year: int, algorithm: str) -> pd.DataFrame:
 
 
 # ===========================================================================
-# 3. CÁC HÀM DỰNG BIỂU ĐỒ PLOTLY DÙNG CHUNG (TỰ ĐỘNG THÍCH ỨNG THEME)
+# 3. CÁC HÀM DỰNG BIỂU ĐỒ PLOTLY CHUẨN UI/UX (KHÔNG ICON, KHÔNG EMOJI)
 # ===========================================================================
 def make_radar_figure(
     profiles: pd.DataFrame,
     title: str,
-    radial_title: str = "Giá trị trung bình",
-    color_map: Dict[str, str] | None = None,
+    radial_title: str,
+    color_map: Dict[str, str],
 ) -> go.Figure:
-    """
-    Dựng Radar Chart so sánh nhiều hồ sơ (mỗi dòng là một cụm) trên 6 trục đặc trưng.
-    `profiles` cần có cột 'name' và 6 cột trong FEATURE_COLUMNS.
-    """
+    """Vẽ biểu đồ Radar Chart so sánh các nhóm với phong cách tối giản học thuật."""
     categories = [FEATURE_LABELS[col] for col in FEATURE_COLUMNS]
     closed_categories = categories + [categories[0]]
 
     fig = go.Figure()
     for _, row in profiles.iterrows():
-        values = [float(row[col]) for col in FEATURE_COLUMNS]
-        values = values + [values[0]]
-        color = None
-        if color_map is not None:
-            color = color_map.get(row["name"])
+        values = [row[col] for col in FEATURE_COLUMNS]
+        closed_values = values + [values[0]]
+        color = color_map.get(row["name"], "#7f8c8d")
         fig.add_trace(
             go.Scatterpolar(
-                r=values,
+                r=closed_values,
                 theta=closed_categories,
                 fill="toself",
                 name=str(row["name"]),
@@ -213,22 +208,41 @@ def make_radar_figure(
         )
 
     fig.update_layout(
-        title=dict(text=title, font=dict(size=14)),
+        title=dict(
+            text=title,
+            font=dict(family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", size=14),
+        ),
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         polar=dict(
-            radialaxis=dict(visible=True, title=radial_title),
-            angularaxis=dict(tickfont=dict(size=10)),
+            radialaxis=dict(
+                visible=True,
+                title=radial_title,
+                gridcolor="rgba(128, 128, 128, 0.2)",
+                linecolor="rgba(128, 128, 128, 0.2)",
+            ),
+            angularaxis=dict(
+                tickfont=dict(family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", size=10),
+                gridcolor="rgba(128, 128, 128, 0.2)",
+                linecolor="rgba(128, 128, 128, 0.2)",
+            ),
             bgcolor="rgba(0,0,0,0)",
         ),
-        legend=dict(orientation="h", yanchor="bottom", y=-0.22, xanchor="center", x=0.5),
-        margin=dict(l=40, r=40, t=60, b=60),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=-0.24,
+            xanchor="center",
+            x=0.5,
+            font=dict(family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", size=11),
+        ),
+        margin=dict(l=40, r=40, t=55, b=60),
     )
     return fig
 
 
 def make_happiness_line_figure(country_frame: pd.DataFrame, country_name: str) -> go.Figure:
-    """Vẽ biến thiên 6 chỉ số cơ sở và điểm hạnh phúc của một quốc gia qua các năm."""
+    """Vẽ biểu đồ đường theo dõi biến thiên 6 chỉ số và điểm hạnh phúc."""
     fig = go.Figure()
     for column in FEATURE_COLUMNS:
         fig.add_trace(
@@ -254,32 +268,49 @@ def make_happiness_line_figure(country_frame: pd.DataFrame, country_name: str) -
     )
     fig.update_layout(
         title=dict(
-            text=f"Biến thiên 6 chỉ số cơ sở và điểm hạnh phúc — {country_name} (2015–2019)",
-            font=dict(size=14),
+            text=f"Biến thiên 6 chỉ số cơ sở và điểm hạnh phúc: {country_name} (2015–2019)",
+            font=dict(family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", size=14),
         ),
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
-        xaxis=dict(title="Năm", dtick=1),
-        yaxis=dict(title="Giá trị chỉ số cơ sở"),
+        xaxis=dict(
+            title="Năm",
+            dtick=1,
+            gridcolor="rgba(128, 128, 128, 0.15)",
+            linecolor="rgba(128, 128, 128, 0.2)",
+        ),
+        yaxis=dict(
+            title="Giá trị chỉ số cơ sở",
+            gridcolor="rgba(128, 128, 128, 0.15)",
+            linecolor="rgba(128, 128, 128, 0.2)",
+        ),
         yaxis2=dict(
-            title="Điểm hạnh phúc (0–10)",
+            title="Thang đo Cantril Ladder (0–10)",
             overlaying="y",
             side="right",
             range=[0, 10],
             showgrid=False,
+            linecolor="rgba(128, 128, 128, 0.2)",
         ),
-        legend=dict(orientation="h", yanchor="bottom", y=-0.35, xanchor="center", x=0.5),
-        margin=dict(l=40, r=40, t=60, b=70),
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=-0.35,
+            xanchor="center",
+            x=0.5,
+            font=dict(family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", size=10),
+        ),
+        margin=dict(l=40, r=40, t=55, b=70),
     )
     return fig
 
 
 # ===========================================================================
-# 4. BỐN HÀM DỰNG NỘI DUNG TAB (PHÂN BỐ BỐ CỤC UI/UX CÂN XỨNG)
+# 4. BỐN HÀM DỰNG NỘI DUNG TAB (BỐ CỤC LƯỚI BENTO CÂN XỨNG)
 # ===========================================================================
 def render_tab_overview(year: int, algorithm: str) -> None:
     """Tab 1 — Tổng quan cụm & Radar Chart."""
-    st.subheader("Tổng quan cụm & Radar Chart")
+    st.subheader("Tổng quan cụm và biểu đồ Radar")
     st.caption(
         f"Chân dung 3 cụm năm {year} theo thuật toán {algorithm}, cấu hình đối chứng k = 3. "
         "Điểm hạnh phúc chỉ dùng để hậu kiểm, không tham gia gom cụm."
@@ -297,7 +328,7 @@ def render_tab_overview(year: int, algorithm: str) -> None:
         col3.metric("Calinski–Harabasz Index", f"{record['calinski_harabasz']:.1f}")
         col4.metric("Kích thước cụm", str(record["sizes"]))
 
-    # Bố cục 2 cột cân xứng: Radar Chart bên trái, Bảng chân dung và phân tích bên phải
+    # Bố cục 2 cột Bento Grid: Radar Chart bên trái, Bảng chân dung và phân tích bên phải
     col_chart, col_table = st.columns([1.1, 0.9])
 
     with col_chart:
@@ -312,7 +343,7 @@ def render_tab_overview(year: int, algorithm: str) -> None:
 
         radar_figure = make_radar_figure(
             radar_profiles,
-            title=f"Radar chân dung 3 cụm — năm {year} ({algorithm})",
+            title=f"Radar chân dung 3 cụm năm {year} ({algorithm})",
             radial_title="Giá trị trung bình",
             color_map=CLUSTER_COLORS,
         )
@@ -343,9 +374,10 @@ def render_tab_overview(year: int, algorithm: str) -> None:
             hide_index=True,
         )
         st.markdown(
-            "- **Cụm 1 (Phát triển toàn diện):** Vượt trội đồng thời ở GDP, tuổi thọ và hỗ trợ xã hội.\n"
-            "- **Cụm 2 (Đang phát triển):** Các chỉ số ở mức trung bình khá và chiếm số lượng đông nhất.\n"
-            "- **Cụm 3 (Dễ bị tổn thương & Khó khăn):** Điểm rất thấp ở hầu hết trụ cột kinh tế, y tế và tự do."
+            "Đặc trưng định tính 3 nhóm quốc gia:\n\n"
+            "Cụm 1 (Phát triển toàn diện): Vượt trội đồng thời ở GDP, tuổi thọ và hỗ trợ xã hội.\n\n"
+            "Cụm 2 (Đang phát triển phụ thuộc kinh tế): Các chỉ số ở mức trung bình khá và chiếm số lượng đông nhất.\n\n"
+            "Cụm 3 (Dễ bị tổn thương và Khó khăn): Điểm rất thấp ở hầu hết trụ cột kinh tế, y tế và tự do."
         )
 
     with st.expander("So sánh 5 cấu hình gom cụm của năm này"):
@@ -368,7 +400,7 @@ def render_tab_map(year: int, algorithm: str) -> None:
     st.subheader("Bản đồ thế giới theo cụm")
     st.caption(
         f"Tô màu các quốc gia theo cụm năm {year} ({algorithm}) bằng mã ISO-3. "
-        "Hover để xem tên quốc gia, mã ISO-3, nhóm cụm và điểm hạnh phúc thực tế."
+        "Di chuột để xem tên quốc gia, mã ISO-3, nhóm cụm và điểm hạnh phúc thực tế."
     )
 
     frame = build_cluster_frame(year, algorithm)
@@ -397,14 +429,14 @@ def render_tab_map(year: int, algorithm: str) -> None:
         },
         color_discrete_map=CLUSTER_COLORS,
         category_orders={"cluster_name": list(CLUSTER_COLORS.keys())},
-        title=f"Phân nhóm {len(frame)} quốc gia theo cụm — năm {year} ({algorithm})",
+        title=f"Phân nhóm {len(frame)} quốc gia theo cụm năm {year} ({algorithm})",
     )
     figure.update_geos(
         showcountries=True,
         showcoastlines=True,
         showland=True,
         landcolor="#f4f6f7",
-        countrycolor="#d5d8dc",
+        countrycolor="#cbd5e1",
         bgcolor="rgba(0,0,0,0)",
     )
     figure.update_layout(
@@ -412,13 +444,14 @@ def render_tab_map(year: int, algorithm: str) -> None:
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         margin=dict(l=0, r=0, t=50, b=0),
+        font=dict(family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif"),
     )
     st.plotly_chart(figure)
 
 
 def render_tab_lookup() -> None:
     """Tab 3 — Tra cứu quốc gia & Dịch chuyển cụm."""
-    st.subheader("Tra cứu quốc gia & Dịch chuyển cụm")
+    st.subheader("Tra cứu quốc gia và dịch chuyển cụm")
     shift = load_country_shift()
     interim = load_interim()
 
@@ -437,7 +470,7 @@ def render_tab_lookup() -> None:
     col3.metric("Trạng thái dịch chuyển", str(row["shift_status"]))
     col4.metric("Chiều hướng", str(row["shift_direction"]))
 
-    # Bố cục 2 cột cân xứng: Lịch sử và nhận xét bên trái, Đồ thị diễn biến bên phải
+    # Bố cục 2 cột Bento Grid: Lịch sử và phân tích bên trái, Đồ thị diễn biến bên phải
     col_left, col_right = st.columns([1, 1.2])
 
     with col_left:
@@ -445,13 +478,13 @@ def render_tab_lookup() -> None:
         for year in YEARS:
             value = row.get(f"cluster_{year}")
             if pd.isna(value):
-                history.append({"Năm": year, "Mã cụm": "—", "Tên cụm": "Không có dữ liệu năm này"})
+                history.append({"Năm": year, "Mã cụm": "Chưa có dữ liệu", "Tên cụm": "Không có dữ liệu năm này"})
             else:
                 cluster_id = int(value)
                 history.append(
                     {
                         "Năm": year,
-                        "Mã cụm": cluster_id + 1,
+                        "Mã cụm": str(cluster_id + 1),
                         "Tên cụm": CLUSTER_NAMES[cluster_id],
                     }
                 )
@@ -471,10 +504,10 @@ def render_tab_lookup() -> None:
             risen_text = ", ".join(f"{FEATURE_LABELS[key]} ({value:+.3f})" for key, value in risen)
             fallen_text = ", ".join(f"{FEATURE_LABELS[key]} ({value:+.3f})" for key, value in fallen)
             st.markdown(
-                f"- Giai đoạn {int(first['year'])}–{int(last['year'])}: "
-                f"điểm hạnh phúc thay đổi **{happiness_delta:+.3f}**.\n"
-                f"- Hai chỉ số cải thiện mạnh nhất: {risen_text}.\n"
-                f"- Hai chỉ số suy giảm mạnh nhất: {fallen_text}."
+                f"Giai đoạn {int(first['year'])}–{int(last['year'])}:\n\n"
+                f"Điểm hạnh phúc thay đổi: **{happiness_delta:+.3f}** điểm.\n\n"
+                f"Hai chỉ số cải thiện mạnh nhất: {risen_text}.\n\n"
+                f"Hai chỉ số suy giảm mạnh nhất: {fallen_text}."
             )
 
     with col_right:
@@ -500,7 +533,7 @@ def render_tab_whatif() -> None:
     interim_2019 = load_interim()
     interim_2019 = interim_2019[interim_2019["year"] == 2019]
 
-    # Bố cục 2 cột cân xứng: Bộ thanh trượt bên trái, Kết quả và biểu đồ bên phải
+    # Bố cục 2 cột Bento Grid: Bộ thanh trượt bên trái, Kết quả và biểu đồ bên phải
     col_sliders, col_results = st.columns([1, 1])
 
     slider_values: Dict[str, float] = {}
@@ -575,23 +608,65 @@ def main() -> None:
         layout="wide",
     )
 
-    # CSS tinh chỉnh nhẹ nhàng, tự động thích ứng với cả Light và Dark Theme mặc định của Streamlit
+    # CSS tinh chỉnh theo nguyên lý UI/UX Pro Max: Tối giản, không icon, typography thanh lịch
     st.markdown(
         """
         <style>
-        /* Tinh chỉnh thẻ Metric bo tròn và có đường viền thanh lịch */
-        div[data-testid="stMetric"] {
-            border: 1px solid rgba(128, 128, 128, 0.2);
-            border-radius: 10px;
-            padding: 10px 14px;
+        /* Typography hệ thống */
+        html, body, [class*="css"] {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
-        /* Tinh chỉnh tab bar */
+
+        /* Thẻ Metric tối giản, viền mảnh, bo góc 8px */
+        div[data-testid="stMetric"] {
+            background-color: rgba(128, 128, 128, 0.04);
+            border: 1px solid rgba(128, 128, 128, 0.16);
+            border-radius: 8px;
+            padding: 12px 16px;
+            transition: all 0.2s ease-in-out;
+        }
+        div[data-testid="stMetric"]:hover {
+            border-color: rgba(128, 128, 128, 0.32);
+            background-color: rgba(128, 128, 128, 0.07);
+        }
+        div[data-testid="stMetricLabel"] {
+            font-size: 11px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+            font-weight: 600 !important;
+            opacity: 0.85;
+        }
+        div[data-testid="stMetricValue"] {
+            font-size: 22px !important;
+            font-weight: 700 !important;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Tinh chỉnh thanh Tab chuẩn Dashboard */
         div.stTabs [data-baseweb="tab-list"] {
-            gap: 6px;
+            gap: 8px;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.16);
+            padding-bottom: 4px;
         }
         div.stTabs [data-baseweb="tab"] {
-            padding: 8px 16px;
+            padding: 8px 18px;
+            font-size: 13.5px;
             font-weight: 600;
+            border-radius: 6px;
+            border: 1px solid transparent;
+        }
+        div.stTabs [data-baseweb="tab"]:hover {
+            background-color: rgba(128, 128, 128, 0.05);
+        }
+        div.stTabs [aria-selected="true"] {
+            background-color: rgba(128, 128, 128, 0.08) !important;
+            border-color: rgba(128, 128, 128, 0.22) !important;
+        }
+
+        /* Tinh chỉnh Expander */
+        div[data-testid="stExpander"] {
+            border: 1px solid rgba(128, 128, 128, 0.16);
+            border-radius: 8px;
         }
         </style>
         """,

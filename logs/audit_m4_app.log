@@ -6,7 +6,7 @@ Thời gian thực hiện: Mốc M4 (Ngày 22 – Ngày 26)
 ================================================================================
 
 --- [MỤC 1] CÚ PHÁP VÀ NẠP MODULE app/app.py ---
-PASS: Tệp app/app.py tồn tại — 652 dòng
+PASS: Tệp app/app.py tồn tại — 727 dòng
 PASS: Cú pháp Python hợp lệ (ast.parse) — phân tích thành công
 PASS: Nạp module app.py thành công — import các gói phụ thuộc không lỗi
 
@@ -34,8 +34,8 @@ PASS: Khối nội dung 'with tab1:' tồn tại
 PASS: Khối nội dung 'with tab2:' tồn tại
 PASS: Khối nội dung 'with tab3:' tồn tại
 PASS: Khối nội dung 'with tab4:' tồn tại
-PASS: Hàm dựng nội dung tab 'render_tab_overview' đầy đủ — 84 dòng
-PASS: Hàm dựng nội dung tab 'render_tab_map' đầy đủ — 51 dòng
+PASS: Hàm dựng nội dung tab 'render_tab_overview' đầy đủ — 85 dòng
+PASS: Hàm dựng nội dung tab 'render_tab_map' đầy đủ — 52 dòng
 PASS: Hàm dựng nội dung tab 'render_tab_lookup' đầy đủ — 64 dòng
 PASS: Hàm dựng nội dung tab 'render_tab_whatif' đầy đủ — 82 dòng
 PASS: Chạy thử render_tab_overview(2019, K-Means) — không lỗi
