@@ -3,6 +3,9 @@
 Phân nhóm quốc gia theo các yếu tố hạnh phúc (World Happiness Report 2015 – 2019)
 
 Phụ trách: Ngô Quang Trung (MSSV: 2045240325) — Mốc M4 (Ngày 22 – Ngày 23)
+Giao diện được tái cấu trúc phân bố theo tiêu chuẩn UI/UX trực quan, bố cục 2 cột cân xứng (Bento Layout),
+tương thích hoàn hảo với cả hai chế độ Sáng và Tối (Light / Dark Theme) mặc định của Streamlit.
+
 Ứng dụng đọc trực tiếp dữ liệu thực nghiệm đã sinh ở các mốc M1–M3 (không hardcode số liệu):
 - data/interim/happiness_merged.csv
 - data/processed/contrast_k3/contrast_k3_{kmeans,ward}_{year}.csv
@@ -176,7 +179,7 @@ def build_cluster_frame(year: int, algorithm: str) -> pd.DataFrame:
 
 
 # ===========================================================================
-# 3. CÁC HÀM DỰNG BIỂU ĐỒ PLOTLY DÙNG CHUNG
+# 3. CÁC HÀM DỰNG BIỂU ĐỒ PLOTLY DÙNG CHUNG (TỰ ĐỘNG THÍCH ỨNG THEME)
 # ===========================================================================
 def make_radar_figure(
     profiles: pd.DataFrame,
@@ -204,19 +207,22 @@ def make_radar_figure(
                 theta=closed_categories,
                 fill="toself",
                 name=str(row["name"]),
-                line=dict(color=color, width=2),
-                opacity=0.85,
+                line=dict(color=color, width=2.5),
+                opacity=0.8,
             )
         )
 
     fig.update_layout(
-        title=title,
+        title=dict(text=title, font=dict(size=14)),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         polar=dict(
             radialaxis=dict(visible=True, title=radial_title),
             angularaxis=dict(tickfont=dict(size=10)),
+            bgcolor="rgba(0,0,0,0)",
         ),
-        legend=dict(orientation="h", yanchor="bottom", y=-0.18, xanchor="center", x=0.5),
-        margin=dict(l=60, r=60, t=70, b=60),
+        legend=dict(orientation="h", yanchor="bottom", y=-0.22, xanchor="center", x=0.5),
+        margin=dict(l=40, r=40, t=60, b=60),
     )
     return fig
 
@@ -231,6 +237,8 @@ def make_happiness_line_figure(country_frame: pd.DataFrame, country_name: str) -
                 y=country_frame[column],
                 mode="lines+markers",
                 name=FEATURE_LABELS[column],
+                line=dict(width=2),
+                marker=dict(size=6),
             )
         )
     fig.add_trace(
@@ -240,11 +248,17 @@ def make_happiness_line_figure(country_frame: pd.DataFrame, country_name: str) -
             mode="lines+markers",
             name="Điểm hạnh phúc (hậu kiểm)",
             yaxis="y2",
-            line=dict(dash="dash", color="#34495e", width=2),
+            line=dict(dash="dash", color="#34495e", width=2.5),
+            marker=dict(size=8, symbol="diamond"),
         )
     )
     fig.update_layout(
-        title=f"Biến thiên 6 chỉ số cơ sở và điểm hạnh phúc — {country_name} (2015–2019)",
+        title=dict(
+            text=f"Biến thiên 6 chỉ số cơ sở và điểm hạnh phúc — {country_name} (2015–2019)",
+            font=dict(size=14),
+        ),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
         xaxis=dict(title="Năm", dtick=1),
         yaxis=dict(title="Giá trị chỉ số cơ sở"),
         yaxis2=dict(
@@ -254,14 +268,14 @@ def make_happiness_line_figure(country_frame: pd.DataFrame, country_name: str) -
             range=[0, 10],
             showgrid=False,
         ),
-        legend=dict(orientation="h", yanchor="bottom", y=-0.3, xanchor="center", x=0.5),
-        margin=dict(l=60, r=60, t=70, b=60),
+        legend=dict(orientation="h", yanchor="bottom", y=-0.35, xanchor="center", x=0.5),
+        margin=dict(l=40, r=40, t=60, b=70),
     )
     return fig
 
 
 # ===========================================================================
-# 4. BỐN HÀM DỰNG NỘI DUNG TAB
+# 4. BỐN HÀM DỰNG NỘI DUNG TAB (PHÂN BỐ BỐ CỤC UI/UX CÂN XỨNG)
 # ===========================================================================
 def render_tab_overview(year: int, algorithm: str) -> None:
     """Tab 1 — Tổng quan cụm & Radar Chart."""
@@ -283,46 +297,56 @@ def render_tab_overview(year: int, algorithm: str) -> None:
         col3.metric("Calinski–Harabasz Index", f"{record['calinski_harabasz']:.1f}")
         col4.metric("Kích thước cụm", str(record["sizes"]))
 
-    means_frame = (
-        frame.groupby(["cluster_id", "cluster_name"])[FEATURE_COLUMNS]
-        .mean()
-        .reset_index()
-        .sort_values("cluster_id")
-    )
-    radar_profiles = means_frame.rename(columns={"cluster_name": "name"})
-    radial_max = float(means_frame[FEATURE_COLUMNS].to_numpy().max()) * 1.1
+    # Bố cục 2 cột cân xứng: Radar Chart bên trái, Bảng chân dung và phân tích bên phải
+    col_chart, col_table = st.columns([1.1, 0.9])
 
-    radar_figure = make_radar_figure(
-        radar_profiles,
-        title=f"Radar chân dung 3 cụm — năm {year} ({algorithm})",
-        radial_title="Giá trị trung bình",
-        color_map=CLUSTER_COLORS,
-    )
-    radar_figure.update_layout(polar=dict(radialaxis=dict(range=[0, radial_max])))
-    st.plotly_chart(radar_figure)
-
-    summary = (
-        frame.groupby(["cluster_id", "cluster_name"])
-        .agg(
-            So_quoc_gia=("country", "count"),
-            Diem_hanh_phuc_trung_binh=("happiness_score", "mean"),
+    with col_chart:
+        means_frame = (
+            frame.groupby(["cluster_id", "cluster_name"])[FEATURE_COLUMNS]
+            .mean()
+            .reset_index()
+            .sort_values("cluster_id")
         )
-        .reset_index()
-        .sort_values("cluster_id")
-    )
-    summary["Diem_hanh_phuc_trung_binh"] = summary["Diem_hanh_phuc_trung_binh"].round(3)
-    st.markdown("**Bảng chân dung 3 cụm**")
-    st.dataframe(
-        summary.rename(
-            columns={
-                "cluster_id": "Mã cụm",
-                "cluster_name": "Tên cụm",
-                "So_quoc_gia": "Số quốc gia",
-                "Diem_hanh_phuc_trung_binh": "Điểm hạnh phúc TB",
-            }
-        ),
-        hide_index=True,
-    )
+        radar_profiles = means_frame.rename(columns={"cluster_name": "name"})
+        radial_max = float(means_frame[FEATURE_COLUMNS].to_numpy().max()) * 1.1
+
+        radar_figure = make_radar_figure(
+            radar_profiles,
+            title=f"Radar chân dung 3 cụm — năm {year} ({algorithm})",
+            radial_title="Giá trị trung bình",
+            color_map=CLUSTER_COLORS,
+        )
+        radar_figure.update_layout(polar=dict(radialaxis=dict(range=[0, radial_max])))
+        st.plotly_chart(radar_figure)
+
+    with col_table:
+        summary = (
+            frame.groupby(["cluster_id", "cluster_name"])
+            .agg(
+                So_quoc_gia=("country", "count"),
+                Diem_hanh_phuc_trung_binh=("happiness_score", "mean"),
+            )
+            .reset_index()
+            .sort_values("cluster_id")
+        )
+        summary["Diem_hanh_phuc_trung_binh"] = summary["Diem_hanh_phuc_trung_binh"].round(3)
+        st.markdown("**Bảng chân dung 3 cụm**")
+        st.dataframe(
+            summary.rename(
+                columns={
+                    "cluster_id": "Mã cụm",
+                    "cluster_name": "Tên cụm",
+                    "So_quoc_gia": "Số quốc gia",
+                    "Diem_hanh_phuc_trung_binh": "Điểm hạnh phúc TB",
+                }
+            ),
+            hide_index=True,
+        )
+        st.markdown(
+            "- **Cụm 1 (Phát triển toàn diện):** Vượt trội đồng thời ở GDP, tuổi thọ và hỗ trợ xã hội.\n"
+            "- **Cụm 2 (Đang phát triển):** Các chỉ số ở mức trung bình khá và chiếm số lượng đông nhất.\n"
+            "- **Cụm 3 (Dễ bị tổn thương & Khó khăn):** Điểm rất thấp ở hầu hết trụ cột kinh tế, y tế và tự do."
+        )
 
     with st.expander("So sánh 5 cấu hình gom cụm của năm này"):
         metrics = load_metrics()
@@ -348,6 +372,18 @@ def render_tab_map(year: int, algorithm: str) -> None:
     )
 
     frame = build_cluster_frame(year, algorithm)
+
+    counts = (
+        frame.groupby("cluster_name")["country"]
+        .count()
+        .reindex(list(CLUSTER_COLORS.keys()))
+        .fillna(0)
+        .astype(int)
+    )
+    col1, col2, col3 = st.columns(3)
+    for column, (cluster_name, count) in zip([col1, col2, col3], counts.items()):
+        column.metric(cluster_name, f"{count} quốc gia")
+
     figure = px.choropleth(
         frame,
         locations="iso3",
@@ -369,23 +405,15 @@ def render_tab_map(year: int, algorithm: str) -> None:
         showland=True,
         landcolor="#f4f6f7",
         countrycolor="#d5d8dc",
+        bgcolor="rgba(0,0,0,0)",
     )
     figure.update_layout(
         legend_title_text="Nhóm cụm",
-        margin=dict(l=0, r=0, t=60, b=0),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        margin=dict(l=0, r=0, t=50, b=0),
     )
     st.plotly_chart(figure)
-
-    counts = (
-        frame.groupby("cluster_name")["country"]
-        .count()
-        .reindex(list(CLUSTER_COLORS.keys()))
-        .fillna(0)
-        .astype(int)
-    )
-    columns = st.columns(3)
-    for column, (cluster_name, count) in zip(columns, counts.items()):
-        column.metric(cluster_name, f"{count} quốc gia")
 
 
 def render_tab_lookup() -> None:
@@ -396,7 +424,10 @@ def render_tab_lookup() -> None:
 
     countries = sorted(shift["country"].unique())
     default_index = countries.index("Vietnam") if "Vietnam" in countries else 0
-    selected = st.selectbox("Chọn quốc gia (156 quốc gia trong bộ dữ liệu)", countries, index=default_index)
+
+    col_select, col_space = st.columns([1, 1])
+    with col_select:
+        selected = st.selectbox("Chọn quốc gia (156 quốc gia trong bộ dữ liệu)", countries, index=default_index)
 
     row = shift[shift["country"] == selected].iloc[0]
     cluster_2019 = int(row["cluster_2019"])
@@ -406,44 +437,49 @@ def render_tab_lookup() -> None:
     col3.metric("Trạng thái dịch chuyển", str(row["shift_status"]))
     col4.metric("Chiều hướng", str(row["shift_direction"]))
 
-    history = []
-    for year in YEARS:
-        value = row.get(f"cluster_{year}")
-        if pd.isna(value):
-            history.append({"Năm": year, "Mã cụm": "—", "Tên cụm": "Không có dữ liệu năm này"})
-        else:
-            cluster_id = int(value)
-            history.append(
-                {
-                    "Năm": year,
-                    "Mã cụm": cluster_id + 1,
-                    "Tên cụm": CLUSTER_NAMES[cluster_id],
-                }
+    # Bố cục 2 cột cân xứng: Lịch sử và nhận xét bên trái, Đồ thị diễn biến bên phải
+    col_left, col_right = st.columns([1, 1.2])
+
+    with col_left:
+        history = []
+        for year in YEARS:
+            value = row.get(f"cluster_{year}")
+            if pd.isna(value):
+                history.append({"Năm": year, "Mã cụm": "—", "Tên cụm": "Không có dữ liệu năm này"})
+            else:
+                cluster_id = int(value)
+                history.append(
+                    {
+                        "Năm": year,
+                        "Mã cụm": cluster_id + 1,
+                        "Tên cụm": CLUSTER_NAMES[cluster_id],
+                    }
+                )
+        st.markdown("**Lịch sử phân cụm qua 5 năm**")
+        st.dataframe(pd.DataFrame(history), hide_index=True)
+
+        if selected in NOTABLE_SHIFTS:
+            st.info(f"{selected}: {NOTABLE_SHIFTS[selected]}.")
+
+        country_frame = interim[interim["country"] == selected].sort_values("year")
+        if len(country_frame) >= 2:
+            first, last = country_frame.iloc[0], country_frame.iloc[-1]
+            deltas = {column: float(last[column] - first[column]) for column in FEATURE_COLUMNS}
+            risen = sorted(deltas.items(), key=lambda item: item[1], reverse=True)[:2]
+            fallen = sorted(deltas.items(), key=lambda item: item[1])[:2]
+            happiness_delta = float(last["happiness_score"] - first["happiness_score"])
+            risen_text = ", ".join(f"{FEATURE_LABELS[key]} ({value:+.3f})" for key, value in risen)
+            fallen_text = ", ".join(f"{FEATURE_LABELS[key]} ({value:+.3f})" for key, value in fallen)
+            st.markdown(
+                f"- Giai đoạn {int(first['year'])}–{int(last['year'])}: "
+                f"điểm hạnh phúc thay đổi **{happiness_delta:+.3f}**.\n"
+                f"- Hai chỉ số cải thiện mạnh nhất: {risen_text}.\n"
+                f"- Hai chỉ số suy giảm mạnh nhất: {fallen_text}."
             )
-    st.markdown("**Lịch sử phân cụm qua 5 năm**")
-    st.dataframe(pd.DataFrame(history), hide_index=True)
 
-    country_frame = interim[interim["country"] == selected].sort_values("year")
-    st.plotly_chart(make_happiness_line_figure(country_frame, selected))
-
-    if selected in NOTABLE_SHIFTS:
-        st.info(f"{selected}: {NOTABLE_SHIFTS[selected]}.")
-
-    # Nhận xét định lượng: hai chỉ số biến động mạnh nhất giai đoạn 2015–2019
-    if len(country_frame) >= 2:
-        first, last = country_frame.iloc[0], country_frame.iloc[-1]
-        deltas = {column: float(last[column] - first[column]) for column in FEATURE_COLUMNS}
-        risen = sorted(deltas.items(), key=lambda item: item[1], reverse=True)[:2]
-        fallen = sorted(deltas.items(), key=lambda item: item[1])[:2]
-        happiness_delta = float(last["happiness_score"] - first["happiness_score"])
-        risen_text = ", ".join(f"{FEATURE_LABELS[key]} ({value:+.3f})" for key, value in risen)
-        fallen_text = ", ".join(f"{FEATURE_LABELS[key]} ({value:+.3f})" for key, value in fallen)
-        st.markdown(
-            f"- Giai đoạn {int(first['year'])}–{int(last['year'])}: "
-            f"điểm hạnh phúc thay đổi **{happiness_delta:+.3f}**.\n"
-            f"- Hai chỉ số cải thiện mạnh nhất: {risen_text}.\n"
-            f"- Hai chỉ số suy giảm mạnh nhất: {fallen_text}."
-        )
+    with col_right:
+        country_frame = interim[interim["country"] == selected].sort_values("year")
+        st.plotly_chart(make_happiness_line_figure(country_frame, selected))
 
 
 def render_tab_whatif() -> None:
@@ -464,20 +500,25 @@ def render_tab_whatif() -> None:
     interim_2019 = load_interim()
     interim_2019 = interim_2019[interim_2019["year"] == 2019]
 
+    # Bố cục 2 cột cân xứng: Bộ thanh trượt bên trái, Kết quả và biểu đồ bên phải
+    col_sliders, col_results = st.columns([1, 1])
+
     slider_values: Dict[str, float] = {}
-    left_column, right_column = st.columns(2)
-    for index, column in enumerate(FEATURE_COLUMNS):
-        target = left_column if index % 2 == 0 else right_column
-        low = float(np.floor(interim_2019[column].min() * 100) / 100)
-        high = float(np.ceil(interim_2019[column].max() * 100) / 100)
-        default = float(round(interim_2019[column].mean(), 3))
-        slider_values[column] = target.slider(
-            FEATURE_LABELS[column],
-            min_value=low,
-            max_value=high,
-            value=default,
-            step=0.01,
-        )
+    with col_sliders:
+        st.markdown("**Thiết lập 6 chỉ số quốc gia giả định:**")
+        left_sub, right_sub = st.columns(2)
+        for index, column in enumerate(FEATURE_COLUMNS):
+            target = left_sub if index % 2 == 0 else right_sub
+            low = float(np.floor(interim_2019[column].min() * 100) / 100)
+            high = float(np.ceil(interim_2019[column].max() * 100) / 100)
+            default = float(round(interim_2019[column].mean(), 3))
+            slider_values[column] = target.slider(
+                FEATURE_LABELS[column],
+                min_value=low,
+                max_value=high,
+                value=default,
+                step=0.01,
+            )
 
     vector = np.asarray([slider_values[column] for column in FEATURE_COLUMNS], dtype=float)
     z_vector = (vector - means) / stds
@@ -488,40 +529,41 @@ def render_tab_whatif() -> None:
     nearest_raw = int(np.argmin(distances))
     nearest_cluster = mapping[nearest_raw]
 
-    result_column, distance_column = st.columns([1, 2])
-    result_column.metric("Cụm được gán", CLUSTER_NAMES[nearest_cluster])
-    distance_table = pd.DataFrame(
-        {
-            "Nhóm cụm": [CLUSTER_NAMES[mapping[index]] for index in range(len(centroids))],
-            "Khoảng cách Euclidean (không gian z-score)": [round(value, 4) for value in distances],
-        }
-    )
-    distance_column.markdown("**Khoảng cách tới từng tâm cụm**")
-    distance_column.dataframe(distance_table, hide_index=True)
+    with col_results:
+        st.markdown("**Kết quả phân cụm dự đoán:**")
+        st.metric("Cụm được gán", CLUSTER_NAMES[nearest_cluster])
+        distance_table = pd.DataFrame(
+            {
+                "Nhóm cụm": [CLUSTER_NAMES[mapping[index]] for index in range(len(centroids))],
+                "Khoảng cách Euclidean (không gian z-score)": [round(value, 4) for value in distances],
+            }
+        )
+        st.markdown("**Khoảng cách tới từng tâm cụm**")
+        st.dataframe(distance_table, hide_index=True)
 
-    assigned_centroid = centroids[nearest_raw]
-    compare_profiles = pd.DataFrame(
-        [
-            {
-                "name": "Quốc gia giả định",
-                **{column: z_vector[index] for index, column in enumerate(FEATURE_COLUMNS)},
-            },
-            {
-                "name": CLUSTER_NAMES[nearest_cluster],
-                **{
-                    column: assigned_centroid[index]
-                    for index, column in enumerate(FEATURE_COLUMNS)
+        assigned_centroid = centroids[nearest_raw]
+        compare_profiles = pd.DataFrame(
+            [
+                {
+                    "name": "Quốc gia giả định",
+                    **{column: z_vector[index] for index, column in enumerate(FEATURE_COLUMNS)},
                 },
-            },
-        ]
-    )
-    radar_figure = make_radar_figure(
-        compare_profiles,
-        title="So sánh quốc gia giả định với tâm cụm được gán (không gian z-score)",
-        radial_title="Giá trị z-score",
-        color_map={CLUSTER_NAMES[nearest_cluster]: CLUSTER_COLORS[CLUSTER_NAMES[nearest_cluster]]},
-    )
-    st.plotly_chart(radar_figure)
+                {
+                    "name": CLUSTER_NAMES[nearest_cluster],
+                    **{
+                        column: assigned_centroid[index]
+                        for index, column in enumerate(FEATURE_COLUMNS)
+                    },
+                },
+            ]
+        )
+        radar_figure = make_radar_figure(
+            compare_profiles,
+            title="So sánh quốc gia giả định với tâm cụm được gán (không gian z-score)",
+            radial_title="Giá trị z-score",
+            color_map={CLUSTER_NAMES[nearest_cluster]: CLUSTER_COLORS[CLUSTER_NAMES[nearest_cluster]]},
+        )
+        st.plotly_chart(radar_figure)
 
 
 # ===========================================================================
@@ -531,6 +573,29 @@ def main() -> None:
     st.set_page_config(
         page_title="WHR Cluster Explorer — Nhóm 12",
         layout="wide",
+    )
+
+    # CSS tinh chỉnh nhẹ nhàng, tự động thích ứng với cả Light và Dark Theme mặc định của Streamlit
+    st.markdown(
+        """
+        <style>
+        /* Tinh chỉnh thẻ Metric bo tròn và có đường viền thanh lịch */
+        div[data-testid="stMetric"] {
+            border: 1px solid rgba(128, 128, 128, 0.2);
+            border-radius: 10px;
+            padding: 10px 14px;
+        }
+        /* Tinh chỉnh tab bar */
+        div.stTabs [data-baseweb="tab-list"] {
+            gap: 6px;
+        }
+        div.stTabs [data-baseweb="tab"] {
+            padding: 8px 16px;
+            font-weight: 600;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
     )
 
     st.title("Khám phá phân nhóm quốc gia theo Báo cáo Hạnh phúc Thế giới")
