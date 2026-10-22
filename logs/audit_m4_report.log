@@ -7,14 +7,14 @@ Thời gian thực hiện: Mốc M4 (Ngày 22 – Ngày 26)
 
 --- [MỤC 1] SIÊU DỮ LIỆU VÀ CẤU TRÚC TỆP WORD NỘP BÀI ---
 PASS: Tệp Nhom12_BaoCao.docx tồn tại — reports\final_report\Nhom12_BaoCao.docx
-PASS: Tệp Nhom12_BaoCao.docx dung lượng trên 50 KB — 3382933 bytes (3.23 MB)
+PASS: Tệp Nhom12_BaoCao.docx dung lượng trên 50 KB — 4625590 bytes (4.41 MB)
 PASS: Tệp Nhom12_BaoCao.docx nạp thành công bằng chuẩn OOXML — cấu trúc tài liệu hợp lệ
 PASS: Tác giả tài liệu (Author) thuộc thành viên nhóm — hiện tại: Hà Mạnh Trường
 PASS: Tác giả không chứa dấu vết bot/công cụ tự động — tác giả: Hà Mạnh Trường
 PASS: Mục ghi chú (Comments) sạch, không chứa chuỗi tự sinh — comments: 
-PASS: Tệp đủ đoạn văn (>= 100) — 337 đoạn
+PASS: Tệp đủ đoạn văn (>= 100) — 340 đoạn
 PASS: Tệp đủ bảng biểu (>= 5) — 17 bảng
-PASS: Tệp đủ hình ảnh (>= 8) — 10 hình
+PASS: Tệp đủ hình ảnh (>= 8) — 11 hình
 
 --- [MỤC 2] ĐỊNH DẠNG IN ẤN VÀ TRANG BÌA ---
 PASS: Font nội dung là Times New Roman — font hiện tại: Times New Roman
@@ -42,9 +42,9 @@ PASS: Khoảng cách ghép cụm 0,0571–0,4196 khớp báo cáo — 0,0571 –
 PASS: Số quốc gia 164 và 162 mã ISO-3 khớp báo cáo — 164 quốc gia, 162 mã ISO-3
 
 --- [MỤC 4] KIỂM TRA TỆP XUẤT BẢN PDF ---
-PASS: Tệp Nhom12_BaoCao.pdf tồn tại — 1.23 MB
+PASS: Tệp Nhom12_BaoCao.pdf tồn tại — 1.36 MB
 PASS: Siêu dữ liệu PDF sạch, không chứa 'python-docx' — Author: 
-PASS: Tệp PDF đọc được (42 trang) — 42 trang
+PASS: Tệp PDF đọc được (43 trang) — 43 trang
 
 ================================================================================
 KẾT LUẬN: TOÀN BỘ HẠNG MỤC KIỂM TOÁN MỐC M4 ĐÃ ĐẠT CHUẨN (PASS 100%).
