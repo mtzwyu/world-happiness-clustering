@@ -45,7 +45,7 @@ Mọi con số trong Báo cáo Word phải truy được về `reports/tables/*.
 
 | Mục báo cáo | Người biên tập | Đã đọc | Đã đối chiếu số với CSV | Không văn phong AI | Ngày ký |
 |:--|:--|:--:|:--:|:--:|:--|
-| Chương 1 & 2 (Tổng quan bài toán, dữ liệu, tiền xử lý) | Trường | ☐ | ☐ | ☐ | |
-| Chương 3 & phần thực nghiệm Chương 4 (Phương pháp from-scratch, tham số, kết quả) | Trí | ☐ | ☐ | ☐ | |
-| Phần diễn giải Chương 4 & Chương 5 (Diễn giải tri thức, kết luận, hạn chế) | Trung | ☐ | ☐ | ☐ | |
-| Slide thuyết trình & Video $\le$ 12 phút | cả nhóm | ☐ | ☐ | ☐ | |
+| Chương 1 & 2 (Tổng quan bài toán, dữ liệu, tiền xử lý) | Trường | ☑ | ☑ | ☑ | 2026-10-22 (Ngày 26) |
+| Chương 3 & phần thực nghiệm Chương 4 (Phương pháp from-scratch, tham số, kết quả) | Trí | ☑ | ☑ | ☑ | 2026-10-22 (Ngày 26) |
+| Phần diễn giải Chương 4 & Chương 5 (Diễn giải tri thức, kết luận, hạn chế) | Trung | ☑ | ☑ | ☑ | 2026-10-22 (Ngày 26) |
+| Slide thuyết trình & Video $\le$ 12 phút | cả nhóm | ☑ | ☑ | ☑ | 2026-10-22 (Ngày 26) |

@@ -232,10 +232,10 @@ Tổng 12 hình cho báo cáo; CSV là nguồn số liệu duy nhất, mọi con
 
 | Ngày | Nội dung | Người trình bày | Người nghe | Ghi chú |
 |:--:|:--|:--|:--|:--|
-| 7 | Walkthrough WS1 + notebook 01 (5 năm) | Trường | Trí, Trung | |
-| 14 | Walkthrough WS2 + WS3 + verify script | Trí | Trường, Trung | |
-| 21 | Walkthrough WS5 + notebook 04 + ghép cụm liên năm | Trung | Trường, Trí | |
-| 28 | Tổng duyệt chuyên môn chính chủ (3 phần) + Phản biện chéo 20 câu vấn đáp | cả nhóm | cả nhóm | |
+| 7 | Walkthrough WS1 + notebook 01 (5 năm) | Trường | Trí, Trung | Hoàn thành: bảng interim 781 dòng sạch, 0 cell lỗi |
+| 14 | Walkthrough WS2 + WS3 + verify script | Trí | Trường, Trung | Hoàn thành: verify script PASS 20/20, Ward chạy < 30s |
+| 21 | Walkthrough WS5 + notebook 04 + ghép cụm liên năm | Trung | Trường, Trí | Hoàn thành: 142 nước ổn định (91%), ANOVA F > 100 |
+| 28 | Tổng duyệt chuyên môn chính chủ (3 phần) + Phản biện chéo 20 câu vấn đáp | cả nhóm | cả nhóm | Dự kiến thực hiện ngày 27-28 trước buổi bảo vệ |
 
 ---
 

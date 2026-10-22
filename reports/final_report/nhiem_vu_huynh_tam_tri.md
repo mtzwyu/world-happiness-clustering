@@ -63,25 +63,25 @@ Phụ trách chính **Giai đoạn 6, 7, 8** của pipeline khai phá dữ liệ
 - [x] **Ngày 14:** Cài đặt cơ chế lưu và nạp mô hình dưới dạng JSON: `save_cluster_artifacts` và `load_cluster_artifacts`; tổ chức buổi **Walkthrough 20 phút** trình bày mã nguồn thuật toán cho Trường và Trung.
 
 #### Mốc M3: Thực thi ma trận thực nghiệm 5 năm × 5 cấu hình (Ngày 15 – Ngày 21)
-- [ ] **Ngày 15 (Họp nhóm):** Xây dựng [`notebooks/03_clustering_experiments_and_comparison.ipynb`](../../notebooks/03_clustering_experiments_and_comparison.ipynb):
+- [x] **Ngày 15 (Họp nhóm):** Xây dựng [`notebooks/03_clustering_experiments_and_comparison.ipynb`](../../notebooks/03_clustering_experiments_and_comparison.ipynb):
   - Viết vòng lặp quét qua 5 năm độc lập (2015–2019).
   - Khảo sát Elbow (Inertia) và Silhouette với $k \in [2, 9]$ cho từng năm -> xuất file [`reports/tables/k_sensitivity_by_year.csv`](../../reports/tables/k_sensitivity_by_year.csv).
   - Xác định số cụm tối ưu $k^*$ của mỗi năm.
-- [ ] **Ngày 16:** Chạy ma trận 5 cấu hình gom cụm lõi qua 5 năm (K-Means Z-score, K-Means Min-Max, K-Means Raw, Ward Z-score, DBSCAN Z-score) -> xuất file [`reports/tables/model_comparison_metrics_by_year.csv`](../../reports/tables/model_comparison_metrics_by_year.csv).
-- [ ] **Ngày 17:** Thực hiện quét siêu tham số DBSCAN toàn diện (4 giá trị $\epsilon \in \{0.6, 0.8, 1.0, 1.2\}$ kết hợp 3 giá trị `min_samples` $\in \{3, 4, 5\}$ cho cả 5 năm) -> xuất file [`reports/tables/dbscan_sweep.csv`](../../reports/tables/dbscan_sweep.csv).
-- [ ] **Ngày 18:** Đánh giá độ ổn định cụm (*Cluster Stability*):
+- [x] **Ngày 16:** Chạy ma trận 5 cấu hình gom cụm lõi qua 5 năm (K-Means Z-score, K-Means Min-Max, K-Means Raw, Ward Z-score, DBSCAN Z-score) -> xuất file [`reports/tables/model_comparison_metrics_by_year.csv`](../../reports/tables/model_comparison_metrics_by_year.csv).
+- [x] **Ngày 17:** Thực hiện quét siêu tham số DBSCAN toàn diện (4 giá trị $\epsilon \in \{0.6, 0.8, 1.0, 1.2\}$ kết hợp 3 giá trị `min_samples` $\in \{3, 4, 5\}$ cho cả 5 năm) -> xuất file [`reports/tables/dbscan_sweep.csv`](../../reports/tables/dbscan_sweep.csv).
+- [x] **Ngày 18:** Đánh giá độ ổn định cụm (*Cluster Stability*):
   - Chạy K-Means trên 10 seed ngẫu nhiên khác nhau, tính giá trị ARI trung bình giữa các lần chạy.
   - Ghi nhận ARI = 1.0 cho Phân cấp Ward và DBSCAN kèm lý giải toán học về tính tất định -> xuất file [`reports/tables/stability_ari.csv`](../../reports/tables/stability_ari.csv).
-- [ ] **Ngày 19:** Thực hiện cấu hình đối chứng $k=3$ cho cả 5 năm -> xuất file [`reports/tables/contrast_k3_by_year.csv`](../../reports/tables/contrast_k3_by_year.csv) và các tệp gán nhãn `contrast_k3_*.csv`.
-- [ ] **Ngày 20:** Xuất toàn bộ tệp mô hình JSON vào thư mục [`models/`](../../models) (gồm 10 tệp `kmeans_*.json` và `hierarchical_*.json`).
-- [ ] **Ngày 21:** Soạn thảo bản nháp Mục 5, 6, 7 trong báo cáo dựa trên số liệu bảng CSV; tham gia rà soát chéo Mốc M3.
+- [x] **Ngày 19:** Thực hiện cấu hình đối chứng $k=3$ cho cả 5 năm -> xuất file [`reports/tables/contrast_k3_by_year.csv`](../../reports/tables/contrast_k3_by_year.csv) và các tệp gán nhãn `contrast_k3_*.csv`.
+- [x] **Ngày 20:** Xuất toàn bộ tệp mô hình JSON vào thư mục [`models/`](../../models) (gồm 10 tệp `kmeans_*.json` và `hierarchical_*.json`).
+- [x] **Ngày 21:** Soạn thảo bản nháp Mục 5, 6, 7 trong báo cáo dựa trên số liệu bảng CSV; tham gia rà soát chéo Mốc M3.
 
 #### Mốc M4: Soạn thảo Mục 5–7 Báo cáo Word & Kiểm chứng Demo (Ngày 22 – Ngày 26)
-- [ ] **Ngày 22 (Họp nhóm):** Rà soát export toàn bộ hàm API trong `src/models/__init__.py`.
-- [ ] **Ngày 23:** Kiểm chứng ứng dụng Demo Streamlit của Trung để bảo đảm app gọi đúng các hàm from-scratch trong `src/models/` và không gọi thư viện ngoài.
-- [ ] **Ngày 24:** Hoàn thiện nội dung Mục 5, 6, 7 trong file [`reports/final_report/bao_cao.md`](./bao_cao.md).
-- [ ] **Ngày 25:** Kiểm tra tính ăn khớp giữa số liệu viết trong báo cáo với các file CSV xuất ra.
-- [ ] **Ngày 26:** Ký xác nhận hoàn thành biên tập Mục 5–7 theo checklist phân công.
+- [x] **Ngày 22 (Họp nhóm):** Rà soát export toàn bộ hàm API trong `src/models/__init__.py`.
+- [x] **Ngày 23:** Kiểm chứng ứng dụng Demo Streamlit của Trung để bảo đảm app gọi đúng các hàm from-scratch trong `src/models/` và không gọi thư viện ngoài.
+- [x] **Ngày 24:** Hoàn thiện nội dung Mục 5, 6, 7 trong file [`reports/final_report/bao_cao.md`](./bao_cao.md).
+- [x] **Ngày 25:** Kiểm tra tính ăn khớp giữa số liệu viết trong báo cáo với các file CSV xuất ra.
+- [x] **Ngày 26:** Ký xác nhận hoàn thành biên tập Mục 5–7 theo checklist phân công.
 
 #### Mốc M5: Tổng duyệt, Rehearsal & Vấn đáp (Ngày 27 – Ngày 28)
 - [ ] **Ngày 27:** Tham gia buổi tổng duyệt, chuẩn bị trả lời các câu hỏi kỹ thuật về công thức toán học và tối ưu thuật toán.
