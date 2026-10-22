@@ -183,7 +183,7 @@ Lưu ý kỹ thuật: ứng dụng không huấn luyện lại mô hình khi ng�
 
 ---
 
-## PHẦN 5 — HẠN CHẾ, HƯỚNG PHÁT TRIỂN & ĐỔI VAI REHEARSAL (Câu 17 – 20)
+## PHẦN 5 — HẠN CHẾ, HƯỚNG PHÁT TRIỂN & TỔNG DUYỆT PHẢN BIỆN (Câu 17 – 20)
 
 ### Câu 17. Hạn chế khách quan của dữ liệu và phương pháp là gì?
 
@@ -207,7 +207,7 @@ Lưu ý kỹ thuật: ứng dụng không huấn luyện lại mô hình khi ng�
 4. **Phân tích độ nhạy theo trọng số**: khảo sát cụm thay đổi thế nào khi đặt trọng số ưu tiên cho từng trụ cột (ví dụ thể chế quan trọng hơn GDP).
 5. **Đưa demo lên dashboard công khai** (Streamlit Community Cloud) và bổ sung chế độ xuất báo cáo PDF cho từng quốc gia.
 
-### Câu 19. Kịch bản đổi vai rehearsal: Trung trình bày phần "Thu thập và Tiền xử lý dữ liệu" thay Trường — cần nắm những gì?
+### Câu 19. Kịch bản tổng duyệt và phản biện chéo: Các thành viên cần nắm vững những điểm cốt lõi nào khi bị hỏi chéo ngoài phần mình thuyết trình?
 
 Nội dung bắt buộc phải trình bày được, theo đúng thứ tự pipeline:
 

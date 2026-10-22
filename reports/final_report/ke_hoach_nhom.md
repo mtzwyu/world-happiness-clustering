@@ -62,7 +62,11 @@
 **Cơ chế bắt buộc để mỗi thành viên hiểu toàn bộ pipeline (Mục 1.1):**
 
 - Mỗi module khi xong phải có **walkthrough 20 phút** do chính người viết trình bày cho 2 người còn lại; ghi biên bản vào mục 7.
-- **Rehearsal đổi vai:** Trường trình bày phương pháp, Trí trình bày demo, Trung trình bày tiền xử lý.
+- **Phân bổ thuyết trình video (tối đa 12 phút — nguyên tắc 'ai làm phần nào thuyết trình phần đó'):**
+  - **Phần 1 (Hà Mạnh Trường, ~3.5 phút, Slide 1–4):** Tổng quan đề tài, kiến trúc pipeline 11 bước, thu thập và tiền xử lý dữ liệu 5 năm.
+  - **Phần 2 (Huỳnh Tâm Trí, ~4.0 phút, Slide 5–9):** Khám phá EDA, cơ sở chuẩn hóa Z-score/PCA, tự cài đặt thuật toán from scratch và thực nghiệm thẩm định $k^*=3$.
+  - **Phần 3 (Ngô Quang Trung, ~4.5 phút, Slide 10–15):** Diễn giải chân dung 3 cụm, hậu kiểm ANOVA điểm hạnh phúc, bảng dịch chuyển 156 quốc gia, demo Streamlit 4 tab và kết luận.
+- **Tổng duyệt chuyên môn chính chủ & Phản biện chéo:** Từng thành viên tập dượt thuyết trình đúng phần mình phụ trách để khớp thời gian video 12 phút; sau đó 2 thành viên còn lại đóng vai phản biện, đặt câu hỏi kiểm tra sâu.
 - Mỗi người phải giải thích được công thức Silhouette + profile một cụm của **một năm bất kỳ** + một đoạn code bất kỳ trong `src/models/clustering.py`.
 - Mỗi PR bắt buộc một người khác review.
 
@@ -132,8 +136,8 @@
 
 | Ngày | Trường | Trí | Trung |
 |:--:|:--|:--|:--|
-| 27 | Chạy lại toàn bộ từ đầu trên môi trường sạch: 4 notebook + verify + app; phối hợp quay video báo cáo $\le$ 12 phút (cả 3 thành viên tham gia); gắn link video mở trực tiếp vào bìa và phụ lục Word | Tham gia quay video (phần thuật toán & thực nghiệm); trả lời vấn đáp phần phương pháp | Tham gia quay video (phần diễn giải & demo app); điều hành rehearsal |
-| 28 | Đóng gói duy nhất `Nhom12_WorldHappinessClustering.zip`; merge `main`, push GitHub; nộp bài | Bị hỏi vấn đáp phần demo | Bị hỏi vấn đáp phần kết luận/hạn chế |
+| 27 | Chạy lại toàn bộ từ đầu trên môi trường sạch; quay video báo cáo $\le$ 12 phút: Trường trình bày Phần 1 (Slide 1–4, ~3.5 phút), gắn link video mở trực tiếp vào bìa và phụ lục Word | Tham gia quay video: Trí trình bày Phần 2 (Slide 5–9, ~4.0 phút, thuật toán & thực nghiệm) | Tham gia quay video: Trung trình bày Phần 3 (Slide 10–15, ~4.5 phút, diễn giải & demo app); bấm giờ tổng duyệt |
+| 28 | Đóng gói duy nhất `Nhom12_WorldHappinessClustering.zip`; merge `main`, push GitHub; nộp bài | Tham gia phản biện chéo 20 câu hỏi vấn đáp | Tham gia phản biện chéo 20 câu hỏi vấn đáp |
 
 **Nhịp chung:** họp 1 buổi/tuần vào đầu tuần (Ngày 1, 8, 15, 22), mỗi buổi 45 phút: chốt tiến độ mốc trước, gỡ blocker, chốt việc tuần. Ngoài buổi họp, trao đổi qua PR + checklist trong tài liệu này. Commit bằng Tiếng Việt theo chuẩn **Human-Centric Commit Protocol** (ví dụ: `thuật toán: tự cài đặt Ward linkage và DBSCAN from scratch`), tuyệt đối không nhắc đến AI hay bot. Nhánh `feat/<tên>-<nội-dung>` → PR → chỉ nhóm trưởng merge `main`.
 
@@ -231,7 +235,7 @@ Tổng 12 hình cho báo cáo; CSV là nguồn số liệu duy nhất, mọi con
 | 7 | Walkthrough WS1 + notebook 01 (5 năm) | Trường | Trí, Trung | |
 | 14 | Walkthrough WS2 + WS3 + verify script | Trí | Trường, Trung | |
 | 21 | Walkthrough WS5 + notebook 04 + ghép cụm liên năm | Trung | Trường, Trí | |
-| 28 | Rehearsal đổi vai (3 phần) + 20 câu vấn đáp | cả nhóm | cả nhóm | |
+| 28 | Tổng duyệt chuyên môn chính chủ (3 phần) + Phản biện chéo 20 câu vấn đáp | cả nhóm | cả nhóm | |
 
 ---
 

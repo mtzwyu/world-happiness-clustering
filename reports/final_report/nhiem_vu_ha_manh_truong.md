@@ -77,7 +77,8 @@ Phụ trách chính **Giai đoạn 1, 2, 4** và chủ trì việc ghép báo c�
 #### Mốc M5: Tổng duyệt, Rehearsal & Đóng gói nộp bài (Ngày 27 – Ngày 28)
 - [ ] **Ngày 27:** Chạy kiểm thử toàn diện toàn bộ pipeline từ đầu trên máy sạch; kiểm tra 10 tiêu chí nộp bài của đề cương; tham gia tổng duyệt vấn đáp phần tiền xử lý.
 - [ ] **Ngày 28:** 
-  - **Rehearsal đổi vai:** Thuyết trình thử phần **Phương pháp gom cụm & Tham số** (thay cho Trí).
+  - **Thuyết trình Video báo cáo (Phần 1, ~3.5 phút, Slide 1–4):** Thuyết minh phần Tổng quan đề tài, kiến trúc pipeline 11 bước và quy trình Thu thập, Tiền xử lý dữ liệu 5 năm.
+  - **Tổng duyệt chuyên môn chính chủ & Phản biện chéo:** Tập dượt thuyết minh thuần thục Phần 1 theo kịch bản lời thoại; đóng vai phản biện đặt câu hỏi chuyên sâu cho Phần 2 của Trí và Phần 3 của Trung.
   - Quản trị Git: merge nhánh `main`, tạo tag `v1.0`, đẩy toàn bộ mã nguồn lên GitHub.
   - Nộp file báo cáo Word `.docx`, slide trình chiếu và liên kết repository.
 
@@ -103,7 +104,7 @@ Phụ trách chính **Giai đoạn 1, 2, 4** và chủ trì việc ghép báo c�
 - **Câu hỏi 3:** Tại sao lại loại bản ghi của United Arab Emirates (UAE) trong năm 2018?
   *Trả lời:* Năm 2018, UAE bị khuyết hoàn toàn chỉ số `Perceptions of corruption`. Việc loại bỏ 1 mẫu này bảo đảm ma trận đầu vào hoàn toàn không bị giá trị NaN làm sai lệch thuật toán gom cụm.
 
-#### 2. Chuẩn bị Rehearsal đổi vai (Thuyết trình phần Thuật toán của Trí):
+#### 2. Kế hoạch phản biện chéo (Hỏi đáp chuyên sâu phần Thuật toán của Trí & Demo của Trung):
 - Nắm vững công thức toán của giải thuật K-Means: hàm mục tiêu Inertia (WCSS), cơ chế chọn tâm ban đầu K-Means++.
 - Nắm vững nguyên lý liên kết Ward trong phân cấp tích tụ: tối thiểu hóa gia tăng phương sai nội cụm $\Delta WSS$ sau mỗi bước gộp.
 - Giải thích được ý nghĩa toán học của hệ số Silhouette $s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}$.

@@ -31,12 +31,12 @@ thành viên. Tỷ lệ đóng góp cộng lại bằng 100%.
 
 ### Yêu cầu chung của nhóm & Phân chia Video Thuyết trình ($\le$ 12 phút)
 
-- **Kịch bản phân chia thời lượng video báo cáo ($\le$ 12 phút, cả 3 thành viên tham gia):**
-  - **Phần 1 — Hà Mạnh Trường (00:00 – 04:00, ~4 phút):** Giới thiệu bài toán phân nhóm quốc gia WHR, cấu trúc dữ liệu 5 năm và giải thích các quyết định tiền xử lý quan trọng (loại UAE 2018, chuẩn hóa 6 thuộc tính không chứa Happiness Score).
-  - **Phần 2 — Huỳnh Tâm Trí (04:00 – 08:00, ~4 phút):** Trình bày phương pháp gom cụm from-scratch (K-Means, Ward, DBSCAN), quy trình tối ưu tham số ($k^*$, $eps$) và so sánh định lượng các cấu hình qua hệ số Silhouette, Davies-Bouldin.
-  - **Phần 3 — Ngô Quang Trung (08:00 – 12:00, ~4 phút):** Diễn giải chân dung cụm tiêu biểu, dịch chuyển cụm liên năm 156 quốc gia, minh họa chạy demo ứng dụng Streamlit trực tiếp và tổng kết hạn chế của đề tài.
+- **Kịch bản phân chia thời lượng video báo cáo ($\le$ 12 phút — nguyên tắc 'ai làm phần nào thuyết trình phần đó'):**
+  - **Phần 1 — Hà Mạnh Trường (Slide 1–4, ~3.5 phút):** Giới thiệu bài toán phân nhóm quốc gia WHR, kiến trúc pipeline 11 bước và quy trình tiền xử lý dữ liệu 5 năm (loại UAE 2018, chuẩn hóa 6 thuộc tính không chứa Happiness Score, gắn mã ISO-3).
+  - **Phần 2 — Huỳnh Tâm Trí (Slide 5–9, ~4.0 phút):** Phân tích EDA phân bố/tương quan, cơ sở chuẩn hóa Z-score/PCA, cài đặt thuật toán from-scratch (K-Means++, Ward, DBSCAN), tối ưu tham số $k^*=3$ và đánh giá độ ổn định ARI.
+  - **Phần 3 — Ngô Quang Trung (Slide 10–15, ~4.5 phút):** Diễn giải chân dung 3 cụm, hậu kiểm ANOVA với điểm hạnh phúc thực tế, bảng dịch chuyển cụm 156 quốc gia qua 5 năm, thao tác chạy demo ứng dụng Streamlit 4 tab và kết luận đề tài.
 - Mỗi thành viên nắm toàn bộ quy trình phân tích, không chỉ phần việc cá nhân: sau mỗi phần việc hoàn thành, người thực hiện trình bày lại 20 phút cho hai thành viên còn lại và ghi biên bản vào `ke_hoach_nhom.md`.
-- Trước buổi báo cáo, cả nhóm tổng duyệt và đổi vai: Trường trình bày phần phương pháp, Trí trình bày phần demo, Trung trình bày phần tiền xử lý dữ liệu.
+- Trước buổi báo cáo, cả nhóm tổ chức buổi **Tổng duyệt chuyên môn chính chủ & Phản biện chéo**: Mỗi thành viên tập dượt thuyết trình đúng phần mình phụ trách để khớp thời lượng chuẩn; sau đó 2 thành viên còn lại đóng vai phản biện, đặt các câu hỏi vấn đáp chuyên sâu để chuẩn bị cho buổi bảo vệ chính thức.
 - Mỗi thành viên phải chạy được cả bốn notebook, giải thích được công thức Silhouette, chân dung một cụm của một năm bất kỳ và một đoạn mã bất kỳ trong `src/models/clustering.py`.
 
 ### Checklist ký xác nhận nội dung báo cáo & Truy vết số liệu

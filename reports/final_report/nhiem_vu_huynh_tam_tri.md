@@ -86,8 +86,8 @@ Phụ trách chính **Giai đoạn 6, 7, 8** của pipeline khai phá dữ liệ
 #### Mốc M5: Tổng duyệt, Rehearsal & Vấn đáp (Ngày 27 – Ngày 28)
 - [ ] **Ngày 27:** Tham gia buổi tổng duyệt, chuẩn bị trả lời các câu hỏi kỹ thuật về công thức toán học và tối ưu thuật toán.
 - [ ] **Ngày 28:**
-  - **Rehearsal đổi vai:** Đảm nhiệm thuyết trình phần **Ứng dụng Demo Streamlit** (thay cho Trung).
-  - Trình bày phần Phương pháp, Tham số và Đánh giá mô hình trước hội đồng chấm đồ án.
+  - **Thuyết trình Video báo cáo (Phần 2, ~4.0 phút, Slide 5–9):** Thuyết minh phần Khám phá EDA, cơ sở chuẩn hóa Z-score/PCA, cài đặt thuật toán from-scratch (K-Means++, Ward, DBSCAN), thẩm định số cụm tối ưu $k^*=3$ và đánh giá độ ổn định ARI.
+  - **Tổng duyệt chuyên môn chính chủ & Phản biện chéo:** Tập dượt thuyết minh thuần thục Phần 2 theo kịch bản lời thoại; đóng vai phản biện đặt câu hỏi chuyên sâu cho Phần 1 của Trường và Phần 3 của Trung.
 
 ---
 
@@ -118,6 +118,6 @@ Phụ trách chính **Giai đoạn 6, 7, 8** của pipeline khai phá dữ liệ
 - **Câu hỏi 3:** Tại sao thuật toán DBSCAN lại cho kết quả kém trên bộ dữ liệu World Happiness Report?
   *Trả lời:* Dữ liệu báo cáo hạnh phúc có mật độ phân bố tương đối đều trên không gian đa chiều, không có các "thung lũng mật độ thấp" rõ rệt. Khi quét các giá trị $\epsilon$ khác nhau, DBSCAN dễ rơi vào tình trạng gom toàn bộ vào 1 cụm duy nhất hoặc coi phần lớn các điểm là nhiễu (noise $-1$).
 
-#### 2. Chuẩn bị Rehearsal đổi vai (Thuyết trình phần Demo của Trung):
+#### 2. Kế hoạch phản biện chéo (Hỏi đáp chuyên sâu phần Tiền xử lý của Trường & Demo của Trung):
 - Nắm vững cấu trúc 4 tab của ứng dụng Streamlit: Tab 1 (Radar chart), Tab 2 (Bản đồ ISO-3), Tab 3 (Tra cứu quốc gia & Dịch chuyển cụm), Tab 4 (What-if analysis gán quốc gia mới).
 - Trình bày được cách thức app nạp trọng tâm cụm từ file JSON và gán nhãn cho một vector 6 đặc trưng mới dựa trên khoảng cách Euclidean tối thiểu.

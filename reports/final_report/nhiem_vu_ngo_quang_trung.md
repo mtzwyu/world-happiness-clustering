@@ -92,8 +92,8 @@ Phụ trách chính **Giai đoạn 3, 5, 9, 10, 11** của quy trình khai phá 
 #### Mốc M5: Tổng duyệt, Rehearsal & Vấn đáp (Ngày 27 – Ngày 28)
 - [ ] **Ngày 27:** Điều hành buổi diễn tập tổng duyệt của cả nhóm, bấm giờ thuyết trình và đặt các câu hỏi phản biện giả lập.
 - [ ] **Ngày 28:**
-  - **Rehearsal đổi vai:** Thuyết trình thử phần **Thu thập và Tiền xử lý dữ liệu** (thay cho Trường).
-  - Trình bày phần Diễn giải tri thức, Demo tương tác và Kết luận trước hội đồng chấm đồ án.
+  - **Thuyết trình Video báo cáo (Phần 3, ~4.5 phút, Slide 10–15):** Thuyết minh phần Chân dung 3 cụm, Hậu kiểm ANOVA với điểm hạnh phúc thực tế, Bảng dịch chuyển cụm 156 quốc gia qua 5 năm, thao tác chạy Demo Streamlit 4 tab, Kết luận và Hướng phát triển.
+  - **Tổng duyệt chuyên môn chính chủ & Phản biện chéo:** Điều hành buổi diễn tập tổng duyệt, bấm giờ video $\le$ 12 phút; đóng vai phản biện đặt câu hỏi chuyên sâu cho Phần 1 của Trường và Phần 2 của Trí.
 
 ---
 
@@ -122,7 +122,7 @@ Phụ trách chính **Giai đoạn 3, 5, 9, 10, 11** của quy trình khai phá 
 - **Câu hỏi 3:** Tại sao lại cần bước hậu kiểm (*Post-clustering Validation*) với điểm hạnh phúc?
   *Trả lời:* Vì theo Quy tắc vàng, biến `happiness_score` không tham gia vào quá trình gom cụm. Việc hậu kiểm bằng biểu đồ boxplot và kiểm định thống kê giúp chứng minh khách quan rằng các cụm được hình thành từ 6 yếu tố cơ sở hoàn toàn phản ánh đúng mức độ hạnh phúc thực tế của người dân.
 
-#### 2. Chuẩn bị Rehearsal đổi vai (Thuyết trình phần Tiền xử lý của Trường):
+#### 2. Kế hoạch phản biện chéo (Hỏi đáp chuyên sâu phần Tiền xử lý của Trường & Thuật toán của Trí):
 - Nắm vững cấu trúc 5 tệp dữ liệu thô (2015–2019) và các trường hợp lệch tên cột.
 - Giải thích được tại sao nhóm lựa chọn loại bỏ dòng dữ liệu UAE năm 2018 (do thiếu hoàn toàn chỉ số tham nhũng).
 - Trình bày được quy trình xuất bảng trung gian `happiness_merged.csv` với 783 dòng dữ liệu sạch.

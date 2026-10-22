@@ -1,188 +1,255 @@
 # Bộ slide thuyết trình — Đề tài 16 — Nhóm 12
 
-**Học phần:** Khai thác dữ liệu (Data Mining)
-**Đề tài 16:** Phân nhóm quốc gia theo các yếu tố tạo nên mức độ hạnh phúc (World Happiness Report 2015–2019)
+**Học phần:** Khai thác dữ liệu (Data Mining)  
+**Đề tài 16:** Phân nhóm quốc gia theo các yếu tố tạo nên mức độ hạnh phúc (World Happiness Report 2015–2019)  
+**Quy cách video:** Tổng thời lượng tối đa 12 phút, chia làm 3 phần tuần tự theo nguyên tắc *"Ai làm phần nào thuyết trình phần đó"*.
 
-> Mọi số liệu trong bộ slide này truy vết về `reports/tables/*.csv`, `data/processed/*.csv` và `data/interim/happiness_merged.csv`.
+> Mọi số liệu trong bộ slide này truy vết trực tiếp về `reports/tables/*.csv`, `data/processed/*.csv` và `data/interim/happiness_merged.csv`.
+
+---
+
+# PHẦN 1: TỔNG QUAN ĐỀ TÀI & TIỀN XỬ LÝ DỮ LIỆU
+**Người trình bày:** Hà Mạnh Trường (MSSV: 2045240326 — Nhóm trưởng)  
+**Thời lượng dự kiến:** ~3 phút 30 giây (Slide 1 – Slide 4)
 
 ---
 
 ## Slide 1: Trang bìa
 
-- Học phần: Khai thác dữ liệu — Lớp: sinh viên năm 3, ngành Khoa học dữ liệu
+- Học phần: Khai thác dữ liệu — Ngành Khoa học dữ liệu
 - Đề tài 16: Phân nhóm quốc gia theo các yếu tố tạo nên mức độ hạnh phúc (World Happiness Report 2015–2019)
 - Nhóm 12:
-  - Hà Mạnh Trường — MSSV 2045240326 — nhóm trưởng
-  - Huỳnh Tâm Trí — MSSV 2045240315
-  - Ngô Quang Trung — MSSV 2045240325
+  - Hà Mạnh Trường — MSSV 2045240326 — Nhóm trưởng (Phần 1: Tổng quan & Tiền xử lý dữ liệu)
+  - Huỳnh Tâm Trí — MSSV 2045240315 (Phần 2: Thuật toán from scratch & Thực nghiệm)
+  - Ngô Quang Trung — MSSV 2045240325 (Phần 3: EDA, Diễn giải tri thức, Demo & Kết luận)
 - Giảng viên hướng dẫn: Giảng viên học phần Khai thác dữ liệu
-- Sản phẩm nộp: mã nguồn, 4 notebook, demo Streamlit, báo cáo Word, video báo cáo không quá 12 phút
-- Dữ liệu: 5 năm khảo sát Gallup World Poll (2015–2019), 781 bản ghi quốc gia–năm sau tiền xử lý
+- Sản phẩm nộp: Toàn bộ mã nguồn, 4 Notebook phân tích, Demo Streamlit 4 tab, Báo cáo Word 5 chương, Video báo cáo dưới 12 phút
+- Dữ liệu nghiên cứu: 5 năm khảo sát Gallup World Poll (2015–2019), 781 bản ghi quốc gia – năm sau làm sạch
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Hà Mạnh Trường - ~45 giây):**  
+> *"Kính chào Thầy và Hội đồng chấm đồ án. Em là Hà Mạnh Trường, nhóm trưởng Nhóm 12. Hôm nay nhóm em xin phép báo cáo Đề tài 16: Phân nhóm quốc gia theo các yếu tố tạo nên mức độ hạnh phúc dựa trên dữ liệu World Happiness Report giai đoạn 2015–2019. Video báo cáo hôm nay sẽ kéo dài dưới 12 phút và được chia làm 3 phần rành mạch: Em sẽ phụ trách Phần 1 về bối cảnh đề tài và quy trình tiền xử lý dữ liệu; bạn Huỳnh Tâm Trí sẽ trình bày Phần 2 về thuật toán tự cài đặt và thực nghiệm tham số; cuối cùng bạn Ngô Quang Trung sẽ trình bày Phần 3 về diễn giải tri thức, theo dõi dịch chuyển cụm và demo ứng dụng tương tác."*
 
 ---
 
 ## Slide 2: Lý do chọn đề tài và ý nghĩa của Báo cáo Hạnh phúc Thế giới
 
-- World Happiness Report (WHR) công bố từ năm 2012 dưới sự chủ trì của Mạng lưới Giải pháp Phát triển Bền vững Liên Hợp Quốc
-- Điểm hạnh phúc lấy từ khảo sát Gallup World Poll, đo bằng thang Cantril Ladder từ 0 đến 10
-- Điểm tổng hợp là một số duy nhất nên khó thấy quốc gia mạnh yếu ở trụ cột nào
-- Bài toán phù hợp với gom cụm không giám sát: không có nhãn mục tiêu, cần phát hiện nhóm tự nhiên
-- Ý nghĩa thực tiễn: nhận diện nhóm quốc gia cần ưu tiên hỗ trợ về kinh tế, y tế và thể chế
-- Ý nghĩa học thuật: thực hiện trọn vẹn quy trình khai phá dữ liệu 11 bước trên dữ liệu thực tế
+- World Happiness Report (WHR) công bố thường niên từ năm 2012 dưới sự chủ trì của Mạng lưới Giải pháp Phát triển Bền vững Liên Hợp Quốc (SDSN).
+- Điểm hạnh phúc (Happiness Score) thu thập từ khảo sát Gallup World Poll, đo bằng thang đo Cantril Ladder từ 0 đến 10.
+- Vấn đề cốt lõi: Điểm tổng hợp là một giá trị duy nhất, dễ che lấp các thế mạnh hoặc điểm nghẽn đặc thù của từng quốc gia trên 6 trụ cột phát triển.
+- Sự phù hợp với Khai thác dữ liệu: Bài toán phân nhóm không giám sát (Unsupervised Clustering) hoàn hảo để khám phá cấu trúc tự nhiên mà không dựa trên nhãn định kiến.
+- Ý nghĩa thực tiễn: Giúp các nhà hoạch định chính sách nhận diện đúng nhóm quốc gia cần ưu tiên cải thiện thể chế, y tế hay hỗ trợ an sinh.
+- Ý nghĩa học thuật: Hiện thực hóa trọn vẹn quy trình 11 bước chuẩn của môn học với tư duy lập trình from scratch.
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Hà Mạnh Trường - ~50 giây):**  
+> *"Về lý do chọn đề tài: Báo cáo Hạnh phúc Thế giới là nguồn dữ liệu chuẩn mực toàn cầu. Tuy nhiên, nếu chỉ nhìn vào một con số điểm hạnh phúc duy nhất, chúng ta không thể biết một quốc gia đạt điểm đó nhờ kinh tế vượt trội hay nhờ an sinh xã hội vững chắc. Do đó, việc áp dụng gom cụm không giám sát dựa trên 6 yếu tố cơ sở sẽ giúp khám phá ra các nhóm quốc gia có cùng chân dung phát triển tự nhiên. Đây là cơ sở thực chứng giúp định hình chính sách hỗ trợ phát triển bền vững."*
 
 ---
 
 ## Slide 3: Tổng quan kiến trúc pipeline 11 bước
 
-- Bước 1–2: Xác định bài toán và tìm hiểu dữ liệu — `notebooks/01_data_understanding_and_cleaning.ipynb`
-- Bước 3–4: Đánh giá chất lượng và tiền xử lý — `src/data/data_loader.py`, `data/interim/happiness_merged.csv`
-- Bước 5: Khám phá dữ liệu có mục tiêu (EDA) — `notebooks/02_exploratory_data_analysis.ipynb`, `src/visualization/plots.py`
-- Bước 6–7: Biến đổi đặc trưng và lựa chọn tham số — `src/features/feature_engineering.py`, `reports/tables/k_sensitivity_by_year.csv`
-- Bước 8: Đánh giá và so sánh cấu hình — `notebooks/03_clustering_experiments_and_comparison.ipynb`
-- Bước 9: Diễn giải tri thức, ghép cụm liên năm — `notebooks/04_cluster_profiling_and_evaluation.ipynb`
-- Bước 10–11: Demo tương tác và kết luận — `app/app.py`, `docs/nghien_cuu/whr_nguon_du_lieu.md`
+- Bước 1–2: Xác định bài toán kinh doanh và Tìm hiểu dữ liệu gốc — triển khai tại `notebooks/01_data_understanding_and_cleaning.ipynb`.
+- Bước 3–4: Đánh giá chất lượng dữ liệu và Tiền xử lý, hợp nhất 5 năm — đóng gói tại `src/data/data_loader.py`, xuất bản `data/interim/happiness_merged.csv`.
+- Bước 5: Khám phá dữ liệu có mục tiêu (EDA) — triển khai tại `notebooks/02_exploratory_data_analysis.ipynb` và `src/visualization/plots.py`.
+- Bước 6–7: Biến đổi đặc trưng và Khảo sát tham số tối ưu — `src/features/feature_engineering.py`, xuất `reports/tables/k_sensitivity_by_year.csv`.
+- Bước 8: Đánh giá và So sánh đối chứng các thuật toán — triển khai tại `notebooks/03_clustering_experiments_and_comparison.ipynb`.
+- Bước 9: Diễn giải tri thức, Ghép cụm liên năm và Hậu kiểm — `notebooks/04_cluster_profiling_and_evaluation.ipynb`.
+- Bước 10–11: Xây dựng Demo tương tác và Tổng kết, Hạn chế — triển khai tại `app/app.py` và báo cáo tổng kết.
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Hà Mạnh Trường - ~50 giây):**  
+> *"Để bảo đảm tính khoa học, nhóm em đã thiết kế pipeline xử lý tuần tự gồm đúng 11 bước chuẩn theo đề cương môn học. Từ khâu đọc dữ liệu thô, tiền xử lý, phân tích khám phá, tự cài đặt thuật toán, thực nghiệm so sánh cho tới diễn giải và đóng gói demo Streamlit. Mỗi bước đều được phân tách thành module mã nguồn rõ ràng trong thư mục src và lưu vết kiểm chứng bằng các tệp dữ liệu trung gian."*
 
 ---
 
 ## Slide 4: Thu thập và Tiền xử lý dữ liệu
 
-- Nguồn: bộ dữ liệu World Happiness Report trên Kaggle, 5 tệp CSV cho 2015–2019
-- Cỡ mẫu dữ liệu thô: 158 / 157 / 155 / 156 / 156, tổng 782 dòng
-- Loại 1 dòng United Arab Emirates năm 2018 vì khuyết hoàn toàn chỉ số `Perceptions of corruption`
-- Loại các cột sai số khảo sát: `Standard Error`, `Lower/Upper Confidence Interval`, `Whisker.high/low`
-- Chuẩn hóa tên cột về 13 cột snake_case, đồng bộ tên quốc gia (Macedonia, Swaziland, Taiwan, Hong Kong)
-- Bổ sung mã ISO-3: 781/781 dòng hợp lệ, 164 quốc gia duy nhất, 162 mã phân biệt
-- Kết quả: `data/interim/happiness_merged.csv` gồm 781 dòng (158/157/155/155/156 theo năm)
+- Nguồn dữ liệu: 5 tệp CSV độc lập tương ứng với các năm từ 2015 đến 2019 tải từ Kaggle.
+- Cỡ mẫu thô: Năm 2015 (158 mẫu), 2016 (157), 2017 (155), 2018 (156), 2019 (156) — tổng cộng 782 dòng.
+- Xử lý dị biệt cấu trúc: Đồng nhất tên 6 đặc trưng về chuẩn snake_case thống nhất qua từ điển `COLUMN_MAPPING`.
+- Loại bỏ nhiễu: Loại bỏ các cột sai số thống kê mẫu (`Standard Error`, `Whisker.high/low`) không mang giá trị kinh tế.
+- Xử lý giá trị khuyết thiếu: Loại bỏ đúng 1 bản ghi của UAE năm 2018 do khuyết thiếu hoàn toàn chỉ số tham nhũng; giữ lại 781 bản ghi sạch 100%.
+- Đồng bộ tên quốc gia: Chuẩn hóa các trường hợp lệch tên (Macedonia, Swaziland, Taiwan, Hong Kong) để xâu chuỗi liên năm.
+- Chuẩn hóa địa lý: Bổ sung mã ISO-3 chuẩn hóa cho toàn bộ 781 dòng (164 quốc gia duy nhất, 162 mã phân biệt).
+- Kết quả xuất bản: Tệp trung gian sạch `data/interim/happiness_merged.csv`.
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Hà Mạnh Trường - ~65 giây):**  
+> *"Ở khâu tiền xử lý, thách thức lớn nhất là cấu trúc cột và cách đặt tên quốc gia qua 5 năm hoàn toàn không đồng nhất. Nhóm đã xây dựng bộ từ điển chuyển đổi để đồng bộ 6 đặc trưng về cùng một schema. Nhóm quyết định loại đúng 1 dòng của UAE năm 2018 vì bị khuyết hoàn toàn chỉ số tham nhũng, đưa bộ dữ liệu về 781 dòng hoàn hảo không còn giá trị NaN. Đồng thời, nhóm chuẩn hóa tên gọi các quốc gia như Bắc Macedonia, Eswatini và gắn mã ISO-3 để phục vụ hiển thị bản đồ địa lý sau này. Tiếp theo, em xin nhường phần trình bày cho bạn Huỳnh Tâm Trí với nội dung thuật toán và thực nghiệm."*
 
 ---
 
-## Slide 5: Khám phá dữ liệu (EDA)
-
-- Phân bố lệch rõ ở hai trụ cột: `generosity` skewness 1,04 và `corruption_perception` skewness 1,52 (lệch phải)
-- Các trụ cột còn lại lệch nhẹ về bên trái: GDP −0,34; hỗ trợ xã hội −0,69; tuổi thọ −0,50; tự do −0,52
-- Tương quan mạnh: GDP bình quân đầu người với tuổi thọ khỏe mạnh đạt r = 0,79 (vượt ngưỡng 0,7)
-- Điểm hạnh phúc tương quan cao với GDP (0,79) và tuổi thọ (0,74), thấp với `generosity` (−0,01)
-- Phát hiện ngoại lai bằng quy tắc 1,5 × IQR, tập trung ở các nước thu nhập cao và một số nước châu Phi
-- Kết luận: chênh lệch thang đo giữa 6 trụ cột bắt buộc phải chuẩn hóa trước khi gom cụm
-- Nguồn: `reports/figures/feature_distributions.png`, `correlation_heatmap.png`, `boxplots_outliers.png`
+# PHẦN 2: THUẬT TOÁN FROM SCRATCH & THỰC NGHIỆM GOM CỤM
+**Người trình bày:** Huỳnh Tâm Trí (MSSV: 2045240315)  
+**Thời lượng dự kiến:** ~4 phút 00 giây (Slide 5 – Slide 9)
 
 ---
 
-## Slide 6: Cơ sở thực nghiệm lựa chọn phương pháp chuẩn hóa
+## Slide 5: Khám phá dữ liệu (EDA) & Cơ sở lựa chọn phương pháp
 
-- Z-score: z = (x − mean) / std; Min-Max: x' = (x − min) / (max − min)
-- Min-Max rất nhạy với ngoại lai nên nén các quốc gia trung bình vào một khoảng hẹp
-- Silhouette của K-Means k = 3: Z-score 0,293 – 0,344; Min-Max 0,308 – 0,347; dữ liệu thô 0,314 – 0,340
-- Chênh lệch giữa ba phương án dưới 0,05 nên quyết định dựa vào bản chất phép biến đổi
-- Z-score cho 6 trụ cột đóng góp công bằng vào khoảng cách Euclidean, giữ được cấu trúc tương quan
-- Độ ổn định qua 10 seed của K-Means/Z-score: ARI trung bình 0,979 – 1,000
-- Nguồn: `reports/tables/model_comparison_metrics_by_year.csv`, `stability_ari.csv`
+- Phân bố đặc trưng: `Generosity` lệch phải (skewness 1,04) và `Perceptions of corruption` lệch phải rất mạnh (skewness 1,52).
+- Tương quan mạnh: GDP bình quân đầu người và Tuổi thọ khỏe mạnh có tương quan tuyến tính rất cao (r = 0,79).
+- Phát hiện ngoại lai: Quy tắc 1,5 × IQR phát hiện nhiều điểm ngoại lai ở các nước Bắc Âu giàu có và nhóm nước châu Phi khó khăn.
+- Lựa chọn phương pháp chuẩn hóa: So sánh thực nghiệm giữa Z-score (StandardScaler) và Min-Max Scaler:
+  - Min-Max nén phần lớn quốc gia vào dải hẹp do bị ảnh hưởng bởi giá trị ngoại lai biên.
+  - Z-score chuẩn hóa phương sai về 1, bảo đảm 6 đặc trưng đóng góp bình đẳng vào khoảng cách Euclidean.
+- Giảm chiều dữ liệu: Tự cài đặt `SimplePCA` bằng phân rã phổ ma trận hiệp phương sai để trực quan hóa không gian 2D/3D.
 
----
-
-## Slide 7: Tự cài đặt thuật toán từ đầu (From Scratch)
-
-- `SimpleKMeans`: khởi tạo K-Means++ theo xác suất tỉ lệ khoảng cách bình phương, `n_init = 10`, lưu `inertia_history` và `n_iter_`
-- `SimpleHierarchicalClustering`: liên kết Ward thật bằng cập nhật Lance–Williams kèm bộ nhớ đệm tâm cụm, lưu `merge_history`
-- `SimpleDBSCAN`: duyệt vùng lân cận theo `eps` và `min_samples`, gán nhãn −1 cho điểm nhiễu
-- `SimplePCA`: ma trận hiệp phương sai và `np.linalg.eigh`, không dùng `sklearn.decomposition.PCA`
-- Các độ đo Silhouette, Davies–Bouldin, Calinski–Harabasz và ARI đều tự cài đặt bằng vòng lặp và công thức cơ bản
-- `scikit-learn` và `scipy` chỉ dùng trong `scripts/verify_scratch_implementations.py` để đối chứng, không dùng trong pipeline chính
-- Thời gian chạy K-Means dưới 1 giây mỗi năm, Ward 0,8 – 1,4 giây mỗi năm cho 156 điểm
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Huỳnh Tâm Trí - ~50 giây):**  
+> *"Xin chào Thầy, em là Huỳnh Tâm Trí. Tiếp nối phần của bạn Trường, khi phân tích phân bố và tương quan, nhóm nhận thấy các chỉ số như tham nhũng và lòng hảo tâm bị lệch phải rất mạnh, đồng thời xuất hiện nhiều giá trị ngoại lai. Khi so sánh giữa Min-Max và Z-score, Min-Max làm các quốc gia trung bình bị nén chặt lại do tác động của các nước ngoại lai cực đại. Do đó, nhóm quyết định chọn Z-score làm phương pháp chuẩn hóa chính để giữ nguyên cấu trúc phân tán tự nhiên và tính toán khoảng cách Euclidean công bằng giữa 6 yếu tố."*
 
 ---
 
-## Slide 8: Thẩm định số cụm tối ưu k*
+## Slide 6: Cài đặt thuật toán gom cụm từ đầu (From Scratch)
 
-- Khảo sát k trong đoạn [2, 9] cho từng năm bằng Elbow (Inertia) kết hợp Silhouette
-- Bảng khảo sát gồm 40 dòng: 8 giá trị k nhân 5 năm — `reports/tables/k_sensitivity_by_year.csv`
-- Kết quả: k* = 3 được cả 5 năm đồng thuận
-- Silhouette cực đại theo năm: 0,2931 (2015); 0,3037 (2016); 0,3133 (2017); 0,3365 (2018); 0,3436 (2019)
-- Số cụm tối ưu k* = 3 khớp với cấu trúc ba tầng của dữ liệu: phát triển, trung bình, khó khăn
-- Cấu hình ba cụm được giữ làm mục đối chứng xuyên năm vì là cấu hình duy nhất so sánh được giữa các năm
+- `SimpleKMeans`: Khởi tạo tâm cụm thông minh K-Means++ (tính xác suất tỉ lệ khoảng cách bình phương $D(x)^2$), tối ưu hóa hàm mục tiêu Inertia/WCSS, tham số `n_init = 10` để tránh cực tiểu địa phương.
+- `SimpleHierarchicalClustering`: Thuật toán phân cấp tích tụ theo liên kết Ward thật, cập nhật khoảng cách liên tục qua công thức Lance–Williams với bộ nhớ đệm tâm cụm, lưu lịch sử gộp `merge_history`.
+- `SimpleDBSCAN`: Phân cụm dựa trên mật độ, duyệt vùng lân cận bán kính `eps` và `min_samples`, phát hiện và gán nhãn −1 cho các điểm nhiễu.
+- Tự cài đặt các độ đo đánh giá: Tự viết 100% công thức tính hệ số Silhouette $s(i)$, chỉ số Davies–Bouldin (DB), Calinski–Harabasz (CH) và Adjusted Rand Index (ARI).
+- Nguyên tắc đối chứng: Thư viện `scikit-learn` và `scipy` chỉ được dùng trong `scripts/verify_scratch_implementations.py` để assert đối chứng thuật toán tự viết với dung sai $10^{-4}$.
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Huỳnh Tâm Trí - ~55 giây):**  
+> *"Điểm cốt lõi về kỹ thuật trong đồ án của nhóm là toàn bộ thuật toán gom cụm và độ đo đánh giá đều được tự lập trình from scratch bằng Python và NumPy cơ bản, tuyệt đối không gọi hàm thư viện có sẵn trong pipeline. Nhóm đã tự cài K-Means++ với khởi tạo xác suất, phân cấp tích tụ liên kết Ward chuẩn công thức Lance-Williams, và DBSCAN quét mật độ. Toàn bộ mã nguồn tự viết đã được kiểm chứng bằng script đối chứng độc lập, khớp chính xác từng con số với scikit-learn và scipy."*
 
 ---
 
-## Slide 9: So sánh đối chứng các thuật toán và khảo sát DBSCAN
+## Slide 7: Thẩm định số cụm tối ưu k*
 
-- K-Means/Standard: Silhouette 0,293 – 0,344; Davies–Bouldin 1,07 – 1,22; Calinski–Harabasz 74,9 – 86,0
-- Ward/Standard: Silhouette 0,254 – 0,310; Davies–Bouldin 1,00 – 1,26; Calinski–Harabasz 59,9 – 71,0
-- Ward là thuật toán tất định nên ghi ARI = 1,0 kèm giải thích thay vì chạy 10 seed hình thức
-- DBSCAN quét đầy đủ: eps thuộc {0,6; 0,8; 1,0; 1,2} × min_samples thuộc {3, 4, 5}, tổng 60 dòng
-- Với eps = 1,2 và min_samples = 4, DBSCAN chỉ tạo 1 đến 2 cụm và đánh dấu 24 đến 35 điểm nhiễu
-- Nguyên nhân: 6 đặc trưng sau chuẩn hóa có mật độ khá đồng đều, không có vùng dày đặc trưng để DBSCAN khai thác
-- Kết luận: chọn nhóm phương pháp dựa trên khoảng cách (K-Means làm chính, Ward làm đối chứng)
-- Nguồn: `reports/tables/model_comparison_metrics_by_year.csv`, `dbscan_sweep.csv`
+- Phạm vi khảo sát: Quét $k \in [2, 9]$ độc lập trên từng năm (2015–2019) bằng phương pháp Elbow kết hợp hệ số Silhouette.
+- Bộ dữ liệu khảo sát: Tổng hợp 40 dòng thực nghiệm tại `reports/tables/k_sensitivity_by_year.csv`.
+- Kết quả đồng thuận: Cả 5 năm khảo sát đều chỉ ra số cụm tối ưu đồng thuận là $k^* = 3$.
+- Đỉnh Silhouette theo năm: Đều đạt cực đại tại $k = 3$:
+  - Năm 2015: đạt 0,2931
+  - Năm 2016: đạt 0,3037
+  - Năm 2017: đạt 0,3133
+  - Năm 2018: đạt 0,3365
+  - Năm 2019: đạt 0,3436
+- Cơ sở thực tiễn: Cấu hình 3 cụm phản ánh hoàn hảo cấu trúc 3 tầng phát triển kinh tế – xã hội của thế giới: Nhóm Phát triển toàn diện, Nhóm Đang phát triển và Nhóm Khó khăn.
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Huỳnh Tâm Trí - ~45 giây):**  
+> *"Để xác định số cụm tối ưu, nhóm đã tiến hành khảo sát k từ 2 đến 9 trên cả 5 năm độc lập. Kết quả trên bảng độ nhạy cho thấy cả 5 năm đều đồng thuận tuyệt đối tại k* = 3 với điểm Silhouette đạt đỉnh cao nhất, dao động từ 0,293 đến 0,344. Cấu hình 3 cụm này vừa có tính ổn định toán học cao nhất, vừa mang ý nghĩa kinh tế - xã hội rõ rệt khi phân hóa thế giới thành 3 nhóm phát triển tương ứng."*
+
+---
+
+## Slide 8: So sánh đối chứng các thuật toán gom cụm
+
+- K-Means / Z-score: Cho kết quả toàn diện nhất: Silhouette 0,293 – 0,344; Davies–Bouldin 1,07 – 1,22; Calinski–Harabasz 74,9 – 86,0.
+- Hierarchical Ward / Z-score: Đạt Silhouette 0,254 – 0,310; Davies–Bouldin 1,00 – 1,26; Calinski–Harabasz 59,9 – 71,0. Ward là thuật toán tất định nên độ ổn định ARI luôn bằng 1,0.
+- Khảo sát DBSCAN: Quét lưới 60 cấu hình tham số: `eps` $\in \{0,6; 0,8; 1,0; 1,2\}$ và `min_samples` $\in \{3, 4, 5\}$.
+  - Kết quả DBSCAN: Với `eps = 1,2` và `min_samples = 4`, DBSCAN chỉ gom được 1 đến 2 cụm và loại bỏ tới 24 đến 35 quốc gia thành điểm nhiễu.
+  - Lý do: Không gian 6 chiều sau chuẩn hóa có mật độ chuyển tiếp liên tục, không tồn tại ranh giới mật độ rỗng để DBSCAN phân tách.
+- Kết luận thuật toán: Lựa chọn **K-Means làm mô hình chính** và **Hierarchical Ward làm mô hình đối chứng**.
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Huỳnh Tâm Trí - ~50 giây):**  
+> *"Khi đặt các thuật toán lên bàn cân so sánh, K-Means trên dữ liệu Z-score thể hiện ưu thế vượt trội về độ tách biệt cụm với điểm Silhouette và Calinski-Harabasz cao nhất. Thuật toán phân cấp Ward cho kết quả tương đồng và mang tính tất định. Ngược lại, khi quét lưới 60 cấu hình DBSCAN, thuật toán này hoạt động kém hiệu quả do dữ liệu 6 chiều có mật độ biến thiên liên tục, khiến DBSCAN coi gần một phần tư số quốc gia là nhiễu. Do đó, nhóm chốt K-Means làm thuật toán phân nhóm chính cho đề tài."*
+
+---
+
+## Slide 9: Đánh giá độ ổn định mô hình (Stability Evaluation)
+
+- Thử nghiệm độ ổn định ngẫu nhiên: Chạy K-Means trên 10 giá trị hạt giống ngẫu nhiên (random seeds khác nhau) trên từng năm.
+- Đo lường bằng Adjusted Rand Index (ARI):
+  - Điểm ARI trung bình qua 10 seed đạt từ 0,979 đến 1,000.
+  - Điểm ARI thấp nhất ghi nhận là 0,9763 (năm 2017), cho thấy thuật toán hội tụ cực kỳ ổn định, gần như không bị ảnh hưởng bởi điểm khởi tạo.
+- Khả năng tái lập (Reproducibility): Toàn bộ pipeline thực nghiệm chạy lại trên máy sạch với thời gian chạy dưới 1 giây cho K-Means và 1,2 giây cho Ward.
+- Bàn giao kết quả: Bàn giao ma trận nhãn cụm 5 năm sạch cho bạn Ngô Quang Trung tiếp tục bước Diễn giải tri thức và Xây dựng demo.
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Huỳnh Tâm Trí - ~40 giây):**  
+> *"Để kiểm tra tính bền vững của kết quả, nhóm đã kiểm tra độ ổn định của K-Means qua 10 lần khởi tạo hạt giống khác nhau. Chỉ số Adjusted Rand Index đạt xấp xỉ tuyệt đối từ 0,979 đến 1,000, chứng minh thuật toán hội tụ rất ổn định và không phụ thuộc vào may rủi khởi tạo tâm ban đầu. Sau đây, em xin mời bạn Ngô Quang Trung tiếp tục trình bày Phần 3 về diễn giải tri thức kinh tế - xã hội và demo ứng dụng."*
+
+---
+
+# PHẦN 3: PHÂN TÍCH EDA, DIỄN GIẢI TRI THỨC, DỊCH CHUYỂN, DEMO TƯƠNG TÁC & KẾT LUẬN
+**Người trình bày:** Ngô Quang Trung (MSSV: 2045240325)  
+**Thời lượng dự kiến:** ~4 phút 30 giây (Slide 10 – Slide 15)
 
 ---
 
 ## Slide 10: Xây dựng chân dung 3 cụm kinh tế — xã hội
 
-- Cụm 1 — Phát triển toàn diện: vượt trội đồng thời về GDP, tuổi thọ, hỗ trợ xã hội và nhận thức tham nhũng cao
-- Cụm 2 — Đang phát triển phụ thuộc kinh tế: các chỉ số mức trung bình khá, chiếm đông quốc gia nhất
-- Cụm 3 — Dễ bị tổn thương và Khó khăn: điểm rất thấp ở hầu hết trụ cột kinh tế, y tế, tự do
-- Số quốc gia mỗi cụm theo năm: Cụm 1 là 29/27/29/24/28; Cụm 2 là 79/84/80/85/82; Cụm 3 là 50/46/46/46/46
-- Điểm hạnh phúc trung bình thực tế: Cụm 1 đạt 6,73 – 6,85; Cụm 2 đạt 5,57 – 5,61; Cụm 3 đạt 4,10 – 4,26
-- Chân dung dựng từ giá trị trung bình 6 đặc trưng, không dùng điểm hạnh phúc để gom cụm
-- Nguồn: `reports/tables/cluster_trends.csv`, `reports/figures/radar_chart_clusters.png`
+- **Cụm 1 — Nhóm Phát triển toàn diện (24–29 quốc gia):**
+  - Đặc trưng: Vượt trội toàn diện về GDP, Tuổi thọ khỏe mạnh, Hỗ trợ xã hội và Chỉ số trong sạch thể chế (ít tham nhũng).
+  - Đại diện tiêu biểu: Phần Lan, Đan Mạch, Na Uy, Thụy Sĩ, New Zealand, Canada.
+- **Cụm 2 — Nhóm Đang phát triển phụ thuộc kinh tế (79–85 quốc gia):**
+  - Đặc trưng: Chiếm đa số các quốc gia; chỉ số kinh tế và tuổi thọ ở mức trung bình khá nhưng điểm thể chế và tự do còn hạn chế.
+  - Đại diện tiêu biểu: Việt Nam, Thái Lan, Malaysia, Brazil, Mexico, Nga, Trung Quốc.
+- **Cụm 3 — Nhóm Dễ bị tổn thương và Khó khăn (46–50 quốc gia):**
+  - Đặc trưng: Điểm rất thấp ở hầu hết các trụ cột cơ sở, đặc biệt là an sinh xã hội và y tế.
+  - Đại diện tiêu biểu: Afghanistan, Nam Sudan, Yemen, Trung Phi.
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Ngô Quang Trung - ~45 giây):**  
+> *"Kính chào Thầy, em là Ngô Quang Trung. Bước sang phần diễn giải tri thức, từ kết quả gom cụm 6 đặc trưng, nhóm đã phác họa rõ nét chân dung của 3 cụm: Cụm 1 là nhóm các nước phát triển toàn diện, đứng đầu thế giới về kinh tế, y tế và sự minh bạch thể chế như các nước Bắc Âu. Cụm 2 chiếm số đông nhất gồm các nước đang phát triển như Việt Nam và các nước Đông Nam Á, có tăng trưởng kinh tế khá nhưng an sinh và thể chế cần tiếp tục hoàn thiện. Cụm 3 là nhóm các quốc gia khó khăn và xung đột, cần sự ưu tiên trợ giúp khẩn cấp về y tế và an sinh xã hội."*
 
 ---
 
-## Slide 11: Hậu kiểm độc lập với Điểm Hạnh phúc thực tế
+## Slide 11: Hậu kiểm độc lập với Điểm Hạnh phúc thực tế (Validation)
 
-- Quy tắc vàng: `happiness_score` không nằm trong ma trận đặc trưng X, chỉ dùng ở bước hậu kiểm
-- Biểu đồ hộp điểm hạnh phúc theo cụm và theo năm cho thấy ba cụm tách biệt rõ rệt
-- Chênh lệch điểm hạnh phúc trung bình giữa cụm cao nhất và thấp nhất của K-Means là 2,46 – 2,72 điểm
-- Thứ tự phân hóa giữ nguyên qua cả 5 năm dù mỗi năm gom cụm độc lập
-- Cấu hình đối chứng k = 3 cho ARI so với k* bằng 1,0 ở mọi năm, tức phân hoạch ổn định
-- Kết luận: các cụm hình thành từ 6 trụ cột khách quan vẫn phản ánh đúng mức sống thực tế
-- Nguồn: `reports/figures/validation_happiness_score_by_cluster.png`, `reports/tables/contrast_k3_by_year.csv`
+- **Quy tắc vàng của đề tài:** Tuyệt đối không đưa `Happiness Score` vào ma trận gom cụm $X$; chỉ dùng điểm này ở bước hậu kiểm độc lập.
+- **Kết quả hậu kiểm phân hóa sâu sắc:**
+  - Cụm 1 (Phát triển): Điểm hạnh phúc trung bình thực tế đạt 6,73 – 6,85 điểm.
+  - Cụm 2 (Đang phát triển): Điểm hạnh phúc trung bình thực tế đạt 5,57 – 5,61 điểm.
+  - Cụm 3 (Khó khăn): Điểm hạnh phúc trung bình thực tế đạt 4,10 – 4,26 điểm.
+  - Khoảng cách chênh lệch giữa Cụm 1 và Cụm 3 lên tới 2,46 – 2,72 điểm trên thang đo 10 điểm.
+- **Kiểm định thống kê ANOVA một nhân tố:** Giá trị kiểm định $F$ cực lớn, dao động từ $107,09$ đến $159,18$ qua cả 5 năm ($p$-value $< 10^{-15}$).
+- **Ý nghĩa:** Chứng minh các cụm gom được thuần túy từ 6 yếu tố khách quan phản ánh hoàn toàn chính xác mức độ hạnh phúc cảm nhận thực tế của người dân.
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Ngô Quang Trung - ~45 giây):**  
+> *"Tuân thủ nghiêm ngặt quy tắc vàng của đề tài, nhóm không đưa điểm hạnh phúc vào lúc phân cụm mà chỉ dùng để hậu kiểm độc lập. Kết quả kiểm định ANOVA một nhân tố cho giá trị F từ 107 đến 159, cực kỳ có ý nghĩa thống kê. Điểm hạnh phúc giữa 3 cụm phân hóa rành mạch và giữ nguyên thứ tự qua cả 5 năm, với mức chênh lệch giữa cụm cao nhất và thấp nhất lên tới hơn 2,5 điểm. Điều này khẳng định 6 yếu tố cơ sở phản ánh rất sát mức độ hạnh phúc thực tế của con người."*
 
 ---
 
 ## Slide 12: Theo dõi Dịch chuyển cụm của 156 quốc gia qua 5 năm
 
-- Ghép cụm liên năm bằng `match_clusters_greedy`: ghép theo khoảng cách tâm cụm nhỏ nhất, hòa thì xét điểm hạnh phúc
-- Khoảng cách tâm cụm của các cặp được ghép nằm trong 0,057 – 0,420 — `reports/tables/cross_year_matching.csv`
-- Bảng dịch chuyển 156 quốc gia × 5 năm — `data/processed/country_cluster_shift.csv`
-- 142 quốc gia ổn định tuyệt đối (91,0 phần trăm), 8 quốc gia biến động trung gian
-- 4 quốc gia thăng hạng: Botswana, Georgia, Indonesia, Myanmar
-- 2 quốc gia tụt hạng: Kuwait, Uruguay
-- Nhận xét: cấu trúc phân tầng hạnh phúc bền vững; dịch chuyển chủ yếu do biến động vài trụ cột riêng lẻ
-- Lưu ý dữ liệu: bảng có 17 ô khuyết do quốc gia vắng mặt ở một số năm, cộng UAE 2018 loại có chủ đích
+- Thuật toán ghép cụm liên năm: Xây dựng hàm `match_clusters_greedy` ghép cụm dựa trên khoảng cách tâm Euclid nhỏ nhất giữa các năm liên tiếp (khoảng cách cực kỳ nhỏ: 0,057 – 0,420).
+- Bảng tổng hợp dịch chuyển: Theo dõi 156 quốc gia qua 5 năm tại `data/processed/country_cluster_shift.csv`.
+- Phân bố trạng thái:
+  - **142 quốc gia Ổn định tuyệt đối (chiếm 91,0%):** Giữ nguyên nhóm cụm suốt giai đoạn 2015–2019.
+  - **8 quốc gia Biến động trung gian (chiếm 5,1%):** Dao động nhẹ quanh ranh giới giữa Cụm 2 và Cụm 3.
+  - **4 quốc gia Thăng hạng bền vững (+):** Botswana, Georgia, Indonesia, Myanmar dịch chuyển từ nhóm khó khăn lên nhóm trung bình.
+  - **2 quốc gia Tụt hạng bền vững (−):** Kuwait và Uruguay tụt nhẹ từ nhóm phát triển xuống nhóm trung bình.
+- Nhận xét: Cấu trúc hạnh phúc thế giới có tính trơ và bền vững cao; các dịch chuyển tích cực đều bắt nguồn từ sự cải thiện rõ nét về an sinh xã hội và y tế.
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Ngô Quang Trung - ~50 giây):**  
+> *"Điểm mới trong đồ án của nhóm là thuật toán ghép cụm liên năm để theo dõi sự dịch chuyển của 156 quốc gia qua nửa thập kỷ. Kết quả chỉ ra rằng 91% số quốc gia ổn định tuyệt đối trong nhóm của mình. Đáng chú ý, có 4 quốc gia ghi nhận sự thăng hạng bền vững gồm Indonesia, Myanmar, Georgia và Botswana nhờ những bước tiến rõ rệt về an sinh xã hội và tuổi thọ khỏe mạnh. Ngược lại có 2 quốc gia bị suy giảm nhẹ do biến động về thể chế và tham nhũng."*
 
 ---
 
-## Slide 13: Giới thiệu Ứng dụng Demo Streamlit 4 Tab tương tác
+## Slide 13: Trực quan hóa tương tác — Ứng dụng Streamlit 4 Tab
 
-- Chạy bằng lệnh `streamlit run app/app.py`, đọc trực tiếp dữ liệu đã sinh ở M1–M3
-- Tab 1 — Tổng quan cụm và Radar Chart: chọn năm (2015–2019) và thuật toán (K-Means hoặc Ward), xem thẻ KPI Silhouette, Davies–Bouldin, Calinski–Harabasz
-- Tab 2 — Bản đồ thế giới: Choropleth tô màu theo cụm bằng mã ISO-3, hover hiện tên quốc gia, mã ISO-3, nhóm cụm và điểm hạnh phúc
-- Tab 3 — Tra cứu quốc gia: chọn một trong 156 quốc gia, xem lịch sử phân cụm và biểu đồ biến thiên 6 chỉ số
-- Tab 4 — Thử nghiệm gán nhãn: kéo 6 thanh trượt, hệ thống z-score hóa và tính khoảng cách Euclid tới 3 tâm cụm K-Means 2019
-- Các hàm đọc dữ liệu được bọc `@st.cache_data` nên đổi năm hoặc thuật toán không phải nạp lại từ đĩa
-- Mọi con số trong ứng dụng lấy từ CSV/JSON, không hardcode
+- Khởi chạy nhanh: `streamlit run app/app.py`, nạp trực tiếp kết quả từ các tệp dữ liệu sạch.
+- **Tab 1 — Phân bố & Radar Chart:** Trực quan hóa hình mạng nhện so sánh tương quan 6 yếu tố theo từng năm và từng thuật toán; hiển thị thẻ chỉ số đánh giá Silhouette, DB, CH.
+- **Tab 2 — Bản đồ Hạnh phúc Thế giới:** Bản đồ tương tác Choropleth tô màu theo mã ISO-3, rê chuột xem chi tiết nhóm cụm và điểm số từng nước.
+- **Tab 3 — Tra cứu lịch sử quốc gia:** Tra cứu chi tiết từng quốc gia trong số 156 nước, theo dõi lịch sử phân cụm 5 năm và đồ thị đường biến thiên của từng chỉ số.
+- **Tab 4 — Thử nghiệm gán cụm cho quốc gia mới:** Cho phép người dùng tùy chỉnh 6 thanh trượt chỉ số, hệ thống tự động chuẩn hóa Z-score và gán nhãn cụm theo khoảng cách tâm thời gian thực.
+- Tối ưu hiệu năng: Sử dụng `@st.cache_data`, tốc độ phản hồi dưới 0,1 giây.
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Ngô Quang Trung - ~50 giây):**  
+> *"Để biến các tri thức khai phá thành công cụ trực quan hữu ích, nhóm đã xây dựng ứng dụng web tương tác Streamlit với 4 tab chức năng. Người dùng có thể tùy biến xem biểu đồ radar đa chiều, tra cứu bản đồ địa lý thế giới theo chuẩn ISO-3, tra cứu chi tiết tiến trình phát triển của từng quốc gia như Việt Nam, và đặc biệt là tab mô phỏng gán nhãn cho một quốc gia giả định bằng cách kéo thanh trượt 6 chỉ số để hệ thống tính toán khoảng cách tâm theo thời gian thực."*
 
 ---
 
 ## Slide 14: Đóng góp chính, Kết luận và Hạn chế
 
-- Đóng góp: pipeline 5 năm chạy lại được, thuật toán gom cụm và độ đo tự cài đặt, bảng ghép cụm liên năm, demo tương tác
-- Kết luận 1: k* = 3 đồng thuận cả 5 năm, Silhouette 0,293 – 0,344
-- Kết luận 2: ba cụm có chân dung kinh tế — xã hội rõ ràng và hậu kiểm điểm hạnh phúc phân hóa sâu sắc
-- Kết luận 3: 142/156 quốc gia giữ nguyên nhóm trong 2015–2019
-- Hạn chế dữ liệu: thiếu chỉ số văn hóa và thể chế chuyên sâu, cỡ mẫu mỗi năm khác nhau, UAE khuyết 2018
-- Hạn chế phương pháp: gom cụm không có nhãn chuẩn để đối chiếu, tên cụm mang tính diễn giải chủ quan
-- Hạn chế dữ liệu ngoại lai: biến động kinh tế và thể chế của một số quốc gia không được phản ánh kịp trong khảo sát
+- **Đóng góp chính của đề tài:**
+  - Pipeline 11 bước hoàn chỉnh, chạy lại được 100% từ dữ liệu thô trên môi trường sạch.
+  - Thuật toán gom cụm (K-Means++, Ward, DBSCAN) và các độ đo tự cài đặt from scratch chuẩn xác.
+  - Khám phá và chứng minh số cụm tối ưu $k^* = 3$ đồng thuận tuyệt đối trong 5 năm liên tiếp.
+  - Xây dựng ma trận dịch chuyển cụm 156 quốc gia và ứng dụng tương tác hoàn chỉnh.
+- **Hạn chế của nghiên cứu:**
+  - Bộ dữ liệu WHR giới hạn ở 6 trụ cột cơ bản, chưa bao quát các yếu tố văn hóa bản địa, biến đổi khí hậu hay bất bình đẳng thu nhập nội bộ.
+  - Giả định khoảng cách Euclidean trong K-Means xem các trục trực giao, chưa mô hình hóa phi tuyến sâu giữa các đặc trưng có tương quan cao.
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Ngô Quang Trung - ~45 giây):**  
+> *"Tóm lại, đề tài đã hoàn thành xuất sắc các mục tiêu đề ra với một pipeline hoàn chỉnh, thuật toán tự lập trình chuẩn xác và những phát hiện thực tế có giá trị về sự phân tầng hạnh phúc thế giới. Tuy vậy, nghiên cứu vẫn còn hạn chế do bộ dữ liệu chưa có các chỉ số về văn hóa và chênh lệch giàu nghèo nội bộ, điều mà nhóm mong muốn tiếp tục hoàn thiện trong tương lai."*
 
 ---
 
 ## Slide 15: Hướng phát triển và Lời cảm ơn
 
-- Mở rộng chuỗi thời gian sang 2020–2024 để kiểm tra cấu trúc cụm sau đại dịch COVID-19
-- Bổ sung đặc trưng ngoài 6 trụ cột: bất bình đẳng Gini, chi tiêu y tế, chỉ số chất lượng quản trị
-- So sánh thêm thuật toán phân cụm mờ (Fuzzy C-Means) cho các quốc gia đang chuyển tiếp
-- Phân tích độ nhạy theo trọng số trụ cột khi ưu tiên thể chế hoặc kinh tế
-- Đưa demo lên dashboard công khai và bổ sung chức năng xuất báo cáo PDF theo từng quốc gia
-- Nhóm 12 xin chân thành cảm ơn Hội đồng chấm đồ án đã lắng nghe và góp ý
-- Phần hỏi đáp: cả ba thành viên cùng tham gia trả lời
+- **Hướng phát triển tương lai:**
+  - Mở rộng chuỗi dữ liệu sang giai đoạn 2020–2024 để nghiên cứu tác động của đại dịch COVID-19 và bất ổn địa chính trị lên cấu trúc cụm hạnh phúc.
+  - Tích hợp thêm chỉ số phân hóa giàu nghèo Gini và chi tiêu an sinh xã hội từ Ngân hàng Thế giới (World Bank).
+  - Thử nghiệm các mô hình phân cụm mờ (Fuzzy C-Means) hoặc mô hình hỗn hợp Gauss (GMM) cho các quốc gia nằm tại vùng biên chuyển tiếp.
+- **Lời cảm ơn:**
+  - Nhóm 12 xin chân thành cảm ơn Thầy hướng dẫn đã tận tình chỉ dẫn và định hướng cho nhóm trong suốt học phần Khai thác dữ liệu.
+  - Cả 3 thành viên Nhóm 12 xin sẵn sàng lắng nghe câu hỏi và giải đáp phản biện từ Hội đồng chấm thi!
+
+> 🎙️ **Lời dẫn thuyết trình gợi ý (Ngô Quang Trung - ~35 giây):**  
+> *"Trong giai đoạn tiếp theo, nhóm dự kiến sẽ mở rộng phân tích tới giai đoạn hậu đại dịch COVID-19 để đánh giá sự phục hồi của các quốc gia. Đến đây, Nhóm 12 xin chân thành cảm ơn Thầy và Hội đồng đã chú ý lắng nghe phần thuyết trình của nhóm. Bây giờ cả 3 thành viên chúng em xin sẵn sàng lắng nghe các câu hỏi và nhận xét từ Thầy ạ. Em xin trân trọng cảm ơn!"*
