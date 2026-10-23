@@ -52,7 +52,7 @@ LOG_DIR = project_root / "logs"
 LOG_FILE = LOG_DIR / "audit_m4_app.log"
 
 EXPECTED_TAB_COUNT = 4
-EXPECTED_SLIDE_COUNT = 15
+EXPECTED_SLIDE_COUNTS = [15, 16, 17]
 
 # Sáu hàm nạp dữ liệu bắt buộc phải được bọc @st.cache_data
 CACHED_LOADER_FUNCTIONS = [
@@ -451,15 +451,16 @@ def audit() -> int:
 
         headings = re.findall(r"^## Slide (\d+):", slides_text, flags=re.MULTILINE)
         numbers = [int(value) for value in headings]
+        slide_count = len(numbers)
         if not check(
-            f"Đủ {EXPECTED_SLIDE_COUNT} slide đánh số",
-            len(numbers) == EXPECTED_SLIDE_COUNT,
-            f"tìm thấy {len(numbers)} slide",
+            f"Đủ slide đánh số ({', '.join(str(x) for x in EXPECTED_SLIDE_COUNTS)} slide)",
+            slide_count in EXPECTED_SLIDE_COUNTS,
+            f"tìm thấy {slide_count} slide",
         ):
             all_passed = False
         if not check(
-            "Số thứ tự slide liên tục từ 1 đến 15",
-            numbers == list(range(1, EXPECTED_SLIDE_COUNT + 1)),
+            f"Số thứ tự slide liên tục từ 1 đến {slide_count}",
+            numbers == list(range(1, slide_count + 1)),
             f"{numbers}",
         ):
             all_passed = False
@@ -474,7 +475,7 @@ def audit() -> int:
         if not check(
             "Mỗi slide có tối thiểu 3 gạch đầu dòng nội dung",
             not thin_slides,
-            f"slide thiếu nội dung: {thin_slides}" if thin_slides else "15/15 slide đủ nội dung",
+            f"slide thiếu nội dung: {thin_slides}" if thin_slides else f"{slide_count}/{slide_count} slide đủ nội dung",
         ):
             all_passed = False
 

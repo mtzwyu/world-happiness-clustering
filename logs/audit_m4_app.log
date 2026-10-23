@@ -51,10 +51,10 @@ PASS: AppTest: biểu đồ Plotly hiển thị đủ — 4 biểu đồ
 PASS: Đổi thuật toán thì chỉ số KPI thay đổi (không hardcode) — K-Means vs Ward cho kết quả khác nhau
 
 --- [MỤC 4] BỘ SLIDE reports/presentation/slides.md ---
-PASS: Tệp slides.md tồn tại — 255 dòng
-PASS: Đủ 15 slide đánh số — tìm thấy 15 slide
-PASS: Số thứ tự slide liên tục từ 1 đến 15 — [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-PASS: Mỗi slide có tối thiểu 3 gạch đầu dòng nội dung — 15/15 slide đủ nội dung
+PASS: Tệp slides.md tồn tại — 275 dòng
+PASS: Đủ slide đánh số (15, 16, 17 slide) — tìm thấy 17 slide
+PASS: Số thứ tự slide liên tục từ 1 đến 17 — [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+PASS: Mỗi slide có tối thiểu 3 gạch đầu dòng nội dung — 17/17 slide đủ nội dung
 PASS: Không chứa ký tự placeholder giả lập — sạch placeholder
 PASS: Slide chứa các số liệu dẫn chứng chủ chốt — 781, 142, Silhouette, ISO-3, K-Means, Ward
 
