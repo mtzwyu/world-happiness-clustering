@@ -193,6 +193,40 @@ def build_presentation():
             p_sub.alignment = PP_ALIGN.CENTER
             p_sub.space_before = Pt(4)
 
+    # Helper: tạo thẻ chứa hình ảnh/bảng dữ liệu nằm trọn vẹn trong khung (Chống tràn khung tuyệt đối)
+    def add_image_card(slide, left, top, width, height, image_path, border_color=COLOR_BORDER, padding_in=0.16, bg_color=COLOR_WHITE):
+        """Tạo khung thẻ bo góc và nhúng hình ảnh/bảng số liệu căn giữa nằm trọn vẹn trong khung với padding bảo vệ."""
+        card = add_card(slide, left, top, width, height, bg_color=bg_color, border_color=border_color)
+        p = Path(image_path)
+        if not p.exists():
+            return card, None
+
+        from PIL import Image
+        im = Image.open(str(p))
+        ow, oh = im.size
+        ar = ow / oh
+
+        card_l = left.inches if hasattr(left, "inches") else float(left)
+        card_t = top.inches if hasattr(top, "inches") else float(top)
+        card_w = width.inches if hasattr(width, "inches") else float(width)
+        card_h = height.inches if hasattr(height, "inches") else float(height)
+
+        max_w = card_w - 2 * padding_in
+        max_h = card_h - 2 * padding_in
+
+        if max_w / max_h > ar:
+            th = max_h
+            tw = th * ar
+        else:
+            tw = max_w
+            th = tw / ar
+
+        il = card_l + (card_w - tw) / 2
+        it = card_t + (card_h - th) / 2
+
+        pic = slide.shapes.add_picture(str(p), Inches(il), Inches(it), width=Inches(tw), height=Inches(th))
+        return card, pic
+
     # Helper: đặt Speaker Notes
     def set_notes(slide, notes_text):
         notes_slide = slide.notes_slide
@@ -410,10 +444,10 @@ def build_presentation():
                   ],
                   header_color=COLOR_TEAL_ACCENT, font_size=16)
 
-    # Cột phải: Sơ đồ quy trình thực nghiệm (Kích thước to, rõ nét)
+    # Cột phải: Sơ đồ quy trình thực nghiệm (Kích thước to, rõ nét, nằm trọn trong khung thẻ)
     img_flow = ARTIFACTS_DIR / "pipeline_preprocessing_flow.png"
     if img_flow.exists():
-        s4.shapes.add_picture(str(img_flow), Inches(5.3), Inches(1.6), width=Inches(7.233))
+        add_image_card(s4, Inches(5.3), Inches(1.6), Inches(7.233), Inches(5.3), img_flow, border_color=COLOR_TEAL_ACCENT, padding_in=0.15)
 
     set_notes(s4, (
         "Ở khâu tiền xử lý dữ liệu, thách thức lớn nhất là cấu trúc cột và cách đặt tên quốc gia qua 5 năm hoàn toàn không đồng nhất. "
@@ -432,10 +466,10 @@ def build_presentation():
     add_stat_box(s5, Inches(0.8), Inches(1.6), Inches(3.7), Inches(2.5), "781", "Bản ghi Sạch 100%", "Từ 782 mẫu thô; loại duy nhất UAE 2018; Tỷ lệ NaN = 0.0%", COLOR_GREEN_C1)
     add_stat_box(s5, Inches(0.8), Inches(4.35), Inches(3.7), Inches(2.55), "162", "Mã Chuẩn hóa ISO-3", "164 quốc gia duy nhất qua 5 năm (đầy đủ mã tọa độ)", COLOR_TEAL_ACCENT)
 
-    # Cột phải: Ảnh chụp Notebook 01 thực tế to rõ nét
+    # Cột phải: Ảnh chụp Notebook 01 thực tế to rõ nét (Nằm trọn trong khung thẻ bo góc)
     img_nb01 = ARTIFACTS_DIR / "nb01_data_cleaning_head.png"
     if img_nb01.exists():
-        s5.shapes.add_picture(str(img_nb01), Inches(4.7), Inches(1.6), width=Inches(7.833))
+        add_image_card(s5, Inches(4.7), Inches(1.6), Inches(7.833), Inches(5.3), img_nb01, border_color=COLOR_TEAL_ACCENT, padding_in=0.16)
 
     set_notes(s5, (
         "Kết quả sau tiền xử lý là một tập dữ liệu hoàn hảo gồm 781 bản ghi của 164 quốc gia với 162 mã ISO-3 phân biệt, "
@@ -463,7 +497,7 @@ def build_presentation():
 
     img_corr = FIGURES_DIR / "correlation_heatmap.png"
     if img_corr.exists():
-        s6.shapes.add_picture(str(img_corr), Inches(6.6), Inches(1.6), width=Inches(5.9))
+        add_image_card(s6, Inches(6.6), Inches(1.6), Inches(5.933), Inches(5.3), img_corr, border_color=COLOR_BLUE_C2, padding_in=0.15)
 
     set_notes(s6, (
         "Xin chào Thầy, em là Huỳnh Tâm Trí. Tiếp nối phần của bạn Trường, khi phân tích phân bố và tương quan, "
@@ -492,7 +526,7 @@ def build_presentation():
 
     img_nb03 = ARTIFACTS_DIR / "nb03_from_scratch_code.png"
     if img_nb03.exists():
-        s7.shapes.add_picture(str(img_nb03), Inches(5.3), Inches(1.6), width=Inches(7.233))
+        add_image_card(s7, Inches(5.3), Inches(1.6), Inches(7.233), Inches(5.3), img_nb03, border_color=COLOR_GREEN_C1, padding_in=0.16)
 
     set_notes(s7, (
         "Điểm cốt lõi về kỹ thuật trong đồ án của nhóm là toàn bộ thuật toán gom cụm và độ đo đánh giá đều được tự lập trình from scratch "
@@ -507,13 +541,13 @@ def build_presentation():
     s8 = add_slide_with_bg(transition_type="push", direction="l")
     add_slide_header(s8, "THẨM ĐỊNH SỐ CỤM TỐI ƯU k* = 3 ĐỒNG THUẬN 5 NĂM", "CHƯƠNG 4: THỰC NGHIỆM ĐỘ NHẠY K")
 
-    # Cột trái: Đồ thị Elbow & Thẻ luận cứ thống kê
+    # Cột trái: Đồ thị Elbow trong khung thẻ & Thẻ luận cứ thống kê
     img_elbow = FIGURES_DIR / "elbow_silhouette_kmeans.png"
     if img_elbow.exists():
-        s8.shapes.add_picture(str(img_elbow), Inches(0.8), Inches(1.6), width=Inches(5.2))
+        add_image_card(s8, Inches(0.8), Inches(1.6), Inches(5.2), Inches(2.35), img_elbow, border_color=COLOR_TEAL_ACCENT, padding_in=0.12)
 
-    add_card(s8, Inches(0.8), Inches(3.9), Inches(5.2), Inches(3.0), border_color=COLOR_TEAL_ACCENT)
-    add_card_text(s8, Inches(0.8), Inches(3.9), Inches(5.2), Inches(3.0),
+    add_card(s8, Inches(0.8), Inches(4.1), Inches(5.2), Inches(2.8), border_color=COLOR_TEAL_ACCENT)
+    add_card_text(s8, Inches(0.8), Inches(4.1), Inches(5.2), Inches(2.8),
                   header_text="Luận cứ Toán học Chốt k* = 3",
                   bullets=[
                       "Cả 5 năm (2015–2019) đồng thuận tuyệt đối tại k* = 3.",
@@ -521,12 +555,12 @@ def build_presentation():
                       "Độ uốn Elbow rõ nét tại k=3 trước khi suy giảm quán tính WCSS.",
                       "Số cụm phản ánh hoàn hảo 3 nhóm trình độ kinh tế - xã hội."
                   ],
-                  header_color=COLOR_TEAL_ACCENT, font_size=15, header_size=17.5, space_before=4)
+                  header_color=COLOR_TEAL_ACCENT, font_size=14.5, header_size=17, space_before=3)
 
-    # Cột phải: Bảng Excel độ nhạy k to rõ nét
+    # Cột phải: Bảng Excel độ nhạy k to rõ nét (Nằm trọn trong khung thẻ)
     img_k_excel = ARTIFACTS_DIR / "excel_k_sensitivity.png"
     if img_k_excel.exists():
-        s8.shapes.add_picture(str(img_k_excel), Inches(6.2), Inches(1.6), width=Inches(6.333))
+        add_image_card(s8, Inches(6.2), Inches(1.6), Inches(6.333), Inches(5.3), img_k_excel, border_color=COLOR_TEAL_ACCENT, padding_in=0.16)
 
     set_notes(s8, (
         "Để xác định số cụm tối ưu, nhóm đã tiến hành khảo sát k từ 2 đến 9 trên cả 5 năm độc lập. "
@@ -554,7 +588,7 @@ def build_presentation():
 
     img_comp_excel = ARTIFACTS_DIR / "excel_model_comparison.png"
     if img_comp_excel.exists():
-        s9.shapes.add_picture(str(img_comp_excel), Inches(5.3), Inches(1.6), width=Inches(7.233))
+        add_image_card(s9, Inches(5.3), Inches(1.6), Inches(7.233), Inches(5.3), img_comp_excel, border_color=COLOR_TEAL_ACCENT, padding_in=0.16)
 
     set_notes(s9, (
         "Khi đặt các thuật toán lên bàn cân so sánh trên bảng tính thực nghiệm bên phải, K-Means trên dữ liệu Z-score thể hiện ưu thế vượt trội "
@@ -574,7 +608,7 @@ def build_presentation():
 
     img_ari_excel = ARTIFACTS_DIR / "excel_stability_ari.png"
     if img_ari_excel.exists():
-        s10.shapes.add_picture(str(img_ari_excel), Inches(4.7), Inches(1.6), width=Inches(7.833))
+        add_image_card(s10, Inches(4.7), Inches(1.6), Inches(7.833), Inches(5.3), img_ari_excel, border_color=COLOR_GREEN_C1, padding_in=0.16)
 
     set_notes(s10, (
         "Để kiểm tra tính bền vững của kết quả, nhóm đã kiểm tra độ ổn định của K-Means qua 10 lần khởi tạo hạt giống khác nhau. "
@@ -613,7 +647,7 @@ def build_presentation():
 
     img_radar = FIGURES_DIR / "radar_chart_2019.png"
     if img_radar.exists():
-        s11.shapes.add_picture(str(img_radar), Inches(6.3), Inches(1.6), width=Inches(6.233))
+        add_image_card(s11, Inches(6.3), Inches(1.6), Inches(6.233), Inches(5.3), img_radar, border_color=COLOR_BORDER, padding_in=0.15)
 
     set_notes(s11, (
         "Kính chào Thầy, em là Ngô Quang Trung. Bước sang phần diễn giải tri thức, trên biểu đồ radar mạng nhện 6 chiều bên phải, "
@@ -644,7 +678,7 @@ def build_presentation():
 
     img_val = FIGURES_DIR / "validation_happiness_score_2019.png"
     if img_val.exists():
-        s12.shapes.add_picture(str(img_val), Inches(6.6), Inches(1.6), width=Inches(5.9))
+        add_image_card(s12, Inches(6.6), Inches(1.6), Inches(5.933), Inches(5.3), img_val, border_color=COLOR_AMBER, padding_in=0.16)
 
     set_notes(s12, (
         "Tuân thủ nghiêm ngặt quy tắc vàng của đề tài, nhóm không đưa điểm hạnh phúc vào lúc phân cụm mà chỉ dùng để hậu kiểm độc lập. "
@@ -664,7 +698,7 @@ def build_presentation():
 
     img_shift_excel = ARTIFACTS_DIR / "excel_country_shift.png"
     if img_shift_excel.exists():
-        s13.shapes.add_picture(str(img_shift_excel), Inches(4.7), Inches(1.6), width=Inches(7.833))
+        add_image_card(s13, Inches(4.7), Inches(1.6), Inches(7.833), Inches(5.3), img_shift_excel, border_color=COLOR_BORDER, padding_in=0.16)
 
     set_notes(s13, (
         "Điểm mới trong đồ án của nhóm là thuật toán ghép cụm liên năm để theo dõi sự dịch chuyển của 156 quốc gia qua nửa thập kỷ. "
@@ -681,7 +715,7 @@ def build_presentation():
 
     img_demo = FIGURES_DIR / "demo_app_overview.png"
     if img_demo.exists():
-        s14.shapes.add_picture(str(img_demo), Inches(0.8), Inches(1.6), width=Inches(5.7))
+        add_image_card(s14, Inches(0.8), Inches(1.6), Inches(5.7), Inches(5.3), img_demo, border_color=COLOR_BLUE_C2, padding_in=0.15)
 
     add_card(s14, Inches(6.8), Inches(1.6), Inches(5.733), Inches(5.3), border_color=COLOR_TEAL_ACCENT)
     add_card_text(s14, Inches(6.8), Inches(1.6), Inches(5.733), Inches(5.3),

@@ -125,17 +125,19 @@ def render_notebook_window(
     output_stdout: str = "",
     width: int = 1050,
     height: int = 680,
+    col_widths: list = None,
 ):
     img = Image.new("RGB", (width, height), color="#FFFFFF")
     draw = ImageDraw.Draw(img)
 
-    font_header = get_font("arialbd.ttf", 20)
-    font_code = get_font("consola.ttf", 21)
-    font_code_bold = get_font("consolab.ttf", 21)
-    font_table_head = get_font("arialbd.ttf", 20)
-    font_table_cell = get_font("arial.ttf", 19)
-    font_table_cell_bold = get_font("arialbd.ttf", 19)
-    font_info = get_font("ariali.ttf", 18)
+    font_header = get_font("arialbd.ttf", 19)
+    font_code = get_font("consola.ttf", 19)
+    font_code_bold = get_font("consolab.ttf", 19)
+    font_table_head = get_font("arialbd.ttf", 18)
+    font_table_cell = get_font("arial.ttf", 17)
+    font_table_cell_bold = get_font("arialbd.ttf", 17)
+    font_info = get_font("ariali.ttf", 16)
+    font_terminal = get_font("consola.ttf", 17.5)
 
     # 1. Thanh tiêu đề cửa sổ (Dark slate #1E293B)
     header_h = 48
@@ -177,28 +179,37 @@ def render_notebook_window(
         tbl_w = width - tbl_x - 30
         cols = list(output_df.columns)
         num_cols = len(cols)
-        col_w = tbl_w / num_cols
+        
+        if col_widths and len(col_widths) == num_cols:
+            c_widths = col_widths
+        else:
+            c_widths = [tbl_w / num_cols] * num_cols
+
         row_h = 52
 
         # Header hàng
         draw.rectangle([(tbl_x, tbl_y), (tbl_x + tbl_w, tbl_y + row_h)], fill="#1E293B", outline="#0F172A", width=1)
+        cur_cx = tbl_x
         for c_idx, col_name in enumerate(cols):
-            cx = tbl_x + c_idx * col_w
-            draw.text((cx + 14, tbl_y + 14), str(col_name), fill="#FFFFFF", font=font_table_head)
+            cw = c_widths[c_idx]
+            draw.text((cur_cx + 12, tbl_y + 15), str(col_name), fill="#FFFFFF", font=font_table_head)
+            cur_cx += cw
 
         # Dữ liệu từng dòng
         cur_row_y = tbl_y + row_h
         for r_idx, (_, row) in enumerate(output_df.iterrows()):
             bg_col = "#FFFFFF" if r_idx % 2 == 0 else "#F8FAFC"
             draw.rectangle([(tbl_x, cur_row_y), (tbl_x + tbl_w, cur_row_y + row_h)], fill=bg_col, outline="#CBD5E1", width=1)
+            cur_cx = tbl_x
             for c_idx, col_name in enumerate(cols):
-                cx = tbl_x + c_idx * col_w
+                cw = c_widths[c_idx]
                 val = row[col_name]
                 if isinstance(val, float):
                     val_str = f"{val:.4f}"
                 else:
                     val_str = str(val)
-                draw.text((cx + 14, cur_row_y + 14), val_str, fill="#0F172A", font=font_table_cell)
+                draw.text((cur_cx + 12, cur_row_y + 15), val_str, fill="#0F172A", font=font_table_cell)
+                cur_cx += cw
             cur_row_y += row_h
 
         # Dòng thông tin
@@ -211,12 +222,12 @@ def render_notebook_window(
         out_box_h = len(out_lines) * 34 + 20
         draw.rectangle([(tbl_x, tbl_y), (width - 30, tbl_y + out_box_h)], fill="#0F172A", outline="#334155", width=1)
         
-        cur_oy = tbl_y + 12
+        cur_oy = tbl_y + 14
         for o_line in out_lines:
             line_col = "#38BDF8"  # Cyan mặc định
             if "Khớp" in o_line or "Silhouette" in o_line or "Hội tụ" in o_line:
                 line_col = "#4ADE80"  # Xanh lá sáng
-            draw.text((tbl_x + 18, cur_oy), o_line, fill=line_col, font=font_code)
+            draw.text((tbl_x + 16, cur_oy), o_line, fill=line_col, font=font_terminal)
             cur_oy += 34
 
     draw.rectangle([(0, 0), (width - 1, height - 1)], outline="#CBD5E1", width=1)
@@ -235,16 +246,17 @@ def render_excel_table(
     width: int = 1050,
     height: int = 680,
     highlight_badge: str = "TỐI ƯU",
+    col_widths: list = None,
 ):
     img = Image.new("RGB", (width, height), color="#FFFFFF")
     draw = ImageDraw.Draw(img)
 
-    font_header = get_font("arialbd.ttf", 21)
-    font_fx = get_font("consola.ttf", 19)
-    font_col = get_font("arialbd.ttf", 20)
-    font_cell = get_font("arial.ttf", 20)
-    font_cell_bold = get_font("arialbd.ttf", 20)
-    font_status = get_font("arialbd.ttf", 17)
+    font_header = get_font("arialbd.ttf", 20)
+    font_fx = get_font("consola.ttf", 18)
+    font_col = get_font("arialbd.ttf", 18)
+    font_cell = get_font("arial.ttf", 17)
+    font_cell_bold = get_font("arialbd.ttf", 17)
+    font_status = get_font("arialbd.ttf", 16)
 
     # 1. Thanh tiêu đề Excel (#107C41)
     header_h = 52
@@ -262,14 +274,22 @@ def render_excel_table(
     start_x = 25
     table_w = width - 50
     cols = list(df.columns)
-    col_w = table_w / len(cols)
+    num_cols = len(cols)
+
+    if col_widths and len(col_widths) == num_cols:
+        c_widths = col_widths
+    else:
+        c_widths = [table_w / num_cols] * num_cols
+
     row_h = 58
 
     # Header cột (Màu Slate đậm #1E293B, chữ trắng to nổi bật)
     draw.rectangle([(start_x, start_y), (start_x + table_w, start_y + row_h)], fill="#1E293B", outline="#0F172A", width=1)
+    cur_cx = start_x
     for c_idx, col_name in enumerate(cols):
-        cx = start_x + c_idx * col_w
-        draw.text((cx + 14, start_y + 17), str(col_name), fill="#FFFFFF", font=font_col)
+        cw = c_widths[c_idx]
+        draw.text((cur_cx + 12, start_y + 18), str(col_name), fill="#FFFFFF", font=font_col)
+        cur_cx += cw
 
     # Dòng dữ liệu
     curr_y = start_y + row_h
@@ -281,12 +301,19 @@ def render_excel_table(
 
         draw.rectangle([(start_x, curr_y), (start_x + table_w, curr_y + row_h)], fill=row_bg, outline=border_c, width=line_w)
 
+        cur_cx = start_x
         for c_idx, col_name in enumerate(cols):
-            cx = start_x + c_idx * col_w
+            cw = c_widths[c_idx]
             val = row[col_name]
-            if isinstance(val, float):
-                val_str = f"{val:.4f}"
-            else:
+            try:
+                f_val = float(val)
+                if float(val).is_integer() and not ("Score" in col_name or "Silhouette" in col_name or "ARI" in col_name or "Davies" in col_name or "Calinski" in col_name):
+                    val_str = str(int(f_val))
+                elif "WCSS" in col_name or "Inertia" in col_name or "Calinski" in col_name:
+                    val_str = f"{f_val:.2f}"
+                else:
+                    val_str = f"{f_val:.4f}"
+            except (ValueError, TypeError):
                 val_str = str(val)
 
             use_font = font_cell_bold if is_hl else font_cell
@@ -294,7 +321,8 @@ def render_excel_table(
             if is_hl:
                 text_col = "#15803D" if "DCF" in highlight_color or "FEF" in highlight_color else "#1D4ED8"
 
-            draw.text((cx + 14, curr_y + 17), val_str, fill=text_col, font=use_font)
+            draw.text((cur_cx + 12, curr_y + 18), val_str, fill=text_col, font=use_font)
+            cur_cx += cw
 
         curr_y += row_h
 
@@ -332,7 +360,8 @@ def generate_all_artifacts():
         "notebooks/01_data_understanding_and_cleaning.ipynb",
         code_s5,
         output_df=head_sample,
-        height=680
+        height=680,
+        col_widths=[190, 135, 190, 190, 190]
     )
 
     # 3. Slide 7: Notebook 03 Code From Scratch execution
@@ -376,7 +405,8 @@ def generate_all_artifacts():
         df_k_2019,
         highlight_row=1,  # k = 3
         highlight_color="#DCFCE7",
-        height=680
+        height=680,
+        col_widths=[160, 220, 240, 380]
     )
 
     # 5. Slide 9: Excel Model Comparison
@@ -394,7 +424,8 @@ def generate_all_artifacts():
         df_comp_disp,
         highlight_row=0,  # K-Means
         highlight_color="#EFF6FF",
-        height=680
+        height=680,
+        col_widths=[245, 120, 135, 120, 95, 285]
     )
 
     # 6. Slide 10: Excel Stability ARI Table (5 năm)
@@ -415,7 +446,8 @@ def generate_all_artifacts():
         df_ari_disp,
         highlight_row=4,  # 2019
         highlight_color="#FEF3C7",
-        height=680
+        height=680,
+        col_widths=[135, 155, 110, 165, 155, 280]
     )
 
     # 7. Slide 13: Excel Country Shift Table (6 nước tiêu biểu)
@@ -432,7 +464,8 @@ def generate_all_artifacts():
         shift_sub,
         highlight_row=0,
         highlight_color="#DCFCE7",
-        height=680
+        height=680,
+        col_widths=[170, 110, 130, 130, 180, 280]
     )
 
     print("--- Sinh thành công toàn bộ 7 hình ảnh trực chứng TO, RÕ NÉT! ---")
