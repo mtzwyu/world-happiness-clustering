@@ -95,7 +95,9 @@ Cách khởi tạo này giảm khả năng rơi vào cực tiểu địa phươn
 
 **Inertia (WCSS)** là tổng bình phương khoảng cách từ mỗi điểm đến tâm cụm của nó:
 
-$$\text{Inertia} = \sum_{i=1}^{n} \lVert x_i - \mu_{c(i)} \rVert^2$$
+$$
+\text{Inertia} = \sum_{i=1}^{n} \lVert x_i - \mu_{c(i)} \rVert^2
+$$
 
 Inertia càng nhỏ thì các điểm càng gần tâm cụm, nhưng giảm mãi khi tăng $k$ nên không dùng đơn lẻ để chọn $k$; nhóm dùng nó để vẽ biểu đồ khuỷu tay (Elbow) song song với Silhouette.
 
@@ -103,11 +105,15 @@ Inertia càng nhỏ thì các điểm càng gần tâm cụm, nhưng giảm mãi
 
 Phân cấp Ward là phương pháp gộp cụm (agglomerative): bắt đầu mỗi điểm là một cụm, mỗi bước gộp hai cụm sao cho **tổng phương sai nội cụm tăng ít nhất**. Tiêu chí gộp giữa hai cụm $A$ và $B$ có thể viết qua khoảng cách tâm cụm:
 
-$$\Delta(A, B) = \frac{n_A n_B}{n_A + n_B} \lVert \mu_A - \mu_B \rVert^2$$
+$$
+\Delta(A, B) = \frac{n_A n_B}{n_A + n_B} \lVert \mu_A - \mu_B \rVert^2
+$$
 
 Công thức Lance–Williams là cách cập nhật khoảng cách giữa cụm mới $A \cup B$ và cụm còn lại $C$ mà không cần tính lại toàn bộ từ đầu:
 
-$$d(A \cup B, C) = \frac{n_A + n_C}{n_A + n_B + n_C}\, d(A, C) + \frac{n_B + n_C}{n_A + n_B + n_C}\, d(B, C) - \frac{n_C}{n_A + n_B + n_C}\, d(A, B)$$
+$$
+d(A \cup B, C) = \frac{n_A + n_C}{n_A + n_B + n_C}\, d(A, C) + \frac{n_B + n_C}{n_A + n_B + n_C}\, d(B, C) - \frac{n_C}{n_A + n_B + n_C}\, d(A, B)
+$$
 
 Nhóm tự cài đặt Ward thật kèm bộ nhớ đệm tâm cụm để tránh tính lại từ đầu, chạy 156 điểm trong khoảng 0,8–1,4 giây mỗi năm (cột `runtime_seconds` trong `model_comparison_metrics_by_year.csv`). Ward là thuật toán tất định: chạy lại nhiều lần cho cùng kết quả, nên trong bảng độ ổn định nhóm ghi ARI = 1,0 kèm giải thích thay vì chạy 10 seed hình thức.
 
@@ -125,7 +131,9 @@ Nhóm tự cài đặt `SimpleDBSCAN` (duyệt vùng lân cận, lan truyền nh
 
 **Silhouette** của điểm $i$: gọi $a(i)$ là khoảng cách trung bình đến các điểm cùng cụm (độ kết dính), $b(i)$ là khoảng cách trung bình nhỏ nhất đến một cụm khác (độ phân tách), thì
 
-$$s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))} \in [-1; 1]$$
+$$
+s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))} \in [-1, 1]
+$$
 
 Điểm số gần 1 nghĩa là điểm nằm gọn trong cụm của mình và xa cụm khác; gần 0 là nằm sát ranh giới; âm là bị gán sai cụm. Hệ số Silhouette của cả tập là trung bình của $s(i)$ — nhóm tự cài đặt từng bước tính $a$, $b$, $s$ bằng vòng lặp trong `calculate_silhouette_score_simple`.
 

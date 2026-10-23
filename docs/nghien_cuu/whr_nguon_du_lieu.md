@@ -67,7 +67,9 @@ Mục đích của Dystopia là làm **mốc chuẩn so sánh** để mọi đó
 
 Trong bộ dữ liệu, cột `Dystopia Residual` (2015–2017) là phần dư chưa được 6 yếu tố giải thích cộng với chuẩn Dystopia:
 
-$$\text{happiness\_score} \approx \left(\sum_{i=1}^{6} \text{factor}_i\right) + \text{dystopia\_residual}$$
+$$
+\text{happiness\_score} \approx \left(\sum_{i=1}^{6} \text{factor}_i\right) + \text{dystopia\_residual}
+$$
 
 Nhóm đã kiểm chứng đẳng thức này trên 3 tệp 2015–2017 bằng `src/data/data_loader.py`: sai lệch tuyệt đối lớn nhất giữa vế trái và vế phải chỉ là **0,00051** (do bộ dữ liệu đã làm tròn 5 chữ số thập phân). Cột `dystopia_residual` thực tế nằm trong khoảng:
 

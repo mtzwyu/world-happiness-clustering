@@ -29,9 +29,9 @@ thành viên. Tỷ lệ đóng góp cộng lại bằng 100%.
 | 10 | Sản phẩm demo (chọn năm, thuật toán, cách chuẩn hóa, số cụm) | Trung | Trường | `app/app.py` |
 | 11 | Kết luận và hướng phát triển | Trung | cả nhóm | `notebooks/04` mục 3, Chương 5 của báo cáo |
 
-### Yêu cầu chung của nhóm & Phân chia Video Thuyết trình ($\le$ 12 phút)
+### Yêu cầu chung của nhóm & Phân chia Video Thuyết trình (≤ 12 phút)
 
-- **Kịch bản phân chia thời lượng video báo cáo ($\le$ 12 phút — nguyên tắc 'ai làm phần nào thuyết trình phần đó'):**
+- **Kịch bản phân chia thời lượng video báo cáo (≤ 12 phút — nguyên tắc 'ai làm phần nào thuyết trình phần đó'):**
   - **Phần 1 — Hà Mạnh Trường (Slide 1–4, ~3.5 phút):** Giới thiệu bài toán phân nhóm quốc gia WHR, kiến trúc pipeline 11 bước và quy trình tiền xử lý dữ liệu 5 năm (loại UAE 2018, chuẩn hóa 6 thuộc tính không chứa Happiness Score, gắn mã ISO-3).
   - **Phần 2 — Huỳnh Tâm Trí (Slide 5–9, ~4.0 phút):** Phân tích EDA phân bố/tương quan, cơ sở chuẩn hóa Z-score/PCA, cài đặt thuật toán from-scratch (K-Means++, Ward, DBSCAN), tối ưu tham số $k^*=3$ và đánh giá độ ổn định ARI.
   - **Phần 3 — Ngô Quang Trung (Slide 10–15, ~4.5 phút):** Diễn giải chân dung 3 cụm, hậu kiểm ANOVA với điểm hạnh phúc thực tế, bảng dịch chuyển cụm 156 quốc gia qua 5 năm, thao tác chạy demo ứng dụng Streamlit 4 tab và kết luận đề tài.
@@ -48,4 +48,4 @@ Mọi con số trong Báo cáo Word phải truy được về `reports/tables/*.
 | Chương 1 & 2 (Tổng quan bài toán, dữ liệu, tiền xử lý) | Trường | ☑ | ☑ | ☑ | 2026-10-22 (Ngày 26) |
 | Chương 3 & phần thực nghiệm Chương 4 (Phương pháp from-scratch, tham số, kết quả) | Trí | ☑ | ☑ | ☑ | 2026-10-22 (Ngày 26) |
 | Phần diễn giải Chương 4 & Chương 5 (Diễn giải tri thức, kết luận, hạn chế) | Trung | ☑ | ☑ | ☑ | 2026-10-22 (Ngày 26) |
-| Slide thuyết trình & Video $\le$ 12 phút | cả nhóm | ☑ | ☑ | ☑ | 2026-10-22 (Ngày 26) |
+| Slide thuyết trình & Video ≤ 12 phút | cả nhóm | ☑ | ☑ | ☑ | 2026-10-22 (Ngày 26) |

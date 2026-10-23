@@ -68,7 +68,7 @@ Phụ trách chính **Giai đoạn 6, 7, 8** của pipeline khai phá dữ liệ
   - Khảo sát Elbow (Inertia) và Silhouette với $k \in [2, 9]$ cho từng năm -> xuất file [`reports/tables/k_sensitivity_by_year.csv`](../../reports/tables/k_sensitivity_by_year.csv).
   - Xác định số cụm tối ưu $k^*$ của mỗi năm.
 - [x] **Ngày 16:** Chạy ma trận 5 cấu hình gom cụm lõi qua 5 năm (K-Means Z-score, K-Means Min-Max, K-Means Raw, Ward Z-score, DBSCAN Z-score) -> xuất file [`reports/tables/model_comparison_metrics_by_year.csv`](../../reports/tables/model_comparison_metrics_by_year.csv).
-- [x] **Ngày 17:** Thực hiện quét siêu tham số DBSCAN toàn diện (4 giá trị $\epsilon \in \{0.6, 0.8, 1.0, 1.2\}$ kết hợp 3 giá trị `min_samples` $\in \{3, 4, 5\}$ cho cả 5 năm) -> xuất file [`reports/tables/dbscan_sweep.csv`](../../reports/tables/dbscan_sweep.csv).
+- [x] **Ngày 17:** Thực hiện quét siêu tham số DBSCAN toàn diện (4 giá trị $\epsilon \in \{0.6, 0.8, 1.0, 1.2\}$ kết hợp 3 giá trị $\text{min\_samples} \in \{3, 4, 5\}$ cho cả 5 năm) -> xuất file [`reports/tables/dbscan_sweep.csv`](../../reports/tables/dbscan_sweep.csv).
 - [x] **Ngày 18:** Đánh giá độ ổn định cụm (*Cluster Stability*):
   - Chạy K-Means trên 10 seed ngẫu nhiên khác nhau, tính giá trị ARI trung bình giữa các lần chạy.
   - Ghi nhận ARI = 1.0 cho Phân cấp Ward và DBSCAN kèm lý giải toán học về tính tất định -> xuất file [`reports/tables/stability_ari.csv`](../../reports/tables/stability_ari.csv).
@@ -113,7 +113,11 @@ Phụ trách chính **Giai đoạn 6, 7, 8** của pipeline khai phá dữ liệ
   *Trả lời:* Đề tài phục vụ mục tiêu học tập và làm chủ giải thuật. Việc tự viết từ đầu (*from-scratch*) giúp hiểu sâu bản chất toán học của các thuật toán (K-Means++, Lance–Williams, lan truyền mật độ DBSCAN) và chứng minh năng lực lập trình thuật toán trước hội đồng.
 - **Câu hỏi 2:** Công thức Lance–Williams hoạt động như thế nào trong phân cấp liên kết Ward?
   *Trả lời:* Khi gộp hai cụm $A$ và $B$ thành cụm $A \cup B$, khoảng cách giữa cụm mới này tới một cụm thứ ba $C$ được tính theo hệ thức:
-  $$D(A \cup B, C) = \frac{n_A + n_C}{n_A + n_B + n_C} D(A, C) + \frac{n_B + n_C}{n_A + n_B + n_C} D(B, C) - \frac{n_C}{n_A + n_B + n_C} D(A, B)$$
+
+$$
+D(A \cup B, C) = \frac{n_A + n_C}{n_A + n_B + n_C} D(A, C) + \frac{n_B + n_C}{n_A + n_B + n_C} D(B, C) - \frac{n_C}{n_A + n_B + n_C} D(A, B)
+$$
+
   Công thức này giúp tính khoảng cách mà không cần phải duyệt lại toàn bộ các điểm dữ liệu thô, giảm chi phí tính toán đáng kể.
 - **Câu hỏi 3:** Tại sao thuật toán DBSCAN lại cho kết quả kém trên bộ dữ liệu World Happiness Report?
   *Trả lời:* Dữ liệu báo cáo hạnh phúc có mật độ phân bố tương đối đều trên không gian đa chiều, không có các "thung lũng mật độ thấp" rõ rệt. Khi quét các giá trị $\epsilon$ khác nhau, DBSCAN dễ rơi vào tình trạng gom toàn bộ vào 1 cụm duy nhất hoặc coi phần lớn các điểm là nhiễu (noise $-1$).

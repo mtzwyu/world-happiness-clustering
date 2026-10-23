@@ -47,7 +47,7 @@
 - **Yêu cầu đề cương:** Phát hiện và xử lý vấn đề dữ liệu hợp lý; giải thích quyết định; tạo đúng representation cho clustering.
 - **Hiện trạng đồ án:**
   - Đồng nhất cấu trúc cột: Xây dựng bảng từ điển ánh xạ `COLUMN_MAPPING` đồng nhất 5 cấu trúc bảng khác nhau qua 5 năm về định dạng `snake_case`.
-  - Đồng nhất tên quốc gia: Khắc phục sự sai lệch tên (Macedonia $\rightarrow$ North Macedonia, Swaziland $\rightarrow$ Eswatini, Hong Kong S.A.R. $\rightarrow$ Hong Kong...) qua `COUNTRY_NAME_FIXES`.
+  - Đồng nhất tên quốc gia: Khắc phục sự sai lệch tên (Macedonia → North Macedonia, Swaziland → Eswatini, Hong Kong S.A.R. → Hong Kong...) qua `COUNTRY_NAME_FIXES`.
   - Bổ sung mã ISO-3: Ánh xạ 100% (781/781 dòng) sang chuẩn ISO 3166-1 alpha-3 phục vụ bản đồ Choropleth thế giới.
   - Xử lý thiếu dữ liệu có căn cứ thực nghiệm: Quyết định loại bỏ mẫu duy nhất của UAE năm 2018 (do khuyết hoàn toàn chỉ số `corruption_perception`) thay vì điền giá trị trung bình/KNN, đảm bảo ma trận số không bị nhiễu; giữ lại 781 dòng sạch hoàn hảo.
   - Loại bỏ các cột sai số mẫu khảo sát: Loại bỏ `Standard Error`, `Whisker.high`, `Whisker.low`, `CI` vì chỉ phản ánh sai số khảo sát mẫu.
@@ -67,13 +67,13 @@
   - Tự cài đặt 100% From-scratch bằng `numpy`:
     - Thuật toán K-Means (`SimpleKMeans`): Cơ chế khởi tạo tâm K-Means++, vòng lặp cập nhật trọng tâm, tiêu chí dừng tolerance và giới hạn số vòng lặp `max_iter`.
     - Phân cấp tích tụ (`SimpleHierarchicalClustering`): Tiêu chí liên kết Ward tối thiểu hóa gia tăng phương sai nội cụm $\Delta WSS$ sau mỗi bước gộp.
-    - Thuật toán mật độ (`SimpleDBSCAN`): Định nghĩa điểm lõi (core point), lân cận $\epsilon$, điểm biên (border) và điểm nhiễu (noise $=-1$).
+    - Thuật toán mật độ (`SimpleDBSCAN`): Định nghĩa điểm lõi (core point), lân cận $\epsilon$, điểm biên (border) và điểm nhiễu ($\text{noise} = -1$).
     - Độ đo đánh giá tự code: Khoảng cách Euclid, Silhouette Score (`calculate_silhouette_score_simple`), Davies-Bouldin (`calculate_davies_bouldin_score_simple`), Calinski-Harabasz (`calculate_calinski_harabasz_score_simple`), Adjusted Rand Index (`calculate_adjusted_rand_index`).
     - Giảm chiều dữ liệu PCA tự code (`SimplePCA`): Ma trận hiệp phương sai, trị riêng, vector riêng, tỷ lệ phương sai giải thích.
   - Khảo sát tham số: Quét $k \in [2, 10]$ cho K-Means và Hierarchical; quét lưới $\epsilon \in [0.2, 0.6]$, $\text{MinPts} \in [3, 6]$ cho DBSCAN.
 - **Minh chứng định lượng:**
   - Mã nguồn thuật toán: `src/models/clustering.py`, `src/features/feature_engineering.py`.
-  - Script kiểm chứng toán học: `scripts/verify_scratch_implementations.py` (100% test PASS, sai số so với công thức toán $\le 10^{-10}$, ARI so với chuẩn $= 1.000000$).
+  - Script kiểm chứng toán học: `scripts/verify_scratch_implementations.py` (100% test PASS, sai số so với công thức toán $\le 10^{-10}$, ARI so với chuẩn $\text{ARI} = 1.000000$).
   - Bảng khảo sát tham số: `reports/tables/k_sensitivity_by_year.csv` (40 dòng), `reports/tables/dbscan_sweep.csv` (60 dòng).
   - Slide thuyết trình: Slide 5 (Cơ sở toán học From-scratch), Slide 6 (K-Means), Slide 7 (Ward Hierarchical), Slide 8 (DBSCAN).
 
@@ -156,7 +156,7 @@
     - **Tab 2 — Bản đồ thế giới:** Bản đồ Choropleth tương tác toàn cầu, tô màu trực quan 156 quốc gia theo cụm, hover xem thông tin chi tiết từng nước.
     - **Tab 3 — Tra cứu quốc gia & Phân tích dịch chuyển:** Tra cứu lịch sử cụm của một quốc gia qua 5 năm, biểu đồ đường biến thiên chỉ số và phân tích xu hướng dịch chuyển.
     - **Tab 4 — Thử nghiệm gán nhãn (What-if Prediction):** 6 thanh trượt tương tác cho phép người dùng nhập chỉ số kinh tế - xã hội giả lập và hệ thống lập tức dự báo cụm gần nhất dựa trên khoảng cách Euclid tới tâm cụm.
-  - Tối ưu hóa hiệu năng: Toàn bộ hàm nạp dữ liệu được bọc `@st.cache_data`, thời gian tải lại trang $< 0.2$ giây.
+  - Tối ưu hóa hiệu năng: Toàn bộ hàm nạp dữ liệu được bọc `@st.cache_data`, thời gian tải lại trang < 0.2 giây.
 - **Minh chứng định lượng:**
   - Mã nguồn: `app/app.py`.
   - Hình ảnh giao diện: `reports/figures/demo_app_overview.png`.
@@ -168,9 +168,9 @@
 - **Yêu cầu đề cương:** Giải thích được thuật toán, tham số, metric, luật kết hợp hoặc profile cụm bằng ngôn ngữ rõ ràng, am hiểu toán học.
 - **Hiện trạng đồ án:**
   - Trình bày sáng rõ bản chất toán học của các thuật toán:
-    - Hàm mục tiêu K-Means: $J = \sum_{j=1}^k \sum_{x \in C_j} \|x - \mu_j\|^2$.
+    - Hàm mục tiêu K-Means: $J = \sum_{j=1}^k \sum_{x \in C_j} \lVert x - \mu_j \rVert^2$.
     - Cơ chế chọn tâm K-Means++ theo phân phối xác suất $P(x) = \frac{D(x)^2}{\sum D(x')^2}$.
-    - Độ tăng phương sai liên kết Ward: $\Delta WSS(A, B) = \frac{n_A n_B}{n_A + n_B} \|\mu_A - \mu_B\|^2$.
+    - Độ tăng phương sai liên kết Ward: $\Delta \text{WSS}(A, B) = \frac{n_A n_B}{n_A + n_B} \lVert \mu_A - \mu_B \rVert^2$.
     - Công thức hệ số Silhouette từng điểm: $s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}$.
   - Giải thích bản chất vì sao $k=3$ là tối ưu trên khía cạnh cân bằng giữa phương sai nội cụm và khả năng diễn giải chính sách thực tế.
 - **Minh chứng định lượng:**

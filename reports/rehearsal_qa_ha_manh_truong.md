@@ -37,9 +37,9 @@
   "Thưa thầy/cô, trong 782 quan sát thô của 5 năm, toàn bộ tập dữ liệu chỉ xuất hiện duy nhất **1 ô bị thiếu giá trị NaN**, đó là chỉ số `Perceptions of corruption` của Các Tiểu vương quốc Ả Rập Thống nhất (UAE) năm 2018.  
   Nhóm em đã cân nhắc rất kỹ giữa hai phương án:
   - **Phương án 1 (Imputation):** Dùng giá trị trung bình toàn cầu hoặc nội suy từ năm 2017/2019 của chính UAE. Tuy nhiên, UAE là một quốc gia đặc thù ở Trung Đông với mức GDP và chất lượng sống rất cao, nếu dùng trung bình thế giới sẽ kéo tụt chỉ số thể chế của họ xuống sai lệch thực tế; nếu dùng KNN thì khoảng cách trong không gian 5 chiều còn lại có thể bị méo do các quốc gia gần về GDP chưa chắc đã tương đồng về mô hình quản trị.
-  - **Phương án 2 (Loại bỏ bản ghi):** Do tập dữ liệu có tới 782 dòng, việc loại bỏ 1 dòng khuyết duy nhất chỉ làm giảm $0.128\%$ tổng số mẫu, hoàn toàn không ảnh hưởng đến độ lớn hay tính đại diện thống kê của tập dữ liệu.
+  - **Phương án 2 (Loại bỏ bản ghi):** Do tập dữ liệu có tới 782 dòng, việc loại bỏ 1 dòng khuyết duy nhất chỉ làm giảm 0,128% tổng số mẫu, hoàn toàn không ảnh hưởng đến độ lớn hay tính đại diện thống kê của tập dữ liệu.
   
-  Quan trọng hơn, việc loại bỏ bản ghi này bảo đảm ma trận dữ liệu đầu vào $X$ đạt độ tinh khiết $100\%$ sạch không khuyết thiếu, giúp thuật toán gom cụm K-Means và Hierarchical from-scratch không phải chịu bất kỳ sự suy đoán nhân tạo nào từ khâu điền dữ liệu. Do đó, tập dữ liệu interim chốt chính xác ở **781 dòng sạch hoàn hảo**."
+  Quan trọng hơn, việc loại bỏ bản ghi này bảo đảm ma trận dữ liệu đầu vào $X$ đạt độ tinh khiết 100% sạch không khuyết thiếu, giúp thuật toán gom cụm K-Means và Hierarchical from-scratch không phải chịu bất kỳ sự suy đoán nhân tạo nào từ khâu điền dữ liệu. Do đó, tập dữ liệu interim chốt chính xác ở **781 dòng sạch hoàn hảo**."
 
 ---
 
@@ -71,7 +71,7 @@
   - Thay vì xem thư viện Scikit-learn như một chiếc 'hộp đen' (black-box), nhóm em đã tự tay lập trình từng công thức toán học bằng thư viện cơ bản `numpy`:
     - Tự lập trình thuật toán khởi tạo tâm **K-Means++**: tính khoảng cách ngắn nhất $D(x)$ từ mỗi điểm đến tâm gần nhất, sau đó lấy mẫu tâm tiếp theo theo phân phối xác suất tỷ lệ thuận với bình phương khoảng cách $P(x) = \frac{D(x)^2}{\sum D(x')^2}$ để các tâm ban đầu nằm cách xa nhau tối đa.
     - Tự lập trình vòng lặp gán nhãn theo khoảng cách Euclid và tái tính toán trọng tâm bằng `np.mean`.
-    - Tự cài đặt thuật toán phân cấp tích tụ theo liên kết **Ward**: tính toán độ gia tăng tổng bình phương sai lệch $\Delta WSS(A, B) = \frac{n_A n_B}{n_A + n_B} \|\mu_A - \mu_B\|^2$ để quyết định gộp hai cụm nào ở mỗi bước.
+    - Tự cài đặt thuật toán phân cấp tích tụ theo liên kết **Ward**: tính toán độ gia tăng tổng bình phương sai lệch $\Delta \text{WSS}(A, B) = \frac{n_A n_B}{n_A + n_B} \lVert \mu_A - \mu_B \rVert^2$ để quyết định gộp hai cụm nào ở mỗi bước.
   - Để kiểm chứng tính đúng đắn, nhóm đã viết script độc lập [`scripts/verify_scratch_implementations.py`](file:///C:/Users/xpaga/Documents/data_mining/scripts/verify_scratch_implementations.py) đối chiếu trực tiếp với Scikit-learn và SciPy. Kết quả đạt chỉ số tương đồng $\text{ARI} = 1.000000$ và sai số giá trị Inertia/Silhouette nhỏ hơn $10^{-10}$, chứng minh thuật toán tự viết hoạt động chuẩn xác tuyệt đối theo nguyên lý toán học."
 
 ---
@@ -82,8 +82,8 @@
   - Cơ chế dự báo cụm trực tiếp (Online Inference) diễn ra như sau:
     1. Khi người dùng điều chỉnh 6 thanh trượt trên giao diện Streamlit, giá trị đầu vào được chuẩn hóa theo đúng dải min-max của năm mô hình được chọn.
     2. Hệ thống tải vector trọng tâm đã được huấn luyện sẵn của 3 cụm ($\mu_0, \mu_1, \mu_2$).
-    3. Tính toán khoảng cách Euclid từ vector mới $x_{\text{new}}$ đến từng tâm cụm: $d_j = \|x_{\text{new}} - \mu_j\|$.
-    4. Gán mẫu mới vào cụm có khoảng cách ngắn nhất: $C^* = \arg\min_j d_j$.
+    3. Tính toán khoảng cách Euclid từ vector mới $x_{\text{new}}$ đến từng tâm cụm: $d_j = \lVert x_{\text{new}} - \mu_j \rVert$.
+    4. Gán mẫu mới vào cụm có khoảng cách ngắn nhất: $C^* = \operatorname{argmin}_j d_j$.
   - Đồng thời, giao diện ngay lập tức vẽ chồng vector mới này lên biểu đồ Radar của 3 cụm để người dùng trực quan thấy quốc gia giả định đó vượt trội hay tụt hậu ở tiêu chí nào so với mặt bằng chung thế giới."
 
 ---

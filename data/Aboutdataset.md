@@ -52,8 +52,11 @@ The **residuals** (or unexplained components) differ for each country:
 
 ### What do the columns succeeding the Happiness Score describe?
 * The columns (`GDP per Capita`, `Family`, `Life Expectancy`, `Freedom`, `Generosity`, `Trust Government Corruption`) describe the extent to which each factor contributes to evaluating national happiness.
-* **Dystopia Residual metric:** 
-  $$\text{Dystopia Residual} = \text{Dystopia Happiness Score (1.85)} + \text{Unexplained Residual Value}$$
+* **Dystopia Residual metric:**
+
+$$
+\text{Dystopia Residual} = \text{Dystopia Happiness Score (1.85)} + \text{Unexplained Residual Value}
+$$
 
 ---
 

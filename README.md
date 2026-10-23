@@ -213,7 +213,7 @@ Thực nghiệm so sánh trên cùng tập đặc trưng 6 chiều chuẩn hóa 
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **K-Means (Chọn làm chính)** | **3** | **0.3436** | **1.0703** | **86.02** | **440.58** | **28 / 82 / 46** |
 | **Hierarchical Ward** | 3 | 0.3104 | 1.0019 | 68.23 | 494.75 | 16 / 105 / 35 |
-| **DBSCAN** ($\varepsilon=1.8, MinPts=4$) | 2 (+nhiễu) | -0.0809 | 1.6489 | 1.60 | 576.89 | 121 / 3 (32 điểm nhiễu) |
+| **DBSCAN** ($\varepsilon = 1.8, \text{MinPts} = 4$) | 2 (+nhiễu) | -0.0809 | 1.6489 | 1.60 | 576.89 | 121 / 3 (32 điểm nhiễu) |
 
 > **Nhận định chuyên môn:** K-Means với $k=3$ cho chất lượng phân cụm tối ưu nhất: hệ số Silhouette cao nhất (0.344), chỉ số phương sai Calinski-Harabasz vượt trội (86.02) và kích thước các cụm có độ cân bằng cao, phản ánh chân thực các tầng nấc phát triển xã hội.
 

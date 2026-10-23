@@ -145,7 +145,7 @@
 
 - K-Means / Z-score: Cho kết quả toàn diện nhất: Silhouette 0,293 – 0,344; Davies–Bouldin 1,07 – 1,22; Calinski–Harabasz 74,9 – 86,0.
 - Hierarchical Ward / Z-score: Đạt Silhouette 0,254 – 0,310; Davies–Bouldin 1,00 – 1,26; Calinski–Harabasz 59,9 – 71,0. Ward là thuật toán tất định nên độ ổn định ARI luôn bằng 1,0.
-- Khảo sát DBSCAN: Quét lưới 60 cấu hình tham số: `eps` $\in \{0,6; 0,8; 1,0; 1,2\}$ và `min_samples` $\in \{3, 4, 5\}$.
+- Khảo sát DBSCAN: Quét lưới 60 cấu hình tham số: $\epsilon \in \{0.6, 0.8, 1.0, 1.2\}$ và $\text{min\_samples} \in \{3, 4, 5\}$.
   - Kết quả DBSCAN: Với `eps = 1,2` và `min_samples = 4`, DBSCAN chỉ gom được 1 đến 2 cụm và loại bỏ tới 24 đến 35 quốc gia thành điểm nhiễu.
   - Lý do: Không gian 6 chiều sau chuẩn hóa có mật độ chuyển tiếp liên tục, không tồn tại ranh giới mật độ rỗng để DBSCAN phân tách.
 - Kết luận thuật toán: Lựa chọn **K-Means làm mô hình chính** và **Hierarchical Ward làm mô hình đối chứng**.
@@ -200,7 +200,7 @@
   - Cụm 2 (Đang phát triển): Điểm hạnh phúc trung bình thực tế đạt 5,57 – 5,61 điểm.
   - Cụm 3 (Khó khăn): Điểm hạnh phúc trung bình thực tế đạt 4,10 – 4,26 điểm.
   - Khoảng cách chênh lệch giữa Cụm 1 và Cụm 3 lên tới 2,46 – 2,72 điểm trên thang đo 10 điểm.
-- **Kiểm định thống kê ANOVA một nhân tố:** Giá trị kiểm định $F$ cực lớn, dao động từ $107,09$ đến $159,18$ qua cả 5 năm ($p$-value $< 10^{-15}$).
+- **Kiểm định thống kê ANOVA một nhân tố:** Giá trị kiểm định $F$ cực lớn, dao động từ 107,09 đến 159,18 qua cả 5 năm ($p\text{-value} < 10^{-15}$).
 - **Ý nghĩa:** Chứng minh các cụm gom được thuần túy từ 6 yếu tố khách quan phản ánh hoàn toàn chính xác mức độ hạnh phúc cảm nhận thực tế của người dân.
 
 > 🎙️ **Lời dẫn thuyết trình gợi ý (Ngô Quang Trung - ~45 giây):**  

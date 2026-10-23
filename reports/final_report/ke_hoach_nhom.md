@@ -20,7 +20,7 @@
 | 7 | Ghép cụm liên năm | Ghép tham lam theo khoảng cách tâm cụm (đã chuẩn hóa), hoà thì xét `happiness_score` trung bình |
 | 8 | Bảng dịch chuyển cụm | **Chính thức trong báo cáo**: bảng 156 quốc gia × 5 năm |
 | 9 | Kiểm chứng | `scripts/verify_scratch_implementations.py` assert đối chứng sklearn/scipy + notebook chạy sạch bằng nbconvert |
-| 10 | Báo cáo Word & Quy chuẩn nộp bài | Nhóm sinh viên trực tiếp biên soạn theo cấu trúc **5 Chương chuẩn hóa**; tuân thủ nghiêm ngặt văn phong người thật thực chứng (**Anti-AI Writing Style**), truy vết 100% số liệu về CSV; nộp gói nén duy nhất `Nhom12_WorldHappinessClustering.zip` gồm `Nhom12_BaoCao.docx`, video báo cáo $\le$ 12 phút (link mở trực tiếp ở trang bìa và phụ lục) và toàn bộ mã nguồn |
+| 10 | Báo cáo Word & Quy chuẩn nộp bài | Nhóm sinh viên trực tiếp biên soạn theo cấu trúc **5 Chương chuẩn hóa**; tuân thủ nghiêm ngặt văn phong người thật thực chứng (**Anti-AI Writing Style**), truy vết 100% số liệu về CSV; nộp gói nén duy nhất `Nhom12_WorldHappinessClustering.zip` gồm `Nhom12_BaoCao.docx`, video báo cáo ≤ 12 phút (link mở trực tiếp ở trang bìa và phụ lục) và toàn bộ mã nguồn |
 | 11 | Phân công | Trường 34% — Trí 33% — Trung 33% |
 | 12 | Nơi lưu kế hoạch | GitHub Issue trên `world-happiness-clustering` + bản markdown trong repo |
 
@@ -30,7 +30,7 @@
 2. 4 notebook chạy sạch; sinh `data/interim/happiness_merged.csv`, `data/processed/**`, `reports/figures/*.png` (300 DPI), `reports/tables/*.csv`.
 3. `streamlit run app/app.py` chạy, 4 tab thật; đổi năm / thuật toán / scaler / `k` thì số liệu và metric đổi theo (không hardcode).
 4. `models/*.json` chứa tâm cụm + tham số scaler + metric cho từng năm, đọc lại được.
-5. Bộ nộp đủ: Gói nén duy nhất `Nhom12_WorldHappinessClustering.zip` gồm `Nhom12_BaoCao.docx` (5 Chương chuẩn hóa), video $\le$ 12 phút (cả 3 thành viên thuyết trình, link mở trực tiếp ở bìa và phụ lục), `Slide_De_tai_16_Nhom_12.pptx`, `ke_hoach_nhom.md`, `phan_cong_cong_viec.md`, toàn bộ mã nguồn và README hướng dẫn chạy.
+5. Bộ nộp đủ: Gói nén duy nhất `Nhom12_WorldHappinessClustering.zip` gồm `Nhom12_BaoCao.docx` (5 Chương chuẩn hóa), video ≤ 12 phút (cả 3 thành viên thuyết trình, link mở trực tiếp ở bìa và phụ lục), `Slide_De_tai_16_Nhom_12.pptx`, `ke_hoach_nhom.md`, `phan_cong_cong_viec.md`, toàn bộ mã nguồn và README hướng dẫn chạy.
 6. Checklist ký xác nhận nội dung báo cáo: cả 3 thành viên đã đọc, đối chiếu số với `reports/tables/*.csv` và giải thích được mục mình phụ trách.
 
 ### Hiện trạng repo (đã kiểm chứng)
@@ -130,13 +130,13 @@
 | 23 | Chuẩn bị khung Báo cáo Word `Nhom12_BaoCao.docx` (trang bìa, 5 Chương chuẩn hóa, chèn bảng/hình) | Kiểm app không dùng sklearn; kiểm đổi năm/thuật toán/scaler/`k` ra số khác nhau | Viết `slides.md` + `build_slides.py` (12-15 slide, khớp kịch bản video) |
 | 24 | Soạn thảo Báo cáo Word `Nhom12_BaoCao.docx` theo 5 Chương chuẩn hóa từ kết quả thực nghiệm | Soát lại Chương 3 (Phương pháp) và Chương 4 (Kết quả) | Soát lại Chương 4 (Diễn giải), demo và Chương 5 (Kết luận) |
 | 25 | Ghép bản cuối; rà soát định dạng, hình/bảng và số liệu | Biên tập + ký xác nhận Chương 3 | Biên tập + ký xác nhận Chương 4, 5 |
-| 26 | Biên tập + ký xác nhận Chương 1, 2; kiểm tra số liệu khớp 100% | Kiểm app lần cuối, chuẩn bị phần quay demo video | Hoàn thiện slide, tập dượt quay video $\le$ 12 phút |
+| 26 | Biên tập + ký xác nhận Chương 1, 2; kiểm tra số liệu khớp 100% | Kiểm app lần cuối, chuẩn bị phần quay demo video | Hoàn thiện slide, tập dượt quay video ≤ 12 phút |
 
 ### M5 — Đóng băng, quay video, rehearsal, nộp (Ngày 27-28)
 
 | Ngày | Trường | Trí | Trung |
 |:--:|:--|:--|:--|
-| 27 | Chạy lại toàn bộ từ đầu trên môi trường sạch; quay video báo cáo $\le$ 12 phút: Trường trình bày Phần 1 (Slide 1–4, ~3.5 phút), gắn link video mở trực tiếp vào bìa và phụ lục Word | Tham gia quay video: Trí trình bày Phần 2 (Slide 5–9, ~4.0 phút, thuật toán & thực nghiệm) | Tham gia quay video: Trung trình bày Phần 3 (Slide 10–15, ~4.5 phút, diễn giải & demo app); bấm giờ tổng duyệt |
+| 27 | Chạy lại toàn bộ từ đầu trên môi trường sạch; quay video báo cáo ≤ 12 phút: Trường trình bày Phần 1 (Slide 1–4, ~3.5 phút), gắn link video mở trực tiếp vào bìa và phụ lục Word | Tham gia quay video: Trí trình bày Phần 2 (Slide 5–9, ~4.0 phút, thuật toán & thực nghiệm) | Tham gia quay video: Trung trình bày Phần 3 (Slide 10–15, ~4.5 phút, diễn giải & demo app); bấm giờ tổng duyệt |
 | 28 | Đóng gói duy nhất `Nhom12_WorldHappinessClustering.zip`; merge `main`, push GitHub; nộp bài | Tham gia phản biện chéo 20 câu hỏi vấn đáp | Tham gia phản biện chéo 20 câu hỏi vấn đáp |
 
 **Nhịp chung:** họp 1 buổi/tuần vào đầu tuần (Ngày 1, 8, 15, 22), mỗi buổi 45 phút: chốt tiến độ mốc trước, gỡ blocker, chốt việc tuần. Ngoài buổi họp, trao đổi qua PR + checklist trong tài liệu này. Commit bằng Tiếng Việt theo chuẩn **Human-Centric Commit Protocol** (ví dụ: `thuật toán: tự cài đặt Ward linkage và DBSCAN from scratch`), tuyệt đối không nhắc đến AI hay bot. Nhánh `feat/<tên>-<nội-dung>` → PR → chỉ nhóm trưởng merge `main`.
