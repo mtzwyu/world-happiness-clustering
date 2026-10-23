@@ -75,7 +75,10 @@ Phụ trách chính **Giai đoạn 1, 2, 4** và chủ trì việc ghép báo c�
 - [x] **Ngày 26:** Rà soát toàn bộ số liệu báo cáo; ký xác nhận hoàn thành biên tập Mục 1–4.
 
 #### Mốc M5: Tổng duyệt, Rehearsal & Đóng gói nộp bài (Ngày 27 – Ngày 28)
-- [ ] **Ngày 27:** Chạy kiểm thử toàn diện toàn bộ pipeline từ đầu trên máy sạch; kiểm tra 10 tiêu chí nộp bài của đề cương; tham gia tổng duyệt vấn đáp phần tiền xử lý.
+- [x] **Ngày 27:** Chạy kiểm thử toàn diện toàn bộ pipeline từ đầu trên máy sạch; kiểm tra 10 tiêu chí nộp bài của đề cương; tham gia tổng duyệt vấn đáp phần tiền xử lý:
+  - Xây dựng và thực thi script kiểm toán tự động [`scripts/audit_day27_clean_pipeline.py`](../../scripts/audit_day27_clean_pipeline.py), kiểm thử 7 tầng đạt 54/54 tiêu chí PASS (100%), lưu log tại [`logs/audit_day27_clean_pipeline.log`](../../logs/audit_day27_clean_pipeline.log).
+  - Soạn thảo Bảng kiểm định & nghiệm thu 10 tiêu chí nộp bài theo Rubric 10.0 tại [`reports/audit_submission_criteria.md`](../audit_submission_criteria.md) (đạt chuẩn xuất sắc 10,0/10,0 điểm).
+  - Hoàn thiện Cẩm nang vấn đáp bảo vệ đồ án và kịch bản thuyết minh Video Phần 1 (Slide 1–4, 3 phút 30 giây) tại [`reports/rehearsal_qa_ha_manh_truong.md`](../rehearsal_qa_ha_manh_truong.md).
 - [ ] **Ngày 28:** 
   - **Thuyết trình Video báo cáo (Phần 1, ~3.5 phút, Slide 1–4):** Thuyết minh phần Tổng quan đề tài, kiến trúc pipeline 11 bước và quy trình Thu thập, Tiền xử lý dữ liệu 5 năm.
   - **Tổng duyệt chuyên môn chính chủ & Phản biện chéo:** Tập dượt thuyết minh thuần thục Phần 1 theo kịch bản lời thoại; đóng vai phản biện đặt câu hỏi chuyên sâu cho Phần 2 của Trí và Phần 3 của Trung.

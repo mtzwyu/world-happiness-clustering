@@ -70,7 +70,6 @@ MIN_IMAGES = 8
 COVER_KEYWORDS = [
     "TRƯỜNG ĐẠI HỌC CÔNG THƯƠNG TP. HỒ CHÍ MINH",
     "KHOA CÔNG NGHỆ THÔNG TIN",
-    "BỘ MÔN KHOA HỌC DỮ LIỆU",
     "KHAI THÁC DỮ LIỆU",
     "ĐỀ TÀI 16",
     "Đinh Nguyễn Trọng Nghĩa",
