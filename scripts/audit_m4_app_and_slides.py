@@ -47,7 +47,8 @@ project_root = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(project_root))
 
 APP_PATH = project_root / "app" / "app.py"
-SLIDES_PATH = project_root / "reports" / "presentation" / "slides.md"
+PPTX_PATH = project_root / "reports" / "presentation" / "Nhom12_BaoCao_Slides.pptx"
+ROOT_PPTX_PATH = project_root / "Nhom12_BaoCao_Slides.pptx"
 LOG_DIR = project_root / "logs"
 LOG_FILE = LOG_DIR / "audit_m4_app.log"
 
@@ -439,63 +440,59 @@ def audit() -> int:
                 all_passed = False
 
     # ----------------------------------------------------------------------
-    # MỤC 4: Bộ slide 15 trang
+    # MỤC 4: Bộ slide thuyết trình PowerPoint chính thức
     # ----------------------------------------------------------------------
-    log("\n--- [MỤC 4] BỘ SLIDE reports/presentation/slides.md ---")
-    if not SLIDES_PATH.exists():
-        check("Tệp slides.md tồn tại", False, "không tìm thấy tệp")
+    log("\n--- [MỤC 4] BỘ SLIDE THUYẾT TRÌNH POWERPOINT (Nhom12_BaoCao_Slides.pptx) ---")
+    if not PPTX_PATH.exists():
+        check("Tệp Nhom12_BaoCao_Slides.pptx tồn tại", False, "không tìm thấy tệp")
         all_passed = False
     else:
-        slides_text = SLIDES_PATH.read_text(encoding="utf-8")
-        check("Tệp slides.md tồn tại", True, f"{len(slides_text.splitlines())} dòng")
+        pptx_size = PPTX_PATH.stat().st_size
+        check("Tệp Nhom12_BaoCao_Slides.pptx tồn tại", True, f"{round(pptx_size / (1024 * 1024), 2)} MB")
 
-        headings = re.findall(r"^## Slide (\d+):", slides_text, flags=re.MULTILINE)
-        numbers = [int(value) for value in headings]
-        slide_count = len(numbers)
-        if not check(
-            f"Đủ slide đánh số ({', '.join(str(x) for x in EXPECTED_SLIDE_COUNTS)} slide)",
-            slide_count in EXPECTED_SLIDE_COUNTS,
-            f"tìm thấy {slide_count} slide",
-        ):
-            all_passed = False
-        if not check(
-            f"Số thứ tự slide liên tục từ 1 đến {slide_count}",
-            numbers == list(range(1, slide_count + 1)),
-            f"{numbers}",
-        ):
+        root_exists = ROOT_PPTX_PATH.exists() and ROOT_PPTX_PATH.stat().st_size > 1000000
+        if not check("Tệp Nhom12_BaoCao_Slides.pptx tại thư mục gốc tồn tại và hợp lệ", root_exists, f"{ROOT_PPTX_PATH}"):
             all_passed = False
 
-        # Mỗi slide phải có ít nhất 3 gạch đầu dòng
-        slide_blocks = re.split(r"^## Slide \d+:", slides_text, flags=re.MULTILINE)[1:]
-        thin_slides = [
-            index + 1
-            for index, block in enumerate(slide_blocks)
-            if sum(1 for line in block.splitlines() if line.strip().startswith("-")) < 3
-        ]
-        if not check(
-            "Mỗi slide có tối thiểu 3 gạch đầu dòng nội dung",
-            not thin_slides,
-            f"slide thiếu nội dung: {thin_slides}" if thin_slides else f"{slide_count}/{slide_count} slide đủ nội dung",
-        ):
-            all_passed = False
+        try:
+            from pptx import Presentation
+            prs = Presentation(str(PPTX_PATH))
+            slide_count = len(prs.slides)
+            if not check(
+                f"Đủ slide thuyết trình ({', '.join(str(x) for x in EXPECTED_SLIDE_COUNTS)} slide)",
+                slide_count in EXPECTED_SLIDE_COUNTS,
+                f"tìm thấy {slide_count} slide",
+            ):
+                all_passed = False
 
-        lowered = slides_text.lower()
-        found_placeholders = [token for token in PLACEHOLDER_TOKENS if token in lowered]
-        if not check(
-            "Không chứa ký tự placeholder giả lập",
-            not found_placeholders,
-            f"phát hiện: {found_placeholders}" if found_placeholders else "sạch placeholder",
-        ):
-            all_passed = False
+            w_in = round(prs.slide_width.inches, 3)
+            h_in = round(prs.slide_height.inches, 3)
+            aspect_ok = (abs(w_in - 13.333) < 0.05 and abs(h_in - 7.5) < 0.05)
+            if not check("Kích thước slide chuẩn Widescreen 16:9", aspect_ok, f"{w_in} x {h_in} inches"):
+                all_passed = False
 
-        # Truy vết vài số liệu chủ chốt từ CSV vào slide
-        required_figures = ["781", "142", "Silhouette", "ISO-3", "K-Means", "Ward"]
-        missing_figures = [item for item in required_figures if item not in slides_text]
-        if not check(
-            "Slide chứa các số liệu dẫn chứng chủ chốt",
-            not missing_figures,
-            f"thiếu: {missing_figures}" if missing_figures else ", ".join(required_figures),
-        ):
+            images_count = sum(1 for s in prs.slides for shape in s.shapes if shape.shape_type == 13)
+            if not check("Slide chứa hình ảnh thực chứng nhúng", images_count >= 7, f"{images_count} hình ảnh"):
+                all_passed = False
+
+            all_text = []
+            for s in prs.slides:
+                for shape in s.shapes:
+                    if shape.has_text_frame:
+                        all_text.append(shape.text_frame.text)
+            slide_full_text = " ".join(all_text)
+
+            required_figures = ["781", "142", "Silhouette", "ISO-3", "K-Means", "Ward"]
+            missing_figures = [item for item in required_figures if item.lower() not in slide_full_text.lower()]
+            if not check(
+                "Slide chứa các số liệu dẫn chứng chủ chốt",
+                not missing_figures,
+                f"thiếu: {missing_figures}" if missing_figures else ", ".join(required_figures),
+            ):
+                all_passed = False
+
+        except Exception as error:
+            check("Nạp tệp PowerPoint thành công", False, f"{type(error).__name__}: {error}")
             all_passed = False
 
     # ----------------------------------------------------------------------
@@ -504,7 +501,7 @@ def audit() -> int:
     log("\n================================================================================")
     if all_passed:
         log("KẾT LUẬN: TOÀN BỘ HẠNG MỤC KIỂM THỬ MỐC M4 ĐÃ ĐẠT CHUẨN (PASS 100%).")
-        log("Xác nhận: app/app.py có 4 tab tương tác thật kết nối dữ liệu đã sinh và slides.md đủ 15 slide.")
+        log("Xác nhận: app/app.py có 4 tab tương tác thật kết nối dữ liệu đã sinh và tệp Nhom12_BaoCao_Slides.pptx đạt chuẩn.")
     else:
         log("KẾT LUẬN: CÓ HẠNG MỤC CHƯA ĐẠT CHUẨN — CẦN KHẮC PHỤC TRƯỚC KHI CHỐT MỐC M4.")
     log("================================================================================")
