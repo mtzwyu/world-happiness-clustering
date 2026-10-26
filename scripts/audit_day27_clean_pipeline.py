@@ -5,7 +5,7 @@ Phụ trách: Hà Mạnh Trường (MSSV: 2045240326, Nhóm trưởng Nhóm 12)
 Tài liệu căn cứ: reports/final_report/nhiem_vu_ha_manh_truong.md (Mốc M5, Ngày 27)
 
 Mục đích:
-Tự động hóa 100% quá trình kiểm toán và nghiệm thu toàn diện pipeline từ dữ liệu thô
+Quy trình kiểm toán và nghiệm thu toàn diện pipeline từ dữ liệu thô
 đến sản phẩm bàn giao cuối cùng nhằm bảo đảm tính tái lập (reproducibility) trên mọi máy chấm.
 
 Phạm vi 7 tầng kiểm thử:

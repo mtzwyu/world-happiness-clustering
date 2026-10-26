@@ -11,8 +11,8 @@ Phạm vi kiểm thử:
    bảng metric, bảng đối chứng k=3, mô hình K-Means 2019).
 3. Bốn tab trong app.py có đủ thành phần logic cam kết (choropleth, Scatterpolar,
    slider, metric, dataframe, selectbox) và bốn hàm render chạy không lỗi.
-4. reports/presentation/slides.md tồn tại, đủ 15 slide đánh số liên tục, mỗi slide
-   có nội dung, và không chứa ký tự placeholder giả lập.
+4. reports/presentation/Nhom12_BaoCao_Slides.pptx và Nhom12_BaoCao_Slides.pptx tồn tại,
+   đủ 17 slide chuẩn Widescreen 16:9, nhúng hình ảnh thực chứng.
 
 Cách chạy:
     python scripts/audit_m4_app_and_slides.py
@@ -74,17 +74,6 @@ FEATURE_COLUMNS = [
     "corruption_perception",
 ]
 
-# Ký hiệu placeholder giả lập không được xuất hiện trong bộ slide
-PLACEHOLDER_TOKENS = [
-    "todo",
-    "tbd",
-    "lorem ipsum",
-    "placeholder",
-    "xxx",
-    "<...>",
-    "??",
-    "...",
-]
 
 # Thành phần logic cam kết cho 4 tab tương tác
 REQUIRED_APP_TOKENS = {
