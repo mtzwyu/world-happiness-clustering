@@ -1,0 +1,65 @@
+2026-10-26 17:29:47,742 [INFO] === TẦNG 1: KIỂM THỬ DỮ LIỆU THÔ VÀ BỘ DỮ LIỆU TRUNG GIAN ===
+2026-10-26 17:29:47,742 [INFO] [PASS] T1.1_Raw_File_2015 — Đường dẫn: C:\Users\xpaga\Documents\data_mining\data\raw\2015.csv
+2026-10-26 17:29:47,742 [INFO] [PASS] T1.1_Raw_File_2016 — Đường dẫn: C:\Users\xpaga\Documents\data_mining\data\raw\2016.csv
+2026-10-26 17:29:47,742 [INFO] [PASS] T1.1_Raw_File_2017 — Đường dẫn: C:\Users\xpaga\Documents\data_mining\data\raw\2017.csv
+2026-10-26 17:29:47,742 [INFO] [PASS] T1.1_Raw_File_2018 — Đường dẫn: C:\Users\xpaga\Documents\data_mining\data\raw\2018.csv
+2026-10-26 17:29:47,742 [INFO] [PASS] T1.1_Raw_File_2019 — Đường dẫn: C:\Users\xpaga\Documents\data_mining\data\raw\2019.csv
+2026-10-26 17:29:48,398 [INFO] [PASS] T1.2_Interim_CSV_Exists — Kích thước: 90691 bytes
+2026-10-26 17:29:48,404 [INFO] [PASS] T1.3_Interim_Exact_Row_Count_781 — Số dòng thực tế: 781
+2026-10-26 17:29:48,404 [INFO] [PASS] T1.4_Interim_Schema_13_Columns — Danh sách cột khớp 100%: True
+2026-10-26 17:29:48,407 [INFO] [PASS] T1.5_Interim_Zero_Missing_Core_Features — Tổng số giá trị khuyết ở 6 đặc trưng: 0
+2026-10-26 17:29:48,409 [INFO] [PASS] T1.6_UAE_2018_Excluded_Cleanly — Số bản ghi UAE 2018: 0 (chuẩn = 0)
+2026-10-26 17:29:48,409 [INFO] [PASS] T1.7_Yearly_Sample_Distribution — Phân bố các năm: {2015: 158, 2016: 157, 2019: 156, 2017: 155, 2018: 155}
+2026-10-26 17:29:48,409 [INFO] [PASS] T1.8_Valid_ISO3_Alpha_Codes — Tất cả 781 dòng đều có mã ISO-3 3 ký tự
+2026-10-26 17:29:48,410 [INFO] === TẦNG 2: KIỂM THỬ TÍNH TOÀN VẸN CỦA 4 JUPYTER NOTEBOOKS ===
+2026-10-26 17:29:48,410 [INFO] [PASS] T2_01_data_understanding_and_cleaning.ipynb_Cells — Số ô: 12 (yêu cầu >= 10)
+2026-10-26 17:29:48,410 [INFO] [PASS] T2_01_data_understanding_and_cleaning.ipynb_Executed_Outputs — Đã chạy có output: True, Không có ô báo lỗi đỏ: True
+2026-10-26 17:29:48,415 [INFO] [PASS] T2_02_exploratory_data_analysis.ipynb_Cells — Số ô: 11 (yêu cầu >= 10)
+2026-10-26 17:29:48,415 [INFO] [PASS] T2_02_exploratory_data_analysis.ipynb_Executed_Outputs — Đã chạy có output: True, Không có ô báo lỗi đỏ: True
+2026-10-26 17:29:48,416 [INFO] [PASS] T2_03_clustering_experiments_and_comparison.ipynb_Cells — Số ô: 12 (yêu cầu >= 10)
+2026-10-26 17:29:48,416 [INFO] [PASS] T2_03_clustering_experiments_and_comparison.ipynb_Executed_Outputs — Đã chạy có output: True, Không có ô báo lỗi đỏ: True
+2026-10-26 17:29:48,426 [INFO] [PASS] T2_04_cluster_profiling_and_evaluation.ipynb_Cells — Số ô: 14 (yêu cầu >= 10)
+2026-10-26 17:29:48,426 [INFO] [PASS] T2_04_cluster_profiling_and_evaluation.ipynb_Executed_Outputs — Đã chạy có output: True, Không có ô báo lỗi đỏ: True
+2026-10-26 17:29:48,427 [INFO] === TẦNG 3: KIỂM THỬ THUẬT TOÁN FROM-SCRATCH & QUY TẮC VÀNG ===
+2026-10-26 17:29:48,432 [INFO] [PASS] T3.1_Euclidean_Distance — Khoảng cách (0,0)-(3,4) = 5.000000
+2026-10-26 17:29:48,432 [INFO] [PASS] T3.2_Golden_Rule_Clustering_Features — CORE_FEATURES không chứa biến mục tiêu: ['gdp_per_capita', 'social_support', 'healthy_life_expectancy', 'freedom', 'corruption_perception', 'generosity']
+2026-10-26 17:29:48,433 [INFO] [PASS] T3.3_SimpleKMeans_Fit — Inertia = 0.1200
+2026-10-26 17:29:48,433 [INFO] [PASS] T3.4_Ward_Hierarchical_Fit — Số cụm tạo ra = 3
+2026-10-26 17:29:48,433 [INFO] [PASS] T3.5_Silhouette_Score_From_Scratch — Silhouette score = 0.9722
+2026-10-26 17:29:48,433 [INFO] [PASS] T3.6_DB_and_CH_Scores — DB = 0.0322, CH = 5000.0000
+2026-10-26 17:29:48,433 [INFO] [PASS] T3.7_SimplePCA_Fit_Transform — Tỷ lệ phương sai tích lũy: 1.0000
+2026-10-26 17:29:48,433 [INFO] === TẦNG 4: KIỂM THỬ ỨNG DỤNG DEMO TƯƠNG TÁC STREAMLIT ===
+2026-10-26 17:29:48,433 [INFO] [PASS] T4.1_App_File_Exists — Đường dẫn: C:\Users\xpaga\Documents\data_mining\app\app.py
+2026-10-26 17:29:48,438 [INFO] [PASS] T4.2_App_AST_Valid_Syntax — app.py hợp lệ cú pháp Python 100%
+2026-10-26 17:29:48,438 [INFO] [PASS] T4.3_App_Contains_All_4_Tabs — Tab1=True, Tab2=True, Tab3=True, Tab4=True
+2026-10-26 17:29:48,438 [INFO] [PASS] T4.4_App_Uses_Streamlit_Cache — Đã bọc @st.cache_data cho các hàm nạp dữ liệu
+2026-10-26 17:29:48,439 [INFO] === TẦNG 5: KIỂM THỬ BẢNG SỐ LIỆU VÀ BIỂU ĐỒ THỰC CHỨNG ===
+2026-10-26 17:29:48,441 [INFO] [PASS] T5_Table_cluster_trends.csv — Số dòng: 15
+2026-10-26 17:29:48,442 [INFO] [PASS] T5_Table_contrast_k3_by_year.csv — Số dòng: 10
+2026-10-26 17:29:48,442 [INFO] [PASS] T5_Table_cross_year_matching.csv — Số dòng: 12
+2026-10-26 17:29:48,444 [INFO] [PASS] T5_Table_dbscan_sweep.csv — Số dòng: 60
+2026-10-26 17:29:48,444 [INFO] [PASS] T5_Table_k_sensitivity_by_year.csv — Số dòng: 40
+2026-10-26 17:29:48,445 [INFO] [PASS] T5_Table_model_comparison_metrics_2019.csv — Số dòng: 3
+2026-10-26 17:29:48,446 [INFO] [PASS] T5_Table_model_comparison_metrics_by_year.csv — Số dòng: 25
+2026-10-26 17:29:48,447 [INFO] [PASS] T5_Table_stability_ari.csv — Số dòng: 25
+2026-10-26 17:29:48,447 [INFO] [PASS] T5_Figures_Count_GTE_13 — Số hình thực tế: 17 hình (yêu cầu >= 13)
+2026-10-26 17:29:48,447 [INFO] [PASS] T5_Figure_Size_boxplots_outliers.png — Dung lượng: 208.0 KB
+2026-10-26 17:29:48,447 [INFO] [PASS] T5_Figure_Size_cluster_count_trend.png — Dung lượng: 183.3 KB
+2026-10-26 17:29:48,447 [INFO] [PASS] T5_Figure_Size_correlation_heatmap.png — Dung lượng: 285.8 KB
+2026-10-26 17:29:48,447 [INFO] [PASS] T5_Figure_Size_demo_app_overview.png — Dung lượng: 1162.0 KB
+2026-10-26 17:29:48,448 [INFO] [PASS] T5_Figure_Size_elbow_silhouette_kmeans.png — Dung lượng: 218.6 KB
+2026-10-26 17:29:48,448 [INFO] === TẦNG 6: KIỂM THỬ VĂN BẢN BÁO CÁO WORD VÀ XUẤT BẢN PDF ===
+2026-10-26 17:29:48,448 [INFO] [PASS] T6.1_Word_File_Exists — Dung lượng Word: 4.43 MB
+2026-10-26 17:29:48,448 [INFO] [PASS] T6.2_PDF_File_Exists — Dung lượng PDF: 1.38 MB
+2026-10-26 17:29:48,592 [INFO] [PASS] T6.3_Word_Contains_All_5_Chapters — Đủ 5 chương từ Tổng quan đến Kết luận
+2026-10-26 17:29:48,594 [INFO] [PASS] T6.4_Word_Page_Margins_Standard_3_2_3_3 — Lề thực tế: Trái=3.0cm, Phải=2.0cm, Trên=3.0cm, Dưới=3.0cm
+2026-10-26 17:29:48,594 [INFO] === TẦNG 7: KIỂM THỬ BỘ SLIDE THUYẾT TRÌNH POWERPOINT ===
+2026-10-26 17:29:48,594 [INFO] [PASS] T7.1_PPTX_File_Exists — Dung lượng PPTX: 2.41 MB
+2026-10-26 17:29:48,594 [INFO] [PASS] T7.2_Root_PPTX_File_Exists — Dung lượng PPTX thư mục gốc: 2.41 MB
+2026-10-26 17:29:48,791 [INFO] [PASS] T7.3_Slide_Count_Exact_17 — Tổng số slide: 17 (chuẩn = 17)
+2026-10-26 17:29:48,791 [INFO] [PASS] T7.4_Slide_Widescreen_16_9 — Kích thước slide: 13.333 x 7.5 inches
+2026-10-26 17:29:48,799 [INFO] [PASS] T7.5_Embedded_Visual_Images — Số hình ảnh thực chứng nhúng trong slide: 8
+2026-10-26 17:29:48,799 [INFO] =========================================================================
+2026-10-26 17:29:48,799 [INFO] TỔNG KẾT KIỂM THỬ MÁY SẠCH NGÀY 27: 54/54 TIÊU CHÍ PASS (100.0%)
+2026-10-26 17:29:48,799 [INFO] =========================================================================
+2026-10-26 17:29:48,799 [INFO] TẤT CẢ 7 TẦNG ĐỀU ĐẠT CHUẨN TỐI ĐA (100% REPRODUCIBLE)!

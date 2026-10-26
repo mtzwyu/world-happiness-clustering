@@ -1,0 +1,64 @@
+================================================================================
+BÁO CÁO KIỂM THỬ ỨNG DỤNG DEMO VÀ BỘ SLIDE — MỐC M4
+Người thực hiện: Ngô Quang Trung (MSSV: 2045240325)
+Đề tài 16: Phân nhóm quốc gia theo các yếu tố hạnh phúc (World Happiness Report)
+Thời gian thực hiện: Mốc M4 (Ngày 22 – Ngày 26)
+================================================================================
+
+--- [MỤC 1] CÚ PHÁP VÀ NẠP MODULE app/app.py ---
+PASS: Tệp app/app.py tồn tại — 727 dòng
+PASS: Cú pháp Python hợp lệ (ast.parse) — phân tích thành công
+PASS: Nạp module app.py thành công — import các gói phụ thuộc không lỗi
+
+--- [MỤC 2] HÀM NẠP DỮ LIỆU CACHE VÀ SCHEMA TRẢ VỀ ---
+PASS: Sáu hàm nạp dữ liệu được bọc @st.cache_data — đủ 6/6 hàm
+PASS: load_interim() trả DataFrame 781 dòng đủ cột — 781 dòng, 13 cột
+PASS: load_cluster_labels('K-Means') trả nhãn cụm 5 năm — 781 dòng, 5 năm
+PASS: load_cluster_labels('Ward') trả nhãn cụm 5 năm — 781 dòng, 5 năm
+PASS: load_country_shift() trả bảng 156 quốc gia đủ cột — 156 dòng, cột ['country', 'iso3', 'cluster_2015', 'cluster_2016']
+PASS: load_metrics() trả bảng metric 5 cấu hình × 5 năm — 25 dòng
+PASS: load_contrast_kpi() trả bảng đối chứng 10 dòng — 10 dòng
+PASS: load_kmeans_model(2019) trả 3 tâm cụm và scaler 6 đặc trưng — 3 tâm cụm
+PASS: build_cluster_frame(2019) ghép nhãn cụm 156 quốc gia — 156 dòng
+
+--- [MỤC 3] BỐN TAB TƯƠNG TÁC TRONG app/app.py ---
+PASS: st.tabs() khai báo đúng 4 tab — 4 tab: ['Tổng quan cụm & Radar Chart', 'Bản đồ thế giới', 'Tra cứu quốc gia', 'Thử nghiệm gán nhãn (What-if)']
+PASS: Có thành phần: Choropleth (Tab 2) — tìm thấy 'choropleth'
+PASS: Có thành phần: Radar Scatterpolar (Tab 1, 4) — tìm thấy 'Scatterpolar'
+PASS: Có thành phần: Thanh trượt Slider (Tab 4) — tìm thấy '.slider('
+PASS: Có thành phần: Thẻ KPI Metric (Tab 1, 3) — tìm thấy '.metric('
+PASS: Có thành phần: Bảng dữ liệu Dataframe — tìm thấy 'st.dataframe'
+PASS: Có thành phần: Bộ chọn Selectbox (Tab 3) — tìm thấy 'st.selectbox'
+PASS: Có thành phần: Cache dữ liệu — tìm thấy '@st.cache_data'
+PASS: Khối nội dung 'with tab1:' tồn tại
+PASS: Khối nội dung 'with tab2:' tồn tại
+PASS: Khối nội dung 'with tab3:' tồn tại
+PASS: Khối nội dung 'with tab4:' tồn tại
+PASS: Hàm dựng nội dung tab 'render_tab_overview' đầy đủ — 85 dòng
+PASS: Hàm dựng nội dung tab 'render_tab_map' đầy đủ — 52 dòng
+PASS: Hàm dựng nội dung tab 'render_tab_lookup' đầy đủ — 64 dòng
+PASS: Hàm dựng nội dung tab 'render_tab_whatif' đầy đủ — 82 dòng
+PASS: Chạy thử render_tab_overview(2019, K-Means) — không lỗi
+PASS: Chạy thử render_tab_overview(2016, Ward) — không lỗi
+PASS: Chạy thử render_tab_map(2019, K-Means) — không lỗi
+PASS: Chạy thử render_tab_lookup() — không lỗi
+PASS: Chạy thử render_tab_whatif() — không lỗi
+PASS: AppTest chạy toàn bộ app không phát sinh ngoại lệ — 0 ngoại lệ
+PASS: AppTest: hiển thị đúng 4 tab — 4 tab
+PASS: AppTest: đủ 6 thanh trượt What-if — 6 thanh trượt
+PASS: AppTest: đủ thẻ KPI — 12 thẻ
+PASS: AppTest: biểu đồ Plotly hiển thị đủ — 4 biểu đồ
+PASS: Đổi thuật toán thì chỉ số KPI thay đổi (không hardcode) — K-Means vs Ward cho kết quả khác nhau
+
+--- [MỤC 4] BỘ SLIDE THUYẾT TRÌNH POWERPOINT (Nhom12_BaoCao_Slides.pptx) ---
+PASS: Tệp Nhom12_BaoCao_Slides.pptx tồn tại — 2.41 MB
+PASS: Tệp Nhom12_BaoCao_Slides.pptx tại thư mục gốc tồn tại và hợp lệ — C:\Users\xpaga\Documents\data_mining\Nhom12_BaoCao_Slides.pptx
+PASS: Đủ slide thuyết trình (15, 16, 17 slide) — tìm thấy 17 slide
+PASS: Kích thước slide chuẩn Widescreen 16:9 — 13.333 x 7.5 inches
+PASS: Slide chứa hình ảnh thực chứng nhúng — 8 hình ảnh
+PASS: Slide chứa các số liệu dẫn chứng chủ chốt — 781, 142, Silhouette, ISO-3, K-Means, Ward
+
+================================================================================
+KẾT LUẬN: TOÀN BỘ HẠNG MỤC KIỂM THỬ MỐC M4 ĐÃ ĐẠT CHUẨN (PASS 100%).
+Xác nhận: app/app.py có 4 tab tương tác thật kết nối dữ liệu đã sinh và tệp Nhom12_BaoCao_Slides.pptx đạt chuẩn.
+================================================================================
