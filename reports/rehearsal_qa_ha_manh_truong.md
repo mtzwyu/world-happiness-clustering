@@ -83,7 +83,7 @@
     1. Khi người dùng điều chỉnh 6 thanh trượt trên giao diện Streamlit, giá trị đầu vào được chuẩn hóa theo đúng dải min-max của năm mô hình được chọn.
     2. Hệ thống tải vector trọng tâm đã được huấn luyện sẵn của 3 cụm ($\mu_0, \mu_1, \mu_2$).
     3. Tính toán khoảng cách Euclid từ vector mới $x_{\text{new}}$ đến từng tâm cụm: $d_j = \lVert x_{\text{new}} - \mu_j \rVert$.
-    4. Gán mẫu mới vào cụm có khoảng cách ngắn nhất: $C^* = \operatorname{argmin}_j d_j$.
+    4. Gán mẫu mới vào cụm có khoảng cách ngắn nhất: $C^* = \arg\min_j d_j$.
   - Đồng thời, giao diện ngay lập tức vẽ chồng vector mới này lên biểu đồ Radar của 3 cụm để người dùng trực quan thấy quốc gia giả định đó vượt trội hay tụt hậu ở tiêu chí nào so với mặt bằng chung thế giới."
 
 ---
