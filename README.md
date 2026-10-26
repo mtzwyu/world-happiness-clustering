@@ -101,8 +101,9 @@ data_mining/
 │   ├── raw/                       # Dữ liệu gốc WHR từng năm (2015.csv ... 2019.csv)
 │   ├── interim/                   # Dữ liệu 5 năm đã làm sạch và hợp nhất (happiness_merged.csv)
 │   └── processed/                 # Kết quả phân nhóm, bảng dịch chuyển cụm và ma trận đối chứng
+├── logs/                          # Nhật ký kiểm định chất lượng các mốc thực nghiệm đạt chuẩn 100% PASS
 ├── models/                        # Tham số mô hình đã huấn luyện, tâm cụm và scaler (JSON)
-├── notebooks/                     # Quy trình nghiên cứu thực nghiệm theo chuẩn Khoa học dữ liệu
+├── notebooks/                     # Quy trình nghiên cứu thực nghiệm theo chuẩn Khoa học dữ liệu (4 Notebooks)
 │   ├── 01_data_understanding_and_cleaning.ipynb
 │   ├── 02_exploratory_data_analysis.ipynb
 │   ├── 03_clustering_experiments_and_comparison.ipynb
@@ -110,18 +111,23 @@ data_mining/
 ├── reports/
 │   ├── figures/                   # Biểu đồ khoa học xuất độ phân giải cao (300 DPI)
 │   ├── tables/                    # Bảng thống kê định lượng và độ đo benchmark (CSV)
-│   └── final_report/              # Tài liệu báo cáo phân tích chi tiết (Markdown/Word/PDF)
+│   └── final_report/              # Tài liệu báo cáo phân tích chi tiết (Word / PDF)
 ├── scripts/
-│   ├── verify_scratch_implementations.py  # Script kiểm thử xác minh thuật toán vs Scikit-Learn
-│   ├── generate_m3_shift_and_figures.py   # Script tự động tính toán bảng dịch chuyển cụm
-│   └── audit_m*.py                        # Bộ scripts kiểm tra tính toàn vẹn dữ liệu
+│   ├── check_environment.py              # Script kiểm tra nhanh môi trường cài đặt
+│   ├── verify_scratch_implementations.py # Script kiểm chứng thuật toán From-scratch vs Scikit-Learn
+│   ├── audit_day27_clean_pipeline.py     # Script kiểm thử toàn diện máy sạch 7 tầng (54/54 tiêu chí)
+│   └── audit_m*.py                       # Kịch bản kiểm toán chi tiết từng mốc nghiên cứu
 ├── src/
 │   ├── data/                      # Module tải và tiền xử lý dữ liệu
 │   ├── features/                  # Module chuẩn hóa thang đo và PCA tự viết
 │   ├── models/                    # Cài đặt K-Means, Ward, DBSCAN và các metrics from-scratch
 │   └── visualization/             # Thư viện hàm vẽ biểu đồ trực quan hóa
+├── Nhom12_BaoCao.docx             # Báo cáo đồ án khoa học hoàn chỉnh 5 Chương (file chính thức)
+├── Nhom12_BaoCao.pdf              # Bản xuất bản PDF chất lượng cao (file chính thức)
+├── Nhom12_BaoCao_Slides.pptx      # Slide thuyết trình 17 trang Widescreen 16:9 (file chính thức)
+├── HUONG_DAN_CHAY.md              # Bản hướng dẫn chi tiết quy trình cài đặt và vận hành đồ án
 ├── requirements.txt               # Danh sách thư viện phụ thuộc
-└── README.md                      # Tài liệu hướng dẫn dự án
+└── README.md                      # Tài liệu tổng quan dự án
 ```
 
 ---
