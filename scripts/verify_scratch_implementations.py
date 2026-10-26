@@ -192,4 +192,4 @@ if failures:
     print(f"\nTổng kết: {len(failures)} kiểm tra FAIL: {failures}")
     raise SystemExit(1)
 
-print("\nTổng kết: tất cả kiểm tra tự động đều PASS.")
+print("\nTổng kết: tất cả kiểm tra from-scratch đều PASS.")
