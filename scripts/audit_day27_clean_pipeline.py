@@ -363,10 +363,10 @@ class PipelineAuditor:
     def audit_layer7_presentation_slides(self):
         logger.info("=== TẦNG 7: KIỂM THỬ BỘ SLIDE THUYẾT TRÌNH POWERPOINT ===")
         pptx_file = PROJECT_ROOT / "reports" / "presentation" / "Nhom12_BaoCao_Slides.pptx"
-        slides_md = PROJECT_ROOT / "reports" / "presentation" / "slides.md"
+        root_pptx_file = PROJECT_ROOT / "Nhom12_BaoCao_Slides.pptx"
 
         self.record("T7.1_PPTX_File_Exists", pptx_file.exists() and pptx_file.stat().st_size > 1000000, f"Dung lượng PPTX: {pptx_file.stat().st_size / (1024*1024):.2f} MB")
-        self.record("T7.2_Slides_Markdown_Exists", slides_md.exists(), f"Đường dẫn: {slides_md}")
+        self.record("T7.2_Root_PPTX_File_Exists", root_pptx_file.exists() and root_pptx_file.stat().st_size > 1000000, f"Dung lượng PPTX thư mục gốc: {root_pptx_file.stat().st_size / (1024*1024):.2f} MB")
 
         if pptx_file.exists():
             try:

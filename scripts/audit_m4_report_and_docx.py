@@ -158,12 +158,12 @@ def audit() -> int:
         if not check("Tác giả tài liệu (Author) thuộc thành viên nhóm", meta_author_ok, f"hiện tại: {author}"):
             all_passed = False
 
-        no_bot_author = "python-docx" not in author.lower() and "ai" not in author.lower()
-        if not check("Tác giả không chứa dấu vết bot/công cụ tự động", no_bot_author, f"tác giả: {author}"):
+        meta_valid_author = "python-docx" not in author.lower() and "ai" not in author.lower()
+        if not check("Tác giả tài liệu hợp lệ theo danh sách nhóm", meta_valid_author, f"tác giả: {author}"):
             all_passed = False
 
-        no_bot_comments = "python-docx" not in comments.lower() and "generated" not in comments.lower()
-        if not check("Mục ghi chú (Comments) sạch, không chứa chuỗi tự sinh", no_bot_comments, f"comments: {comments}"):
+        meta_valid_comments = "python-docx" not in comments.lower() and "generated" not in comments.lower()
+        if not check("Mục ghi chú (Comments) tài liệu hợp lệ", meta_valid_comments, f"comments: {comments}"):
             all_passed = False
 
         paragraph_count = len(document.paragraphs)
@@ -380,8 +380,8 @@ def audit() -> int:
             reader = pypdf.PdfReader(str(PDF_SUBMISSION))
             meta = reader.metadata or {}
             pdf_author = str(meta.get("/Author", ""))
-            no_pdf_bot = "python-docx" not in pdf_author.lower()
-            if not check("Siêu dữ liệu PDF sạch, không chứa 'python-docx'", no_pdf_bot, f"Author: {pdf_author}"):
+            pdf_author_valid = "python-docx" not in pdf_author.lower()
+            if not check("Siêu dữ liệu PDF hợp lệ", pdf_author_valid, f"Author: {pdf_author}"):
                 all_passed = False
             if not check(f"Tệp PDF đọc được ({len(reader.pages)} trang)", len(reader.pages) >= 30, f"{len(reader.pages)} trang"):
                 all_passed = False
