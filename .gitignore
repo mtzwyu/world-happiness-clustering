@@ -72,8 +72,3 @@ docs/skill_topics/
 
 *.zip
 *.rar
-
-# Logs
-logs/
-*.log
-

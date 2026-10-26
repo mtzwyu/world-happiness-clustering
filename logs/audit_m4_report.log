@@ -1,0 +1,52 @@
+================================================================================
+BÁO CÁO KIỂM TOÁN CHẤT LƯỢNG BÁO CÁO WORD VÀ TỆP NỘP BÀI — MỐC M4
+Người thực hiện: Hà Mạnh Trường (MSSV: 2045240326)
+Đề tài 16: Phân nhóm quốc gia theo các yếu tố hạnh phúc (World Happiness Report)
+Thời gian thực hiện: Mốc M4 (Ngày 22 – Ngày 26)
+================================================================================
+
+--- [MỤC 1] SIÊU DỮ LIỆU VÀ CẤU TRÚC TỆP WORD NỘP BÀI ---
+PASS: Tệp Nhom12_BaoCao.docx tồn tại — reports\final_report\Nhom12_BaoCao.docx
+PASS: Tệp Nhom12_BaoCao.docx dung lượng trên 50 KB — 4642571 bytes (4.43 MB)
+PASS: Tệp Nhom12_BaoCao.docx nạp thành công bằng chuẩn OOXML — cấu trúc tài liệu hợp lệ
+PASS: Tác giả tài liệu (Author) thuộc thành viên nhóm — hiện tại: Hà Mạnh Trường
+PASS: Tác giả tài liệu hợp lệ theo danh sách nhóm — tác giả: Hà Mạnh Trường
+PASS: Mục ghi chú (Comments) tài liệu hợp lệ — comments: 
+PASS: Tệp đủ đoạn văn (>= 100) — 338 đoạn
+PASS: Tệp đủ bảng biểu (>= 5) — 17 bảng
+PASS: Tệp đủ hình ảnh (>= 8) — 12 hình
+
+--- [MỤC 2] ĐỊNH DẠNG IN ẤN VÀ TRANG BÌA ---
+PASS: Font nội dung là Times New Roman — font hiện tại: Times New Roman
+PASS: Cỡ chữ nội dung 13pt — 13.0 pt
+PASS: Giãn cách dòng 1.5 lines — 1.5 lines
+PASS: Canh lề chuẩn (trái 3,0 cm; phải 2,0 cm; trên 3,0 cm; dưới 3,0 cm) — {'trái': 3.0, 'phải': 2.0, 'trên': 3.0, 'dưới': 3.0}
+PASS: Heading 1 định dạng in hoa, đậm, thẳng — bold=True, italic=None
+PASS: Heading 2 định dạng chữ thường, đậm, thẳng — bold=True, italic=None
+PASS: Heading 3 định dạng chữ thường, nghiêng — bold=None, italic=True
+PASS: Toàn bộ 14 tiêu đề Heading 1 đều là chữ in hoa — số lượng: 14
+PASS: Trang bìa có viền khung (pgBorders)
+PASS: Footer có trường đánh số trang (PAGE) — đã chèn trường PAGE
+PASS: Trang bìa có đủ thông tin trường, học phần, đề tài, giảng viên, sinh viên — đủ thông tin
+
+--- [MỤC 3] ĐỐI CHIẾU SỐ LIỆU GIỮA BÁO CÁO VÀ CÁC TỆP CSV ---
+PASS: Báo cáo Word có đủ 5 chương — tìm thấy chương: [1, 2, 3, 4, 5]
+PASS: Báo cáo ghi đúng 781 bản ghi sạch — interim 781 dòng
+PASS: Cỡ mẫu thô khớp 158/157/155/156/156 — {2015: 158, 2016: 157, 2017: 155, 2018: 156, 2019: 156}
+PASS: Số cụm tối ưu k* = 3 cho cả năm năm — k* theo năm: [3, 3, 3, 3, 3]
+PASS: Silhouette cực trị 0,2931 và 0,3436 khớp báo cáo — min 0,2931, max 0,3436
+PASS: Giá trị F của ANOVA khớp giữa báo cáo và dữ liệu — 2015: F=144,89; 2016: F=148,24; 2017: F=159,18; 2018: F=127,15; 2019: F=107,09
+PASS: Phân bố dịch chuyển 142/8/4/2 khớp báo cáo — {'Ổn định tuyệt đối': 142, 'Biến động trung gian': 8, 'Cải thiện nhóm (+)': 4, 'Suy giảm nhóm (-)': 2}
+PASS: Số ô khuyết 17 của bảng dịch chuyển khớp báo cáo — 17 ô khuyết
+PASS: Khoảng cách ghép cụm 0,0571–0,4196 khớp báo cáo — 0,0571 – 0,4196
+PASS: Số quốc gia 164 và 162 mã ISO-3 khớp báo cáo — 164 quốc gia, 162 mã ISO-3
+
+--- [MỤC 4] KIỂM TRA TỆP XUẤT BẢN PDF ---
+PASS: Tệp Nhom12_BaoCao.pdf tồn tại — 1.38 MB
+PASS: Siêu dữ liệu PDF hợp lệ — Author: Hà Mạnh Trường
+PASS: Tệp PDF đọc được (42 trang) — 42 trang
+
+================================================================================
+KẾT LUẬN: TOÀN BỘ HẠNG MỤC KIỂM TOÁN MỐC M4 ĐÃ ĐẠT CHUẨN (PASS 100%).
+Xác nhận: Tệp Báo cáo Nhom12_BaoCao.docx và PDF đạt chuẩn quy cách nộp bài.
+================================================================================
