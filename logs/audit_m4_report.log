@@ -7,13 +7,13 @@ Thời gian thực hiện: Mốc M4 (Ngày 22 – Ngày 26)
 
 --- [MỤC 1] SIÊU DỮ LIỆU VÀ CẤU TRÚC TỆP WORD NỘP BÀI ---
 PASS: Tệp Nhom12_BaoCao.docx tồn tại — reports\final_report\Nhom12_BaoCao.docx
-PASS: Tệp Nhom12_BaoCao.docx dung lượng trên 50 KB — 4642571 bytes (4.43 MB)
+PASS: Tệp Nhom12_BaoCao.docx dung lượng trên 50 KB — 4322564 bytes (4.12 MB)
 PASS: Tệp Nhom12_BaoCao.docx nạp thành công bằng chuẩn OOXML — cấu trúc tài liệu hợp lệ
 PASS: Tác giả tài liệu (Author) thuộc thành viên nhóm — hiện tại: Hà Mạnh Trường
 PASS: Tác giả tài liệu hợp lệ theo danh sách nhóm — tác giả: Hà Mạnh Trường
 PASS: Mục ghi chú (Comments) tài liệu hợp lệ — comments: 
-PASS: Tệp đủ đoạn văn (>= 100) — 338 đoạn
-PASS: Tệp đủ bảng biểu (>= 5) — 17 bảng
+PASS: Tệp đủ đoạn văn (>= 100) — 372 đoạn
+PASS: Tệp đủ bảng biểu (>= 5) — 18 bảng
 PASS: Tệp đủ hình ảnh (>= 8) — 12 hình
 
 --- [MỤC 2] ĐỊNH DẠNG IN ẤN VÀ TRANG BÌA ---
@@ -24,7 +24,7 @@ PASS: Canh lề chuẩn (trái 3,0 cm; phải 2,0 cm; trên 3,0 cm; dưới 3,0 
 PASS: Heading 1 định dạng in hoa, đậm, thẳng — bold=True, italic=None
 PASS: Heading 2 định dạng chữ thường, đậm, thẳng — bold=True, italic=None
 PASS: Heading 3 định dạng chữ thường, nghiêng — bold=None, italic=True
-PASS: Toàn bộ 14 tiêu đề Heading 1 đều là chữ in hoa — số lượng: 14
+PASS: Toàn bộ 16 tiêu đề Heading 1 đều là chữ in hoa — số lượng: 16
 PASS: Trang bìa có viền khung (pgBorders)
 PASS: Footer có trường đánh số trang (PAGE) — đã chèn trường PAGE
 PASS: Trang bìa có đủ thông tin trường, học phần, đề tài, giảng viên, sinh viên — đủ thông tin
@@ -42,9 +42,9 @@ PASS: Khoảng cách ghép cụm 0,0571–0,4196 khớp báo cáo — 0,0571 –
 PASS: Số quốc gia 164 và 162 mã ISO-3 khớp báo cáo — 164 quốc gia, 162 mã ISO-3
 
 --- [MỤC 4] KIỂM TRA TỆP XUẤT BẢN PDF ---
-PASS: Tệp Nhom12_BaoCao.pdf tồn tại — 1.38 MB
-PASS: Siêu dữ liệu PDF hợp lệ — Author: Hà Mạnh Trường
-PASS: Tệp PDF đọc được (42 trang) — 42 trang
+PASS: Tệp Nhom12_BaoCao.pdf tồn tại — 1.51 MB
+PASS: Siêu dữ liệu PDF hợp lệ — Author: 
+PASS: Tệp PDF đọc được (47 trang) — 47 trang
 
 ================================================================================
 KẾT LUẬN: TOÀN BỘ HẠNG MỤC KIỂM TOÁN MỐC M4 ĐÃ ĐẠT CHUẨN (PASS 100%).

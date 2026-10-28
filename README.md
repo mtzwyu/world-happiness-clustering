@@ -10,6 +10,8 @@
 
 **Hệ thống khai phá dữ liệu đa chiều và học máy không giám sát (Unsupervised Learning) phân tích động thái phát triển và phân tầng chất lượng sống của các quốc gia trên thế giới qua dữ liệu World Happiness Report (2015 – 2019).**
 
+> 📺 **Video thuyết trình báo cáo (YouTube, ≤ 12 phút):** [https://youtu.be/YbmrPYctDg0?si=w0s5sPbvQadSknc6](https://youtu.be/YbmrPYctDg0?si=w0s5sPbvQadSknc6)
+
 [Khởi động nhanh](#cài-đặt--khởi-động-nhanh) • [Tính năng cốt lõi](#tính-năng-nổi-bật) • [Kiến trúc thuật toán](#kiến-trúc-thuật-toán-from-scratch) • [Kết quả thực nghiệm](#kết-quả-thực-nghiệm--phát-hiện-chính) • [Ứng dụng tương tác](#ứng-dụng-demo-tương-tác-streamlit)
 
 </div>
