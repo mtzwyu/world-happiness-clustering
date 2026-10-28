@@ -10,6 +10,7 @@
   1. **Hà Mạnh Trường** (MSSV: 2045240326) — Nhóm trưởng (Phụ trách Tổng quan, Tiền xử lý dữ liệu & Báo cáo)
   2. **Huỳnh Tâm Trí** (MSSV: 2045240315) — Thành viên (Phụ trách Thuật toán From-scratch & Thực nghiệm)
   3. **Ngô Quang Trung** (MSSV: 2045240325) — Thành viên (Phụ trách Diễn giải tri thức, Theo dõi dịch chuyển & Demo Streamlit)
+* **Video thuyết trình báo cáo (YouTube, ≤ 12 phút):** [https://youtu.be/YbmrPYctDg0?si=w0s5sPbvQadSknc6](https://youtu.be/YbmrPYctDg0?si=w0s5sPbvQadSknc6)
 
 ---
 
